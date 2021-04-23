@@ -1,5 +1,5 @@
 # Library - Проект для библиотеки СДУ
-# Команда разработки - Automation Department SDU
+### Команда разработки - Automation Department SDU
 
 ## Требуется
 - PHP >= 8.0
@@ -12,14 +12,6 @@
 * После добавление нового маршрута в api.php, нужно запустить команду
 ```php
 php artisan l5-swagger:generate
-```
-
-### Laravel ide helper for models
-
-Для генерации помощника в модельках
-
-```sh
-php artisan ide-helper:models
 ```
 
 ### Линтеры

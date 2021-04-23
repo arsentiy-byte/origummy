@@ -17,7 +17,7 @@ final class SwaggerUIMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): mixed
     {
         abort_if((bool) app()->environment('production'), 403);
 

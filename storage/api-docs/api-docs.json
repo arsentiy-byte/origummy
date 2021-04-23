@@ -1,0 +1,43 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Сервис Library",
+        "description": "Сервис для проекта библиотеки СДУ",
+        "contact": {
+            "email": "asekenskigo@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "2.0"
+    },
+    "servers": [
+        {
+            "url": "/library"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "developers"
+                ],
+                "summary": "Базовый",
+                "description": "Получить Hello world",
+                "operationId": "App\\Http\\Controllers\\IndexController::index",
+                "responses": {
+                    "200": {
+                        "description": "Hello World"
+                    },
+                    "400": {
+                        "description": "Что то не так"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

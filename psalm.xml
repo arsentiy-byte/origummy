@@ -5,17 +5,22 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    errorBaseline="psalm-baseline.xml"
 >
     <projectFiles>
         <directory name="app" />
         <ignoreFiles>
             <directory name="vendor" />
             <file name="app/Http/Middleware/SwaggerUIMiddleware.php"/>
+            <file name="app/Exceptions/Handler.php"/>
         </ignoreFiles>
     </projectFiles>
     <issueHandlers>
         <NonInvariantDocblockPropertyType errorLevel="suppress"/>
         <PossiblyNullArgument errorLevel="suppress"/>
+        <UndefinedMagicPropertyFetch errorLevel="suppress"/>
+        <UndefinedThisPropertyFetch errorLevel="suppress"/>
+        <TooManyArguments errorLevel="suppress"/>
     </issueHandlers>
     <plugins><pluginClass class="Psalm\LaravelPlugin\Plugin"/></plugins>
 </psalm>
