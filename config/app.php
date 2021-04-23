@@ -54,6 +54,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'url_base_path' => env('APP_URL_BASE_PATH', 'laravel'),
+
     'asset_url' => env('ASSET_URL', null),
 
     /*

@@ -1,62 +1,59 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Library - Проект для библиотеки СДУ
+# Команда разработки - Automation Department SDU
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Требуется
+- PHP >= 8.0
 
-## About Laravel
+## Документация
+* Документация генерируется на основе Open APIv3. 
+* Swagger файл лежит по умолчанию в папке storage/api-docs/api-docs.json.
+* Документация в json доступно по адресу /api/doc
+* Документация в UI доступно по адресу /api/swaggerui, см конфиг l5-swagger.php
+* После добавление нового маршрута в api.php, нужно запустить команду
+```php
+php artisan l5-swagger:generate
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Laravel ide helper for models
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Для генерации помощника в модельках
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```sh
+php artisan ide-helper:models
+```
 
-## Learning Laravel
+### Линтеры
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Для автоматический проверки и исправления качество кода используются следующие линтеры
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### [Psalm](https://psalm.dev/)
 
-## Laravel Sponsors
+Конфигурационный файл - [psalm.xml](psalm.xml)
+   
+Команда для проверки
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```sh
+vendor/bin/psalm
+```
 
-### Premium Partners
+Команда для исправления (фиксит не все ошибки). Подробнее [тут](https://psalm.dev/docs/manipulating_code/fixing/)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+```sh
+vendor/bin/psalter --issues=issue-name
+```   
+   
+#### [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) 
 
-## Contributing
+Конфигурационный файл - [.php_cs](.php_cs)
+   
+Команда для проверки
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```sh
+vendor/bin/php-cs-fixer fix --dry-run
+```
 
-## Code of Conduct
+Команда для исправления
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```sh
+vendor/bin/php-cs-fixer fix
+```
