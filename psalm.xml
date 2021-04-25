@@ -8,9 +8,9 @@
     errorBaseline="psalm-baseline.xml"
 >
     <projectFiles>
-        <directory name="app" />
+        <directory name="app"/>
         <ignoreFiles>
-            <directory name="vendor" />
+            <directory name="vendor"/>
             <file name="app/Http/Middleware/SwaggerUIMiddleware.php"/>
             <file name="app/Exceptions/Handler.php"/>
         </ignoreFiles>
@@ -21,6 +21,42 @@
         <UndefinedMagicPropertyFetch errorLevel="suppress"/>
         <UndefinedThisPropertyFetch errorLevel="suppress"/>
         <TooManyArguments errorLevel="suppress"/>
+        <MoreSpecificReturnType errorLevel="suppress"/>
+        <LessSpecificReturnStatement errorLevel="suppress"/>
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <directory name="app/Http/Requests"/>
+                <directory name="app/Http/Middleware"/>
+                <directory name="app/Console"/>
+            </errorLevel>
+        </PropertyNotSetInConstructor>
+        <MixedInferredReturnType errorLevel="suppress"/>
+        <MixedReturnStatement errorLevel="suppress"/>
+        <UnresolvableInclude errorLevel="suppress"/>
+        <MixedAssignment errorLevel="suppress"/>
+        <MixedOperand errorLevel="suppress"/>
+        <MixedArgument errorLevel="suppress"/>
+        <MixedMethodCall errorLevel="suppress"/>
+        <MixedArrayAccess errorLevel="suppress"/>
+        <MixedPropertyFetch errorLevel="suppress"/>
+        <UndefinedInterfaceMethod errorLevel="suppress"/>
+        <PossiblyUndefinedMethod errorLevel="suppress"/>
+        <InvalidReturnType>
+            <errorLevel type="suppress">
+                <directory name="app/Models"/>
+            </errorLevel>
+        </InvalidReturnType>
+        <InvalidReturnStatement>
+            <errorLevel type="suppress">
+                <directory name="app/Models"/>
+            </errorLevel>
+        </InvalidReturnStatement>
+        <MissingClosureParamType errorLevel="suppress"/>
     </issueHandlers>
-    <plugins><pluginClass class="Psalm\LaravelPlugin\Plugin"/></plugins>
+    <ignoreExceptions>
+        <class name="App\Http\Controllers\Api\Auth\LoginController" onlyGlobalScope="true"/>
+    </ignoreExceptions>
+    <plugins>
+        <pluginClass class="Psalm\LaravelPlugin\Plugin"/>
+    </plugins>
 </psalm>

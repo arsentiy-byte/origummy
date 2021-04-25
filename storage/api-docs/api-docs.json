@@ -18,22 +18,86 @@
         }
     ],
     "paths": {
-        "/": {
-            "get": {
+        "/auth/login": {
+            "post": {
                 "tags": [
-                    "developers"
+                    "auth"
                 ],
-                "summary": "Базовый",
-                "description": "Получить Hello world",
-                "operationId": "App\\Http\\Controllers\\IndexController::index",
+                "summary": "Аутентификация пользователя",
+                "description": "Аутентификация пользователя",
+                "operationId": "login",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
-                        "description": "Hello World"
+                        "description": "Authenticated"
                     },
                     "400": {
-                        "description": "Что то не так"
+                        "description": "Что-то не так"
                     }
                 }
+            }
+        },
+        "/auth/logout": {
+            "get": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "",
+                "description": "Выход пользователя (Разлогиниться)",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "Logged out"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/auth/user": {
+            "get": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "",
+                "description": "Get user by token",
+                "operationId": "user",
+                "responses": {
+                    "200": {
+                        "description": "User"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "LoginRequest": {
+                "required": [
+                    "username",
+                    "password"
+                ],
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
             }
         }
     },
