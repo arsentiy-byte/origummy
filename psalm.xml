@@ -51,6 +51,16 @@
                 <directory name="app/Models"/>
             </errorLevel>
         </InvalidReturnStatement>
+        <PossiblyNullReference>
+            <errorLevel type="suppress">
+                <directory name="app/Models"/>
+            </errorLevel>
+        </PossiblyNullReference>
+        <ImplicitToStringCast>
+            <errorLevel type="suppress">
+                <directory name="app/Models"/>
+            </errorLevel>
+        </ImplicitToStringCast>
         <MissingClosureParamType errorLevel="suppress"/>
     </issueHandlers>
     <ignoreExceptions>

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models\User;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
@@ -19,6 +20,7 @@ use Laravel\Passport\HasApiTokens;
  * @property string $edu_level
  * @property-read int $id
  * @property-read string $username
+ * @property-read UserCard $userCard
  */
 final class Student extends Authenticatable implements UserCidAttribute
 {
@@ -80,6 +82,9 @@ final class Student extends Authenticatable implements UserCidAttribute
         'class',
         'status',
         'edu_level',
+        'user_cid',
+        'username',
+        'id',
     ];
 
     protected $appends = ['user_cid', 'username', 'id'];
@@ -108,5 +113,13 @@ final class Student extends Authenticatable implements UserCidAttribute
     public function getIdAttribute(): string
     {
         return $this->stud_id;
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function userCard(): HasOne
+    {
+        return $this->hasOne(UserCard::class, 'stud_id');
     }
 }

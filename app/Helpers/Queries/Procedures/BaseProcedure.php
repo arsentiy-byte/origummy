@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Helpers\Queries\Procedures;
 
+use Exception;
 use Illuminate\Support\Facades\DB;
 use PDO;
 use PDOStatement;
@@ -11,46 +12,53 @@ use PDOStatement;
 /**
  * Class OracleProcedure.
  */
-final class OracleProcedure
+abstract class BaseProcedure
 {
     /**
      * @var string
      */
-    private string $name;
+    protected string $name;
 
     /**
      * @var array
      */
-    private array $params;
+    protected array $params;
 
     /**
      * @var \Closure|PDO
      */
-    private \Closure | PDO $pdo;
+    protected \Closure | PDO $pdo;
 
     /**
      * OracleProcedure constructor.
      * @param string $name
      * @param array $params
      * @param string $connName
+     *
+     * @psalm-suppress PropertyNotSetInConstructor
      */
     public function __construct(string $name, array $params, string $connName = '')
     {
         $this->name = $name;
-        $this->params = $params;
+        $this->setParams($params);
         $this->pdo = DB::connection($connName)->getPdo();
     }
 
     /**
-     * @return bool
+     * @return BaseProcedure
+     * @throws Exception
      */
-    public function call(): bool
+    public function call(): self
     {
         $statement = $this->pdo->prepare($this->generate());
 
         $this->bindParams($statement);
 
-        return $statement->execute();
+        if (! $statement->execute()) {
+            throw new Exception('Procedure execution error', 100);
+        }
+
+        return $this;
     }
 
     /**
@@ -92,4 +100,10 @@ final class OracleProcedure
             return isset($param['isOut']) && $param['isOut'] == true;
         }, ARRAY_FILTER_USE_BOTH);
     }
+
+    /**
+     * @param array $params
+     * @return void
+     */
+    abstract protected function setParams(array $params): void;
 }

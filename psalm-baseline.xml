@@ -1,2 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.7.0@d4377c0baf3ffbf0b1ec6998e8d1be2a40971005"/>
+<files psalm-version="4.7.0@d4377c0baf3ffbf0b1ec6998e8d1be2a40971005">
+  <file src="app/Helpers/Queries/Procedures/BaseProcedure.php">
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>$params</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="app/Traits/Materials/MaterialAdditionalAttributes.php">
+    <ImplicitToStringCast occurrences="1">
+      <code>DB::raw("(name||' '||surname) as name")</code>
+    </ImplicitToStringCast>
+    <PossiblyNullReference occurrences="3">
+      <code>count</code>
+      <code>first</code>
+      <code>select</code>
+    </PossiblyNullReference>
+  </file>
+  <file src="app/Traits/TableNameGetterTrait.php">
+    <UnsafeInstantiation occurrences="1">
+      <code>new static</code>
+    </UnsafeInstantiation>
+  </file>
+</files>

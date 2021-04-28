@@ -7,7 +7,10 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Helpers\Queries\Procedures\AuthProcedure;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Auth\LoginRequest;
+use App\Models\User\Employee;
+use App\Models\User\Student;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -39,8 +42,11 @@ final class LoginController extends Controller
      * @param LoginRequest $request
      * @return JsonResponse
      * @throws ValidationException
+     * @throws Exception
      *
      * @psalm-suppress PossiblyNullReference
+     * @psalm-suppress DocblockTypeContradiction
+     * @psalm-suppress PossiblyInvalidArgument
      */
     public function __invoke(LoginRequest $request): JsonResponse
     {
@@ -50,7 +56,20 @@ final class LoginController extends Controller
             'HTTP_USER_AGENT' => $request->server('HTTP_USER_AGENT'),
         ];
 
-        $user = AuthProcedure::auth($validated, $server);
+        $procedure = new AuthProcedure('AuthenticateUser', array_merge($validated, $server));
+        $result = $procedure->call()->getOutputParams();
+
+        $user = Student::find($validated['username']);
+
+        if (empty($user)) {
+            $user = Employee::where('hname', $validated['username'])->first();
+        }
+
+        if ($result['pIsVerified']['value'] != 1 || empty($user)) {
+            throw ValidationException::withMessages([
+                'user' => ['The provided credentials are incorrect'],
+            ]);
+        }
 
         Auth::login($user);
 
