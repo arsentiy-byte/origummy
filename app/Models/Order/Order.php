@@ -33,6 +33,6 @@ final class Order extends BaseModel
      */
     public function products(): HasManyThrough
     {
-        return $this->hasManyThrough(Product::class, OrderGood::class, 'order_id', 'product_id');
+        return $this->hasManyThrough(Product::class, OrderGood::class, 'order_id', 'id');
     }
 }

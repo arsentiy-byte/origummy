@@ -1,0 +1,101 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Сервис Origummy",
+        "description": "Сервис для магазина Origummy",
+        "contact": {
+            "email": "asekenskigo@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "/origummy"
+        }
+    ],
+    "paths": {
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Аутентификация пользователя",
+                "description": "Аутентификация пользователя",
+                "operationId": "login",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "phone": {
+                                        "description": "Номер телефона пользователя",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Пароль пользователя",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Authenticated"
+                    },
+                    "401": {
+                        "description": "Неверный логин/пароль или пользователь не существует"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "get": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "",
+                "description": "Выход пользователя (Разлогиниться)",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "Logged out"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/auth/user": {
+            "get": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "",
+                "description": "Get user by token",
+                "operationId": "user",
+                "responses": {
+                    "200": {
+                        "description": "Пользователь"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

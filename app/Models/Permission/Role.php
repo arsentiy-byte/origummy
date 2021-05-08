@@ -28,6 +28,6 @@ final class Role extends BaseModel
      */
     public function permissions(): HasManyThrough
     {
-        return $this->hasManyThrough(Permission::class, RolePermission::class, 'role_id', 'permission_id');
+        return $this->hasManyThrough(Permission::class, RolePermission::class, 'role_id', 'id');
     }
 }

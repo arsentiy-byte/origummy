@@ -20,7 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->string('slug');
             $table->boolean('status')->default(true);
             $table->boolean('is_default')->default(false);
-            $table->bigInteger('parent_id')->default(0);
+            $table->bigInteger('parent_id')->nullable();
 
             $table->foreign('parent_id')->references('id')->on('categories')->onDelete('set default');
             $table->timestamps();
