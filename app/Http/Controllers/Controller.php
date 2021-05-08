@@ -12,9 +12,9 @@ use Illuminate\Routing\Controller as BaseController;
 
 /**
  * @OA\Info(
- *      title="Сервис Library",
- *      version="2.0",
- *      description="Сервис для проекта библиотеки СДУ",
+ *      title="Сервис Origummy",
+ *      version="1.0",
+ *      description="Сервис для магазина Origummy",
  *      @OA\Contact(
  *          email="asekenskigo@gmail.com"
  *      ),

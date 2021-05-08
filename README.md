@@ -28,6 +28,18 @@ php artisan l5-swagger:generate
 vendor/bin/psalm
 ```
 
+Команда для проверки без кэширования
+
+```sh
+vendor/bin/psalm --no-cache
+```
+
+Команда для проверки с использованием baseline
+
+```sh
+vendor/bin/psalm --set-baseline=psalm-baseline.xml
+```
+
 Команда для исправления (фиксит не все ошибки). Подробнее [тут](https://psalm.dev/docs/manipulating_code/fixing/)
 
 ```sh
