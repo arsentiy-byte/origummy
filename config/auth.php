@@ -38,17 +38,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'student',
+            'provider' => 'users',
         ],
 
-        'api-student' => [
+        'user' => [
             'driver' => 'passport',
-            'provider' => 'student',
-            'hash' => false,
-        ],
-        'api-employee' => [
-            'driver' => 'passport',
-            'provider' => 'employee',
+            'provider' => 'users',
             'hash' => false,
         ],
     ],
@@ -71,20 +66,10 @@ return [
     */
 
     'providers' => [
-        'student' => [
-            'driver' => 'eloquent',
-            'model' => \App\Models\User\Student::class,
-        ],
-
-        'employee' => [
-            'driver' => 'eloquent',
-            'model' => \App\Models\User\Employee::class,
-        ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+         'users' => [
+             'driver' => 'database',
+             'table' => 'users',
+         ],
     ],
 
     /*

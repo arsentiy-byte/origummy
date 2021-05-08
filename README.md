@@ -1,5 +1,5 @@
-# Library - Проект для библиотеки СДУ
-### Команда разработки - Automation Department SDU
+# Origummy - магазин быстрой еды
+### Разработчик @arsentiy_zhunussov
 
 ## Требуется
 - PHP >= 8.0
