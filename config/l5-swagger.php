@@ -7,7 +7,7 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'Library Swagger UI',
+                'title' => 'Origummy Swagger UI',
             ],
 
             'routes' => [

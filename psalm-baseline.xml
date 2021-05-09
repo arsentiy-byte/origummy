@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.7.0@d4377c0baf3ffbf0b1ec6998e8d1be2a40971005">
+<files psalm-version="4.7.2@83a0325c0a95c0ab531d6b90c877068b464377b5">
+  <file src="app/DTO/Category/CategoryDTO.php">
+    <MissingConstructor occurrences="4">
+      <code>$isDefault</code>
+      <code>$slug</code>
+      <code>$status</code>
+      <code>$title</code>
+    </MissingConstructor>
+  </file>
+  <file src="app/Handlers/ImagesHandler.php">
+    <MissingReturnType occurrences="2">
+      <code>createDirectoryIfNotExists</code>
+      <code>deleteImage</code>
+    </MissingReturnType>
+  </file>
+  <file src="app/Handlers/UpdateCategory/Pipes/UpdateCategoryImages.php">
+    <PossiblyNullPropertyFetch occurrences="1">
+      <code>$image-&gt;path</code>
+    </PossiblyNullPropertyFetch>
+    <PossiblyNullReference occurrences="1">
+      <code>delete</code>
+    </PossiblyNullReference>
+  </file>
   <file src="app/Http/Controllers/Api/AuthController.php">
     <PossiblyNullReference occurrences="1">
       <code>createToken</code>

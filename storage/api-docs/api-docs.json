@@ -93,6 +93,128 @@
                     }
                 }
             }
+        },
+        "/v1/categories": {
+            "post": {
+                "tags": [
+                    "v1",
+                    "admin"
+                ],
+                "summary": "Создать категорию",
+                "description": "Создать категорию",
+                "operationId": "createCategory",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CategoryCreateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Категория успешно создана"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/v1/categories/{category}": {
+            "put": {
+                "tags": [
+                    "v1",
+                    "admin"
+                ],
+                "summary": "Изменить категорию",
+                "description": "Изменить категорию",
+                "operationId": "updateCategory",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CategoryUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Категория успешно изменена"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CategoryCreateRequest": {
+                "required": [
+                    "title",
+                    "images"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "boolean"
+                    },
+                    "parent_id": {
+                        "type": "integer"
+                    },
+                    "images": {
+                        "description": "files:jpeg,png,jpg,svg",
+                        "type": "array",
+                        "items": {
+                            "type": "image"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "CategoryUpdateRequest": {
+                "required": [
+                    "title"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "boolean"
+                    },
+                    "parent_id": {
+                        "type": "integer"
+                    },
+                    "images": {
+                        "description": "files:jpeg,png,jpg,svg",
+                        "type": "array",
+                        "items": {
+                            "type": "image"
+                        }
+                    },
+                    "delete_images": {
+                        "description": "file paths",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object"
+            }
         }
     },
     "security": [

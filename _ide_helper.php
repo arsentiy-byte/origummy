@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 8.38.0.
+ * Generated for Laravel 8.40.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1862,6 +1862,20 @@
         {
                         /** @var \Illuminate\Auth\SessionGuard $instance */
                         return $instance->attempt($credentials, $remember);
+        }
+                    /**
+         * Attempt to authenticate a user with credentials and additional callbacks.
+         *
+         * @param array $credentials
+         * @param array|callable $callbacks
+         * @param false $remember
+         * @return bool 
+         * @static 
+         */ 
+        public static function attemptWhen($credentials = [], $callbacks = null, $remember = false)
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        return $instance->attemptWhen($credentials, $callbacks, $remember);
         }
                     /**
          * Log the given user ID into the application.
@@ -3996,6 +4010,20 @@
                         $instance->queue(...$parameters);
         }
                     /**
+         * Queue a cookie to expire with the next response.
+         *
+         * @param string $name
+         * @param string|null $path
+         * @param string|null $domain
+         * @return void 
+         * @static 
+         */ 
+        public static function expire($name, $path = null, $domain = null)
+        {
+                        /** @var \Illuminate\Cookie\CookieJar $instance */
+                        $instance->expire($name, $path, $domain);
+        }
+                    /**
          * Remove a cookie from the queue.
          *
          * @param string $name
@@ -4464,298 +4492,53 @@
                         $instance->setReconnector($reconnector);
         }
                     /**
-         * Get current schema.
+         * Set the application instance used by the manager.
          *
-         * @return string 
+         * @param \Illuminate\Contracts\Foundation\Application $app
+         * @return \Illuminate\Database\DatabaseManager 
          * @static 
          */ 
-        public static function getSchema()
+        public static function setApplication($app)
         {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->getSchema();
-        }
-                    /**
-         * Set current schema.
-         *
-         * @param string $schema
-         * @return \Yajra\Oci8\Oci8Connection 
-         * @static 
-         */ 
-        public static function setSchema($schema)
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->setSchema($schema);
-        }
-                    /**
-         * Update oracle session variables.
-         *
-         * @param array $sessionVars
-         * @return \Yajra\Oci8\Oci8Connection 
-         * @static 
-         */ 
-        public static function setSessionVars($sessionVars)
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->setSessionVars($sessionVars);
-        }
-                    /**
-         * Get sequence class.
-         *
-         * @return \Yajra\Oci8\Schema\Sequence 
-         * @static 
-         */ 
-        public static function getSequence()
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->getSequence();
-        }
-                    /**
-         * Set sequence class.
-         *
-         * @param \Yajra\Oci8\Schema\Sequence $sequence
-         * @return \Yajra\Oci8\Schema\Sequence 
-         * @static 
-         */ 
-        public static function setSequence($sequence)
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->setSequence($sequence);
-        }
-                    /**
-         * Get oracle trigger class.
-         *
-         * @return \Yajra\Oci8\Schema\Trigger 
-         * @static 
-         */ 
-        public static function getTrigger()
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->getTrigger();
-        }
-                    /**
-         * Set oracle trigger class.
-         *
-         * @param \Yajra\Oci8\Schema\Trigger $trigger
-         * @return \Yajra\Oci8\Schema\Trigger 
-         * @static 
-         */ 
-        public static function setTrigger($trigger)
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->setTrigger($trigger);
-        }
-                    /**
-         * Get a schema builder instance for the connection.
-         *
-         * @return \Yajra\Oci8\Schema\OracleBuilder 
-         * @static 
-         */ 
-        public static function getSchemaBuilder()
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->getSchemaBuilder();
-        }
-                    /**
-         * Get a new query builder instance.
-         *
-         * @return \Illuminate\Database\Query\Builder 
-         * @static 
-         */ 
-        public static function query()
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->query();
-        }
-                    /**
-         * Set oracle session date format.
-         *
-         * @param string $format
-         * @return \Yajra\Oci8\Oci8Connection 
-         * @static 
-         */ 
-        public static function setDateFormat($format = 'YYYY-MM-DD HH24:MI:SS')
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->setDateFormat($format);
-        }
-                    /**
-         * Get doctrine connection.
-         *
-         * @return \Doctrine\DBAL\Connection 
-         * @static 
-         */ 
-        public static function getDoctrineConnection()
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->getDoctrineConnection();
-        }
-                    /**
-         * Execute a PL/SQL Function and return its value.
-         * 
-         * Usage: DB::executeFunction('function_name(:binding_1,:binding_n)', [':binding_1' => 'hi', ':binding_n' =>
-         * 'bye'], PDO::PARAM_LOB).
-         *
-         * @param string $functionName
-         * @param array $bindings (kvp array)
-         * @param int $returnType (PDO::PARAM_*)
-         * @param int $length
-         * @return mixed $returnType
-         * @static 
-         */ 
-        public static function executeFunction($functionName, $bindings = [], $returnType = 2, $length = null)
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->executeFunction($functionName, $bindings, $returnType, $length);
-        }
-                    /**
-         * Execute a PL/SQL Procedure and return its results.
-         * 
-         * Usage: DB::executeProcedure($procedureName, $bindings).
-         * $bindings looks like:
-         *         $bindings = [
-         *                  'p_userid'  => $id
-         *         ];
-         *
-         * @param string $procedureName
-         * @param array $bindings
-         * @return bool 
-         * @static 
-         */ 
-        public static function executeProcedure($procedureName, $bindings = [])
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->executeProcedure($procedureName, $bindings);
-        }
-                    /**
-         * Execute a PL/SQL Procedure and return its cursor result.
-         * 
-         * Usage: DB::executeProcedureWithCursor($procedureName, $bindings).
-         * 
-         * https://docs.oracle.com/cd/E17781_01/appdev.112/e18555/ch_six_ref_cur.htm#TDPPH218
-         *
-         * @param string $procedureName
-         * @param array $bindings
-         * @param string $cursorName
-         * @return array 
-         * @static 
-         */ 
-        public static function executeProcedureWithCursor($procedureName, $bindings = [], $cursorName = ':cursor')
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->executeProcedureWithCursor($procedureName, $bindings, $cursorName);
-        }
-                    /**
-         * Creates sql command to run a procedure with bindings.
-         *
-         * @param string $procedureName
-         * @param array $bindings
-         * @param string|bool $cursor
-         * @return string 
-         * @static 
-         */ 
-        public static function createSqlFromProcedure($procedureName, $bindings, $cursor = false)
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->createSqlFromProcedure($procedureName, $bindings, $cursor);
-        }
-                    /**
-         * Creates statement from procedure.
-         *
-         * @param string $procedureName
-         * @param array $bindings
-         * @param string|bool $cursorName
-         * @return \PDOStatement 
-         * @static 
-         */ 
-        public static function createStatementFromProcedure($procedureName, $bindings, $cursorName = false)
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->createStatementFromProcedure($procedureName, $bindings, $cursorName);
-        }
-                    /**
-         * Create statement from function.
-         *
-         * @param string $functionName
-         * @param array $bindings
-         * @return \PDOStatement 
-         * @static 
-         */ 
-        public static function createStatementFromFunction($functionName, $bindings)
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->createStatementFromFunction($functionName, $bindings);
-        }
-                    /**
-         * Set the table prefix and return the grammar.
-         *
-         * @param \Illuminate\Database\Grammar|\Yajra\Oci8\Query\Grammars\OracleGrammar|\Yajra\Oci8\Schema\Grammars\OracleGrammar $grammar
-         * @return \Illuminate\Database\Grammar 
-         * @static 
-         */ 
-        public static function withTablePrefix($grammar)
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->withTablePrefix($grammar);
-        }
-                    /**
-         * Set the schema prefix and return the grammar.
-         *
-         * @param \Illuminate\Database\Grammar|\Yajra\Oci8\Query\Grammars\OracleGrammar|\Yajra\Oci8\Schema\Grammars\OracleGrammar $grammar
-         * @return \Illuminate\Database\Grammar 
-         * @static 
-         */ 
-        public static function withSchemaPrefix($grammar)
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->withSchemaPrefix($grammar);
-        }
-                    /**
-         * Add bindings to statement.
-         *
-         * @param array $bindings
-         * @param \PDOStatement $stmt
-         * @return \PDOStatement 
-         * @static 
-         */ 
-        public static function addBindingsToStatement($stmt, $bindings)
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->addBindingsToStatement($stmt, $bindings);
-        }
-                    /**
-         * Set oracle NLS session to case insensitive search & sort.
-         *
-         * @return \Yajra\Oci8\Oci8Connection 
-         * @static 
-         */ 
-        public static function useCaseInsensitiveSession()
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->useCaseInsensitiveSession();
-        }
-                    /**
-         * Set oracle NLS session to case sensitive search & sort.
-         *
-         * @return \Yajra\Oci8\Oci8Connection 
-         * @static 
-         */ 
-        public static function useCaseSensitiveSession()
-        {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
-                        return $instance->useCaseSensitiveSession();
+                        /** @var \Illuminate\Database\DatabaseManager $instance */
+                        return $instance->setApplication($app);
         }
                     /**
          * Bind values to their parameters in the given statement.
          *
-         * @param \Yajra\Pdo\Oci8\Statement $statement
+         * @param \PDOStatement $statement
          * @param array $bindings
          * @return void 
          * @static 
          */ 
         public static function bindValues($statement, $bindings)
         {
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->bindValues($statement, $bindings);
+        }
+                    /**
+         * Get a schema builder instance for the connection.
+         *
+         * @return \Illuminate\Database\Schema\PostgresBuilder 
+         * @static 
+         */ 
+        public static function getSchemaBuilder()
+        {
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
+                        return $instance->getSchemaBuilder();
+        }
+                    /**
+         * Get the schema state for the connection.
+         *
+         * @param \Illuminate\Filesystem\Filesystem|null $files
+         * @param callable|null $processFactory
+         * @return \Illuminate\Database\Schema\PostgresSchemaState 
+         * @static 
+         */ 
+        public static function getSchemaState($files = null, $processFactory = null)
+        {
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
+                        return $instance->getSchemaState($files, $processFactory);
         }
                     /**
          * Set the query grammar to the default implementation.
@@ -4765,7 +4548,7 @@
          */ 
         public static function useDefaultQueryGrammar()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->useDefaultQueryGrammar();
         }
                     /**
@@ -4776,7 +4559,7 @@
          */ 
         public static function useDefaultSchemaGrammar()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->useDefaultSchemaGrammar();
         }
                     /**
@@ -4787,7 +4570,7 @@
          */ 
         public static function useDefaultPostProcessor()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->useDefaultPostProcessor();
         }
                     /**
@@ -4800,8 +4583,19 @@
          */ 
         public static function table($table, $as = null)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->table($table, $as);
+        }
+                    /**
+         * Get a new query builder instance.
+         *
+         * @return \Illuminate\Database\Query\Builder 
+         * @static 
+         */ 
+        public static function query()
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
+                        return $instance->query();
         }
                     /**
          * Run a select statement and return a single result.
@@ -4814,7 +4608,7 @@
          */ 
         public static function selectOne($query, $bindings = [], $useReadPdo = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->selectOne($query, $bindings, $useReadPdo);
         }
                     /**
@@ -4827,7 +4621,7 @@
          */ 
         public static function selectFromWriteConnection($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->selectFromWriteConnection($query, $bindings);
         }
                     /**
@@ -4841,7 +4635,7 @@
          */ 
         public static function select($query, $bindings = [], $useReadPdo = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->select($query, $bindings, $useReadPdo);
         }
                     /**
@@ -4855,7 +4649,7 @@
          */ 
         public static function cursor($query, $bindings = [], $useReadPdo = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->cursor($query, $bindings, $useReadPdo);
         }
                     /**
@@ -4868,7 +4662,7 @@
          */ 
         public static function insert($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->insert($query, $bindings);
         }
                     /**
@@ -4881,7 +4675,7 @@
          */ 
         public static function update($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->update($query, $bindings);
         }
                     /**
@@ -4894,7 +4688,7 @@
          */ 
         public static function delete($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->delete($query, $bindings);
         }
                     /**
@@ -4907,7 +4701,7 @@
          */ 
         public static function statement($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->statement($query, $bindings);
         }
                     /**
@@ -4920,7 +4714,7 @@
          */ 
         public static function affectingStatement($query, $bindings = [])
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->affectingStatement($query, $bindings);
         }
                     /**
@@ -4932,7 +4726,7 @@
          */ 
         public static function unprepared($query)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->unprepared($query);
         }
                     /**
@@ -4944,7 +4738,7 @@
          */ 
         public static function pretend($callback)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->pretend($callback);
         }
                     /**
@@ -4956,7 +4750,7 @@
          */ 
         public static function prepareBindings($bindings)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->prepareBindings($bindings);
         }
                     /**
@@ -4970,7 +4764,7 @@
          */ 
         public static function logQuery($query, $bindings, $time = null)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->logQuery($query, $bindings, $time);
         }
                     /**
@@ -4982,7 +4776,7 @@
          */ 
         public static function listen($callback)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->listen($callback);
         }
                     /**
@@ -4994,7 +4788,7 @@
          */ 
         public static function raw($value)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->raw($value);
         }
                     /**
@@ -5006,7 +4800,7 @@
          */ 
         public static function recordsHaveBeenModified($value = true)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->recordsHaveBeenModified($value);
         }
                     /**
@@ -5017,7 +4811,7 @@
          */ 
         public static function forgetRecordModificationState()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->forgetRecordModificationState();
         }
                     /**
@@ -5028,7 +4822,7 @@
          */ 
         public static function isDoctrineAvailable()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->isDoctrineAvailable();
         }
                     /**
@@ -5041,7 +4835,7 @@
          */ 
         public static function getDoctrineColumn($table, $column)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getDoctrineColumn($table, $column);
         }
                     /**
@@ -5052,8 +4846,19 @@
          */ 
         public static function getDoctrineSchemaManager()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getDoctrineSchemaManager();
+        }
+                    /**
+         * Get the Doctrine DBAL database connection instance.
+         *
+         * @return \Doctrine\DBAL\Connection 
+         * @static 
+         */ 
+        public static function getDoctrineConnection()
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
+                        return $instance->getDoctrineConnection();
         }
                     /**
          * Get the current PDO connection.
@@ -5063,7 +4868,7 @@
          */ 
         public static function getPdo()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getPdo();
         }
                     /**
@@ -5074,7 +4879,7 @@
          */ 
         public static function getRawPdo()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getRawPdo();
         }
                     /**
@@ -5085,7 +4890,7 @@
          */ 
         public static function getReadPdo()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getReadPdo();
         }
                     /**
@@ -5096,31 +4901,31 @@
          */ 
         public static function getRawReadPdo()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getRawReadPdo();
         }
                     /**
          * Set the PDO connection.
          *
          * @param \PDO|\Closure|null $pdo
-         * @return \Yajra\Oci8\Oci8Connection 
+         * @return \Illuminate\Database\PostgresConnection 
          * @static 
          */ 
         public static function setPdo($pdo)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->setPdo($pdo);
         }
                     /**
          * Set the PDO connection used for reading.
          *
          * @param \PDO|\Closure|null $pdo
-         * @return \Yajra\Oci8\Oci8Connection 
+         * @return \Illuminate\Database\PostgresConnection 
          * @static 
          */ 
         public static function setReadPdo($pdo)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->setReadPdo($pdo);
         }
                     /**
@@ -5131,7 +4936,7 @@
          */ 
         public static function getName()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getName();
         }
                     /**
@@ -5143,7 +4948,7 @@
          */ 
         public static function getConfig($option = null)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getConfig($option);
         }
                     /**
@@ -5154,7 +4959,7 @@
          */ 
         public static function getDriverName()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getDriverName();
         }
                     /**
@@ -5165,19 +4970,19 @@
          */ 
         public static function getQueryGrammar()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getQueryGrammar();
         }
                     /**
          * Set the query grammar used by the connection.
          *
          * @param \Illuminate\Database\Query\Grammars\Grammar $grammar
-         * @return \Yajra\Oci8\Oci8Connection 
+         * @return \Illuminate\Database\PostgresConnection 
          * @static 
          */ 
         public static function setQueryGrammar($grammar)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->setQueryGrammar($grammar);
         }
                     /**
@@ -5188,19 +4993,19 @@
          */ 
         public static function getSchemaGrammar()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getSchemaGrammar();
         }
                     /**
          * Set the schema grammar used by the connection.
          *
          * @param \Illuminate\Database\Schema\Grammars\Grammar $grammar
-         * @return \Yajra\Oci8\Oci8Connection 
+         * @return \Illuminate\Database\PostgresConnection 
          * @static 
          */ 
         public static function setSchemaGrammar($grammar)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->setSchemaGrammar($grammar);
         }
                     /**
@@ -5211,19 +5016,19 @@
          */ 
         public static function getPostProcessor()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getPostProcessor();
         }
                     /**
          * Set the query post processor used by the connection.
          *
          * @param \Illuminate\Database\Query\Processors\Processor $processor
-         * @return \Yajra\Oci8\Oci8Connection 
+         * @return \Illuminate\Database\PostgresConnection 
          * @static 
          */ 
         public static function setPostProcessor($processor)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->setPostProcessor($processor);
         }
                     /**
@@ -5234,19 +5039,19 @@
          */ 
         public static function getEventDispatcher()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getEventDispatcher();
         }
                     /**
          * Set the event dispatcher instance on the connection.
          *
          * @param \Illuminate\Contracts\Events\Dispatcher $events
-         * @return \Yajra\Oci8\Oci8Connection 
+         * @return \Illuminate\Database\PostgresConnection 
          * @static 
          */ 
         public static function setEventDispatcher($events)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->setEventDispatcher($events);
         }
                     /**
@@ -5257,19 +5062,19 @@
          */ 
         public static function unsetEventDispatcher()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->unsetEventDispatcher();
         }
                     /**
          * Set the transaction manager instance on the connection.
          *
          * @param \Illuminate\Database\DatabaseTransactionsManager $manager
-         * @return \Yajra\Oci8\Oci8Connection 
+         * @return \Illuminate\Database\PostgresConnection 
          * @static 
          */ 
         public static function setTransactionManager($manager)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->setTransactionManager($manager);
         }
                     /**
@@ -5280,7 +5085,7 @@
          */ 
         public static function unsetTransactionManager()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->unsetTransactionManager();
         }
                     /**
@@ -5291,7 +5096,7 @@
          */ 
         public static function pretending()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->pretending();
         }
                     /**
@@ -5302,7 +5107,7 @@
          */ 
         public static function getQueryLog()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getQueryLog();
         }
                     /**
@@ -5313,7 +5118,7 @@
          */ 
         public static function flushQueryLog()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->flushQueryLog();
         }
                     /**
@@ -5324,7 +5129,7 @@
          */ 
         public static function enableQueryLog()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->enableQueryLog();
         }
                     /**
@@ -5335,7 +5140,7 @@
          */ 
         public static function disableQueryLog()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->disableQueryLog();
         }
                     /**
@@ -5346,7 +5151,7 @@
          */ 
         public static function logging()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->logging();
         }
                     /**
@@ -5357,19 +5162,19 @@
          */ 
         public static function getDatabaseName()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getDatabaseName();
         }
                     /**
          * Set the name of the connected database.
          *
          * @param string $database
-         * @return \Yajra\Oci8\Oci8Connection 
+         * @return \Illuminate\Database\PostgresConnection 
          * @static 
          */ 
         public static function setDatabaseName($database)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->setDatabaseName($database);
         }
                     /**
@@ -5380,20 +5185,32 @@
          */ 
         public static function getTablePrefix()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->getTablePrefix();
         }
                     /**
          * Set the table prefix in use by the connection.
          *
          * @param string $prefix
-         * @return \Yajra\Oci8\Oci8Connection 
+         * @return \Illuminate\Database\PostgresConnection 
          * @static 
          */ 
         public static function setTablePrefix($prefix)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->setTablePrefix($prefix);
+        }
+                    /**
+         * Set the table prefix and return the grammar.
+         *
+         * @param \Illuminate\Database\Grammar $grammar
+         * @return \Illuminate\Database\Grammar 
+         * @static 
+         */ 
+        public static function withTablePrefix($grammar)
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
+                        return $instance->withTablePrefix($grammar);
         }
                     /**
          * Register a connection resolver.
@@ -5405,7 +5222,7 @@
          */ 
         public static function resolverFor($driver, $callback)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        \Yajra\Oci8\Oci8Connection::resolverFor($driver, $callback);
+                        \Illuminate\Database\PostgresConnection::resolverFor($driver, $callback);
         }
                     /**
          * Get the connection resolver for the given driver.
@@ -5416,7 +5233,7 @@
          */ 
         public static function getResolver($driver)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        return \Yajra\Oci8\Oci8Connection::getResolver($driver);
+                        return \Illuminate\Database\PostgresConnection::getResolver($driver);
         }
                     /**
          * Execute a Closure within a transaction.
@@ -5429,7 +5246,7 @@
          */ 
         public static function transaction($callback, $attempts = 1)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->transaction($callback, $attempts);
         }
                     /**
@@ -5441,7 +5258,7 @@
          */ 
         public static function beginTransaction()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->beginTransaction();
         }
                     /**
@@ -5453,7 +5270,7 @@
          */ 
         public static function commit()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->commit();
         }
                     /**
@@ -5466,7 +5283,7 @@
          */ 
         public static function rollBack($toLevel = null)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->rollBack($toLevel);
         }
                     /**
@@ -5477,7 +5294,7 @@
          */ 
         public static function transactionLevel()
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         return $instance->transactionLevel();
         }
                     /**
@@ -5489,7 +5306,7 @@
          */ 
         public static function afterCommit($callback)
         {            //Method inherited from \Illuminate\Database\Connection         
-                        /** @var \Yajra\Oci8\Oci8Connection $instance */
+                        /** @var \Illuminate\Database\PostgresConnection $instance */
                         $instance->afterCommit($callback);
         }
          
@@ -6857,7 +6674,7 @@
      * @method static \Illuminate\Http\Client\PendingRequest dump()
      * @method static \Illuminate\Http\Client\PendingRequest dd()
      * @method static \Illuminate\Http\Client\PendingRequest async()
-     * @method static \Illuminate\Http\Client\Pool pool(callable $callback)
+     * @method static array pool(callable $callback)
      * @method static \Illuminate\Http\Client\Response delete(string $url, array $data = [])
      * @method static \Illuminate\Http\Client\Response get(string $url, array $query = [])
      * @method static \Illuminate\Http\Client\Response head(string $url, array $query = [])
@@ -11306,8 +11123,8 @@
      * @method static \Illuminate\Routing\RouteRegistrar middleware(array|string|null $middleware)
      * @method static \Illuminate\Routing\RouteRegistrar name(string $value)
      * @method static \Illuminate\Routing\RouteRegistrar namespace(string|null $value)
-     * @method static \Illuminate\Routing\RouteRegistrar prefix(string  $prefix)
-     * @method static \Illuminate\Routing\RouteRegistrar where(array  $where)
+     * @method static \Illuminate\Routing\RouteRegistrar prefix(string $prefix)
+     * @method static \Illuminate\Routing\RouteRegistrar where(array $where)
      * @see \Illuminate\Routing\Router
      */ 
         class Route {
@@ -12221,65 +12038,28 @@
      */ 
         class Schema {
                     /**
-         * Create a new table on the schema.
+         * Create a database in the schema.
          *
-         * @param string $table
-         * @param \Closure $callback
-         * @return \Illuminate\Database\Schema\Blueprint 
+         * @param string $name
+         * @return bool 
          * @static 
          */ 
-        public static function create($table, $callback)
+        public static function createDatabase($name)
         {
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
-                        return $instance->create($table, $callback);
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
+                        return $instance->createDatabase($name);
         }
                     /**
-         * Changes an existing table on the schema.
+         * Drop a database from the schema if the database exists.
          *
-         * @param string $table
-         * @param \Closure $callback
-         * @return \Illuminate\Database\Schema\Blueprint 
+         * @param string $name
+         * @return bool 
          * @static 
          */ 
-        public static function table($table, $callback)
+        public static function dropDatabaseIfExists($name)
         {
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
-                        return $instance->table($table, $callback);
-        }
-                    /**
-         * Drop a table from the schema.
-         *
-         * @param string $table
-         * @return \Illuminate\Database\Schema\Blueprint 
-         * @static 
-         */ 
-        public static function drop($table)
-        {
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
-                        return $instance->drop($table);
-        }
-                    /**
-         * Drop all tables from the database.
-         *
-         * @return void 
-         * @static 
-         */ 
-        public static function dropAllTables()
-        {
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
-                        $instance->dropAllTables();
-        }
-                    /**
-         * Indicate that the table should be dropped if it exists.
-         *
-         * @param string $table
-         * @return \Illuminate\Support\Fluent 
-         * @static 
-         */ 
-        public static function dropIfExists($table)
-        {
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
-                        return $instance->dropIfExists($table);
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
+                        return $instance->dropDatabaseIfExists($name);
         }
                     /**
          * Determine if the given table exists.
@@ -12290,8 +12070,74 @@
          */ 
         public static function hasTable($table)
         {
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
                         return $instance->hasTable($table);
+        }
+                    /**
+         * Drop all tables from the database.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function dropAllTables()
+        {
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
+                        $instance->dropAllTables();
+        }
+                    /**
+         * Drop all views from the database.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function dropAllViews()
+        {
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
+                        $instance->dropAllViews();
+        }
+                    /**
+         * Drop all types from the database.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function dropAllTypes()
+        {
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
+                        $instance->dropAllTypes();
+        }
+                    /**
+         * Get all of the table names for the database.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getAllTables()
+        {
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
+                        return $instance->getAllTables();
+        }
+                    /**
+         * Get all of the view names for the database.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getAllViews()
+        {
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
+                        return $instance->getAllViews();
+        }
+                    /**
+         * Get all of the type names for the database.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getAllTypes()
+        {
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
+                        return $instance->getAllTypes();
         }
                     /**
          * Get the column listing for a given table.
@@ -12302,7 +12148,7 @@
          */ 
         public static function getColumnListing($table)
         {
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
                         return $instance->getColumnListing($table);
         }
                     /**
@@ -12314,7 +12160,7 @@
          */ 
         public static function defaultStringLength($length)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        \Yajra\Oci8\Schema\OracleBuilder::defaultStringLength($length);
+                        \Illuminate\Database\Schema\PostgresBuilder::defaultStringLength($length);
         }
                     /**
          * Set the default morph key type for migrations.
@@ -12325,7 +12171,7 @@
          */ 
         public static function defaultMorphKeyType($type)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        \Yajra\Oci8\Schema\OracleBuilder::defaultMorphKeyType($type);
+                        \Illuminate\Database\Schema\PostgresBuilder::defaultMorphKeyType($type);
         }
                     /**
          * Set the default morph key type for migrations to UUIDs.
@@ -12335,31 +12181,7 @@
          */ 
         public static function morphUsingUuids()
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        \Yajra\Oci8\Schema\OracleBuilder::morphUsingUuids();
-        }
-                    /**
-         * Create a database in the schema.
-         *
-         * @param string $name
-         * @return bool 
-         * @static 
-         */ 
-        public static function createDatabase($name)
-        {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
-                        return $instance->createDatabase($name);
-        }
-                    /**
-         * Drop a database from the schema if the database exists.
-         *
-         * @param string $name
-         * @return bool 
-         * @static 
-         */ 
-        public static function dropDatabaseIfExists($name)
-        {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
-                        return $instance->dropDatabaseIfExists($name);
+                        \Illuminate\Database\Schema\PostgresBuilder::morphUsingUuids();
         }
                     /**
          * Determine if the given table has a given column.
@@ -12371,7 +12193,7 @@
          */ 
         public static function hasColumn($table, $column)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
                         return $instance->hasColumn($table, $column);
         }
                     /**
@@ -12384,7 +12206,7 @@
          */ 
         public static function hasColumns($table, $columns)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
                         return $instance->hasColumns($table, $columns);
         }
                     /**
@@ -12397,8 +12219,58 @@
          */ 
         public static function getColumnType($table, $column)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
                         return $instance->getColumnType($table, $column);
+        }
+                    /**
+         * Modify a table on the schema.
+         *
+         * @param string $table
+         * @param \Closure $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function table($table, $callback)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
+                        $instance->table($table, $callback);
+        }
+                    /**
+         * Create a new table on the schema.
+         *
+         * @param string $table
+         * @param \Closure $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function create($table, $callback)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
+                        $instance->create($table, $callback);
+        }
+                    /**
+         * Drop a table from the schema.
+         *
+         * @param string $table
+         * @return void 
+         * @static 
+         */ 
+        public static function drop($table)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
+                        $instance->drop($table);
+        }
+                    /**
+         * Drop a table from the schema if it exists.
+         *
+         * @param string $table
+         * @return void 
+         * @static 
+         */ 
+        public static function dropIfExists($table)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
+                        $instance->dropIfExists($table);
         }
                     /**
          * Drop columns from a table schema.
@@ -12410,44 +12282,8 @@
          */ 
         public static function dropColumns($table, $columns)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
                         $instance->dropColumns($table, $columns);
-        }
-                    /**
-         * Drop all views from the database.
-         *
-         * @return void 
-         * @throws \LogicException
-         * @static 
-         */ 
-        public static function dropAllViews()
-        {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
-                        $instance->dropAllViews();
-        }
-                    /**
-         * Drop all types from the database.
-         *
-         * @return void 
-         * @throws \LogicException
-         * @static 
-         */ 
-        public static function dropAllTypes()
-        {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
-                        $instance->dropAllTypes();
-        }
-                    /**
-         * Get all of the table names for the database.
-         *
-         * @return void 
-         * @throws \LogicException
-         * @static 
-         */ 
-        public static function getAllTables()
-        {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
-                        $instance->getAllTables();
         }
                     /**
          * Rename a table on the schema.
@@ -12459,7 +12295,7 @@
          */ 
         public static function rename($from, $to)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
                         $instance->rename($from, $to);
         }
                     /**
@@ -12470,7 +12306,7 @@
          */ 
         public static function enableForeignKeyConstraints()
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
                         return $instance->enableForeignKeyConstraints();
         }
                     /**
@@ -12481,7 +12317,7 @@
          */ 
         public static function disableForeignKeyConstraints()
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
                         return $instance->disableForeignKeyConstraints();
         }
                     /**
@@ -12497,7 +12333,7 @@
          */ 
         public static function registerCustomDoctrineType($class, $name, $type)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
                         $instance->registerCustomDoctrineType($class, $name, $type);
         }
                     /**
@@ -12508,19 +12344,19 @@
          */ 
         public static function getConnection()
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
                         return $instance->getConnection();
         }
                     /**
          * Set the database connection instance.
          *
          * @param \Illuminate\Database\Connection $connection
-         * @return \Yajra\Oci8\Schema\OracleBuilder 
+         * @return \Illuminate\Database\Schema\PostgresBuilder 
          * @static 
          */ 
         public static function setConnection($connection)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
                         return $instance->setConnection($connection);
         }
                     /**
@@ -12532,7 +12368,7 @@
          */ 
         public static function blueprintResolver($resolver)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
-                        /** @var \Yajra\Oci8\Schema\OracleBuilder $instance */
+                        /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
                         $instance->blueprintResolver($resolver);
         }
          
@@ -15386,6 +15222,26 @@
                     /**
          * 
          *
+         * @static 
+         */ 
+        public static function reportErrorLevels($reportErrorLevels)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->reportErrorLevels($reportErrorLevels);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function filterExceptionsUsing($filterExceptionsCallable)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->filterExceptionsUsing($filterExceptionsCallable);
+        }
+                    /**
+         * 
+         *
          * @return null|string 
          * @static 
          */ 
@@ -15623,6 +15479,70 @@
         {
                         /** @var \Facade\FlareClient\Flare $instance */
                         return $instance->group($groupName, $properties);
+        }
+         
+    }
+     
+}
+
+    namespace Intervention\Image\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Image {
+                    /**
+         * Overrides configuration settings
+         *
+         * @param array $config
+         * @return self 
+         * @static 
+         */ 
+        public static function configure($config = [])
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->configure($config);
+        }
+                    /**
+         * Initiates an Image instance from different input types
+         *
+         * @param mixed $data
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function make($data)
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->make($data);
+        }
+                    /**
+         * Creates an empty image canvas
+         *
+         * @param int $width
+         * @param int $height
+         * @param mixed $background
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function canvas($width, $height, $background = null)
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->canvas($width, $height, $background);
+        }
+                    /**
+         * Create new cached image and run callback
+         * (requires additional package intervention/imagecache)
+         *
+         * @param \Closure $callback
+         * @param int $lifetime
+         * @param boolean $returnObj
+         * @return \Image 
+         * @static 
+         */ 
+        public static function cache($callback, $lifetime = null, $returnObj = false)
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->cache($callback, $lifetime, $returnObj);
         }
          
     }
@@ -16311,6 +16231,19 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
                                 return $instance->without($relations);
+            }
+             
+                /**
+             * Set the relationships that should be eager loaded while removing any previously added eager loading specifications.
+             *
+             * @param mixed $relations
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function withOnly($relations)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->withOnly($relations);
             }
              
                 /**
@@ -18947,6 +18880,7 @@ namespace  {
             class View extends \Illuminate\Support\Facades\View {}
             class L5Swagger extends \L5Swagger\L5SwaggerFacade {}
             class Flare extends \Facade\Ignition\Facades\Flare {}
+            class Image extends \Intervention\Image\Facades\Image {}
      
 }
 

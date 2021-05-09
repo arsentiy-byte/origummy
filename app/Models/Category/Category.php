@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Category.
+ * @property int $id
  * @property string $title
  * @property string $description
  * @property string $slug
