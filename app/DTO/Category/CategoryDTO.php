@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\DTO\Category;
 
+use App\DTO\InterfaceDTO;
 use Str;
 
 /**
  * Class CategoryDTO.
  */
-final class CategoryDTO
+final class CategoryDTO implements InterfaceDTO
 {
     /**
      * @var int|null
@@ -19,7 +20,7 @@ final class CategoryDTO
     /**
      * @var string
      */
-    public string $title;
+    public ?string $title = null;
 
     /**
      * @var string|null
@@ -65,9 +66,9 @@ final class CategoryDTO
         $self = new static();
 
         $self->categoryID = $input['category_id'] ?? null;
-        $self->title = $input['title'];
+        $self->title = $input['title'] ?? null;
         $self->description = $input['description'] ?? null;
-        $self->slug = Str::slug($input['title']);
+        $self->slug = Str::slug($input['title'] ?? '');
         $self->status = $input['status'] ?? true;
         $self->isDefault = false;
         $self->parentID = $input['parent_id'] ?? null;

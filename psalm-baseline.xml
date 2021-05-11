@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.7.2@83a0325c0a95c0ab531d6b90c877068b464377b5">
   <file src="app/DTO/Category/CategoryDTO.php">
-    <MissingConstructor occurrences="4">
+    <MissingConstructor occurrences="3">
       <code>$isDefault</code>
       <code>$slug</code>
       <code>$status</code>
-      <code>$title</code>
     </MissingConstructor>
+  </file>
+  <file src="app/Filters/CategoryFilter.php">
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>CategoryFilter</code>
+    </PropertyNotSetInConstructor>
   </file>
   <file src="app/Handlers/ImagesHandler.php">
     <MissingReturnType occurrences="2">
@@ -26,6 +30,11 @@
     <PossiblyNullReference occurrences="1">
       <code>createToken</code>
     </PossiblyNullReference>
+  </file>
+  <file src="app/Http/Controllers/Api/V1/CategoryController.php">
+    <UndefinedDocblockClass occurrences="1">
+      <code>Category::filter($filters)</code>
+    </UndefinedDocblockClass>
   </file>
   <file src="app/Traits/TableNameGetterTrait.php">
     <UnsafeInstantiation occurrences="1">

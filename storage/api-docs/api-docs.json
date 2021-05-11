@@ -95,6 +95,23 @@
             }
         },
         "/v1/categories": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin"
+                ],
+                "summary": "Список категорий",
+                "description": "Список категорий",
+                "operationId": "getCategories",
+                "responses": {
+                    "200": {
+                        "description": "Успешно получены"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "v1",
@@ -122,7 +139,66 @@
                 }
             }
         },
+        "/v1/categories/search": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin"
+                ],
+                "summary": "Поиск по названию категорий",
+                "description": "Поиск по названию категорий",
+                "operationId": "categorySearch",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "type": "string",
+                        "required": true,
+                        "description": "Value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешно получены",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoryResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
         "/v1/categories/{category}": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin"
+                ],
+                "summary": "Получить категорию по ID",
+                "description": "Получить категорию по ID",
+                "operationId": "getCategoryById",
+                "responses": {
+                    "200": {
+                        "description": "Данные по категории",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoryResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            },
             "put": {
                 "tags": [
                     "v1",
@@ -143,6 +219,23 @@
                 "responses": {
                     "200": {
                         "description": "Категория успешно изменена"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "v1",
+                    "admin"
+                ],
+                "summary": "Удалить категорию",
+                "description": "Удалить категорию",
+                "operationId": "deleteCategory",
+                "responses": {
+                    "200": {
+                        "description": "Категория успешно удалена"
                     },
                     "400": {
                         "description": "Что-то не так"
@@ -211,6 +304,47 @@
                         "items": {
                             "type": "string"
                         }
+                    }
+                },
+                "type": "object"
+            },
+            "CategoryResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "slug": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "boolean"
+                    },
+                    "is_default": {
+                        "type": "boolean"
+                    },
+                    "parent_id": {
+                        "type": "integer"
+                    },
+                    "images": {
+                        "type": "array",
+                        "items": {
+                            "type": "Object"
+                        }
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "type": "Object"
+                        }
+                    },
+                    "parent": {
+                        "type": "Object"
                     }
                 },
                 "type": "object"

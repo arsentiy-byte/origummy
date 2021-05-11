@@ -78,7 +78,7 @@ final class ImagesHandler
     {
         $this->createDirectoryIfNotExists(public_path()."/images/{$this->dir}");
         $path = public_path('images')."/{$filePath}";
-        if (File::exists($path) && ! File::delete($path)) {
+        if (! File::exists($path) || ! File::delete($path)) {
             throw new Exception('Failed when deleting file');
         }
     }
