@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Handlers\DeleteCategory\Pipes;
+namespace App\Handlers\Category\CreateCategory\Pipes;
 
 use App\DTO\Category\CategoryDTO;
 use App\Models\Category\Category;
 use Closure;
 
 /**
- * Class DeleteCategory.
+ * Class CreateCategory.
  */
-final class DeleteCategory
+final class CreateCategory
 {
     /**
      * @param CategoryDTO $categoryDTO
@@ -20,9 +20,8 @@ final class DeleteCategory
      */
     public function handle(CategoryDTO $categoryDTO, Closure $next): mixed
     {
-        $category = Category::findOrFail($categoryDTO->categoryID);
-
-        $category->delete();
+        $category = Category::create($categoryDTO->getCategoryData());
+        $categoryDTO->categoryID = $category->id;
 
         return $next($categoryDTO);
     }

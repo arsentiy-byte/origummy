@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Handlers\UpdateCategory\Pipes;
+namespace App\Handlers\Category\UpdateCategory\Pipes;
 
 use App\DTO\Category\CategoryDTO;
 use App\Handlers\ImagesHandler;
@@ -24,8 +24,8 @@ final class UpdateCategoryImages
     public function handle(CategoryDTO $categoryDTO, Closure $next): mixed
     {
         $imagesHandler = new ImagesHandler(240, 'categories');
-        $deleteImages = $categoryDTO->getCategoryDeleteImagesData()['images'];
-        $images = $categoryDTO->getCategoryImagesData()['images'];
+        $deleteImages = $categoryDTO->getCategoryDeleteImages();
+        $images = $categoryDTO->getCategoryImages();
 
         foreach ($deleteImages as $deleteImage) {
             $image = CategoryImage::where('path', $deleteImage)->first();

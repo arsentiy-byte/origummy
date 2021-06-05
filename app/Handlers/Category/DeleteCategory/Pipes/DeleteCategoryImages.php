@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Handlers\DeleteCategory\Pipes;
+namespace App\Handlers\Category\DeleteCategory\Pipes;
 
 use App\DTO\Category\CategoryDTO;
 use App\Handlers\ImagesHandler;
@@ -10,6 +10,9 @@ use App\Models\Category\CategoryImage;
 use Closure;
 use Exception;
 
+/**
+ * Class DeleteCategoryImages.
+ */
 final class DeleteCategoryImages
 {
     /**

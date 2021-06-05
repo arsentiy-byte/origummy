@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Handlers\DeleteCategory;
+namespace App\Handlers\Category\DeleteCategory;
 
 use App\Handlers\BaseHandler;
-use App\Handlers\DeleteCategory\Pipes\DeleteCategory;
-use App\Handlers\DeleteCategory\Pipes\DeleteCategoryImages;
+use App\Handlers\Category\DeleteCategory\Pipes\DeleteCategory;
+use App\Handlers\Category\DeleteCategory\Pipes\DeleteCategoryImages;
 
 /**
  * Class DeleteCategoryHandler.

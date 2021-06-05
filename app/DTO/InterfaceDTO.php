@@ -9,5 +9,9 @@ namespace App\DTO;
  */
 interface InterfaceDTO
 {
+    /**
+     * @param array $input
+     * @return static
+     */
     public static function fromArray(array $input): self;
 }

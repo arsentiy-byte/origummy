@@ -6,9 +6,9 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\DTO\Category\CategoryDTO;
 use App\Filters\CategoryFilter;
-use App\Handlers\CreateCategory\CreateCategoryHandler;
-use App\Handlers\DeleteCategory\DeleteCategoryHandler;
-use App\Handlers\UpdateCategory\UpdateCategoryHandler;
+use App\Handlers\Category\CreateCategory\CreateCategoryHandler;
+use App\Handlers\Category\DeleteCategory\DeleteCategoryHandler;
+use App\Handlers\Category\UpdateCategory\UpdateCategoryHandler;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryCreateRequest;
 use App\Http\Requests\CategoryUpdateRequest;
@@ -36,7 +36,6 @@ final class CategoryController extends Controller
      * @param Request $request
      * @param CategoryFilter $filters
      * @return JsonResponse
-     * @psalm-suppress UndefinedMagicMethod
      */
     public function getCategories(Request $request, CategoryFilter $filters): JsonResponse
     {

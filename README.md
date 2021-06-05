@@ -48,7 +48,7 @@ vendor/bin/psalter --issues=issue-name
    
 #### [PHP-CS-Fixer](https://github.com/FriendsOfPHP/PHP-CS-Fixer) 
 
-Конфигурационный файл - [.php_cs](.php_cs)
+Конфигурационный файл - [.php_cs](.php-cs-fixer)
    
 Команда для проверки
 

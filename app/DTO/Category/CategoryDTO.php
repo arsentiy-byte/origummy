@@ -65,13 +65,13 @@ final class CategoryDTO implements InterfaceDTO
     {
         $self = new static();
 
-        $self->categoryID = $input['category_id'] ?? null;
+        $self->categoryID = isset($input['category_id']) ? (int) $input['category_id'] : null;
         $self->title = $input['title'] ?? null;
         $self->description = $input['description'] ?? null;
         $self->slug = Str::slug($input['title'] ?? '');
         $self->status = $input['status'] ?? true;
         $self->isDefault = false;
-        $self->parentID = $input['parent_id'] ?? null;
+        $self->parentID = isset($input['parent_id']) ? (int) $input['parent_id'] : null;
         $self->images = $input['images'] ?? [];
         $self->deleteImages = $input['delete_images'] ?? [];
 
@@ -94,22 +94,18 @@ final class CategoryDTO implements InterfaceDTO
     }
 
     /**
-     * @return array[]
+     * @return array
      */
-    public function getCategoryImagesData(): array
+    public function getCategoryImages(): array
     {
-        return [
-            'images' => $this->images,
-        ];
+        return $this->images;
     }
 
     /**
      * @return array
      */
-    public function getCategoryDeleteImagesData(): array
+    public function getCategoryDeleteImages(): array
     {
-        return [
-            'images' => $this->deleteImages,
-        ];
+        return $this->deleteImages;
     }
 }

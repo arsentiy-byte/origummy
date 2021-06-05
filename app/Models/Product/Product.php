@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * Class Product.
+ * @property int $id
  * @property string $title
  * @property string|null $description
  * @property int $price

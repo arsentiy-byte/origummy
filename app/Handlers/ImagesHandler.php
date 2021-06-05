@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image as ImageFacade;
 use Intervention\Image\Image;
 
+/**
+ * Class ImagesHandler.
+ */
 final class ImagesHandler
 {
     /**

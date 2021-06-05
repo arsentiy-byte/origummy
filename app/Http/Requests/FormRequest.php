@@ -9,6 +9,9 @@ use App\Exceptions\NoticeException;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest as LaravelFormRequest;
 
+/**
+ * Class FormRequest.
+ */
 abstract class FormRequest extends LaravelFormRequest
 {
     /**
@@ -16,14 +19,14 @@ abstract class FormRequest extends LaravelFormRequest
      *
      * @return array
      */
-    abstract public function rules();
+    abstract public function rules(): array;
 
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    abstract public function authorize();
+    abstract public function authorize(): bool;
 
     /**
      * Handle a failed validation attempt.

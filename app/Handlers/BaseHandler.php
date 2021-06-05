@@ -9,6 +9,9 @@ use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
+/**
+ * Class BaseHandler.
+ */
 abstract class BaseHandler
 {
     public const PIPES = [];

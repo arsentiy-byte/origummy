@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Handlers\CreateCategory;
+namespace App\Handlers\Category\CreateCategory;
 
 use App\Handlers\BaseHandler;
-use App\Handlers\CreateCategory\Pipes\CreateCategory;
-use App\Handlers\CreateCategory\Pipes\CreateCategoryImages;
+use App\Handlers\Category\CreateCategory\Pipes\CreateCategory;
+use App\Handlers\Category\CreateCategory\Pipes\CreateCategoryImages;
 
 /**
  * Class CreateCategoryHandler.

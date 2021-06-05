@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Handlers\UpdateCategory\Pipes;
+namespace App\Handlers\Category\UpdateCategory\Pipes;
 
 use App\DTO\Category\CategoryDTO;
 use App\Models\Category\Category;

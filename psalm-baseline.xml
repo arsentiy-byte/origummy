@@ -7,10 +7,50 @@
       <code>$status</code>
     </MissingConstructor>
   </file>
+  <file src="app/DTO/Product/ProductDTO.php">
+    <ImpurePropertyAssignment occurrences="10">
+      <code>$self-&gt;category_id</code>
+      <code>$self-&gt;count</code>
+      <code>$self-&gt;description</code>
+      <code>$self-&gt;images</code>
+      <code>$self-&gt;old_price</code>
+      <code>$self-&gt;price</code>
+      <code>$self-&gt;promotions</code>
+      <code>$self-&gt;relatedProducts</code>
+      <code>$self-&gt;status</code>
+      <code>$self-&gt;title</code>
+    </ImpurePropertyAssignment>
+    <MissingConstructor occurrences="3">
+      <code>$category_id</code>
+      <code>$price</code>
+      <code>$title</code>
+    </MissingConstructor>
+    <UndefinedAttributeClass occurrences="1">
+      <code>Pure</code>
+    </UndefinedAttributeClass>
+  </file>
+  <file src="app/DTO/Product/UpdateProductDTO.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Pure</code>
+    </UndefinedAttributeClass>
+  </file>
   <file src="app/Filters/CategoryFilter.php">
     <PropertyNotSetInConstructor occurrences="1">
       <code>CategoryFilter</code>
     </PropertyNotSetInConstructor>
+  </file>
+  <file src="app/Filters/ProductFilter.php">
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>ProductFilter</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="app/Handlers/Category/UpdateCategory/Pipes/UpdateCategoryImages.php">
+    <PossiblyNullPropertyFetch occurrences="1">
+      <code>$image-&gt;path</code>
+    </PossiblyNullPropertyFetch>
+    <PossiblyNullReference occurrences="1">
+      <code>delete</code>
+    </PossiblyNullReference>
   </file>
   <file src="app/Handlers/ImagesHandler.php">
     <MissingReturnType occurrences="2">
@@ -18,7 +58,7 @@
       <code>deleteImage</code>
     </MissingReturnType>
   </file>
-  <file src="app/Handlers/UpdateCategory/Pipes/UpdateCategoryImages.php">
+  <file src="app/Handlers/Product/UpdateProduct/Pipes/UpdateProductImages.php">
     <PossiblyNullPropertyFetch occurrences="1">
       <code>$image-&gt;path</code>
     </PossiblyNullPropertyFetch>
@@ -34,6 +74,11 @@
   <file src="app/Http/Controllers/Api/V1/CategoryController.php">
     <UndefinedDocblockClass occurrences="1">
       <code>Category::filter($filters)</code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="app/Http/Controllers/Api/V1/ProductController.php">
+    <UndefinedDocblockClass occurrences="1">
+      <code>Product::filter($filters)</code>
     </UndefinedDocblockClass>
   </file>
   <file src="app/Traits/TableNameGetterTrait.php">
