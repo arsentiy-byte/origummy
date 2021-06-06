@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * Class Promotion.
+ * @property int $id
  * @property string $title
  * @property string $description
  * @property bool $status
@@ -33,7 +34,7 @@ final class Promotion extends BaseModel
      */
     public function products(): HasManyThrough
     {
-        return $this->hasManyThrough(Product::class, ProductPromotion::class, 'promotion_id', 'product_id');
+        return $this->hasManyThrough(Product::class, ProductPromotion::class, 'promotion_id', 'id');
     }
 
     /**
@@ -49,6 +50,6 @@ final class Promotion extends BaseModel
      */
     public function relatedProducts(): HasManyThrough
     {
-        return $this->hasManyThrough(Product::class, RelatedPromotion::class, 'promotion_id', 'product_id');
+        return $this->hasManyThrough(Product::class, RelatedPromotion::class, 'promotion_id', 'id');
     }
 }

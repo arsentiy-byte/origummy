@@ -30,5 +30,13 @@ Route::prefix(config('app.url_base_path'))->group(function () {
         Route::put('products/{product}', 'Api\V1\ProductController@updateProduct')->name('product.update');
         Route::delete('products/{product}', 'Api\V1\ProductController@deleteProduct')->name('product.delete');
         Route::get('products/by-category/{category}', 'Api\V1\ProductController@getProductsByCategory')->name('product.by_category');
+
+        Route::get('promotions', 'Api\V1\PromotionController@getPromotions')->name('promotions.index');
+        Route::get('promotions/types', 'Api\V1\PromotionController@getPromotionTypes')->name('promotions.by_category');
+        Route::get('promotions/search', 'Api\V1\PromotionController@promotionSearch')->name('promotions.search');
+        Route::get('promotions/{promotion}', 'Api\V1\PromotionController@getPromotionById')->name('promotion.by_id');
+        Route::post('promotions', 'Api\V1\PromotionController@createPromotion')->name('promotions.create');
+        Route::put('promotions/{promotion}', 'Api\V1\PromotionController@updatePromotion')->name('promotion.update');
+        Route::delete('promotions/{promotion}', 'Api\V1\PromotionController@deletePromotion')->name('promotion.delete');
     });
 });

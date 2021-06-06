@@ -27,7 +27,7 @@ final class CategoryController extends Controller
      * @OA\GET (
      *      path="/v1/categories",
      *      operationId="getCategories",
-     *      tags={"v1", "admin"},
+     *      tags={"v1", "admin", "category"},
      *      summary="Список категорий",
      *      description="Список категорий",
      *      @OA\Response(response=200, description="Успешно получены"),
@@ -58,7 +58,7 @@ final class CategoryController extends Controller
      * @OA\Get (
      *      path="/v1/categories/search",
      *      operationId="categorySearch",
-     *      tags={"v1", "admin"},
+     *      tags={"v1", "admin", "category"},
      *      summary="Поиск по названию категорий",
      *      description="Поиск по названию категорий",
      *      parameters={
@@ -85,12 +85,12 @@ final class CategoryController extends Controller
      * @OA\GET (
      *      path="/v1/categories/{category}",
      *      operationId="getCategoryById",
-     *      tags={"v1", "admin"},
+     *      tags={"v1", "admin", "category"},
      *      summary="Получить категорию по ID",
      *      description="Получить категорию по ID",
      *      @OA\Response(
      *          response=200,
-     *          description="Данные по категории",
+     *          description="Данные по категорий",
      *          @OA\JsonContent(ref="#/components/schemas/CategoryResource")
      *      ),
      *      @OA\Response(response=400, description="Что-то не так")
@@ -100,14 +100,14 @@ final class CategoryController extends Controller
      */
     public function getCategoryById(Category $category): JsonResponse
     {
-        return $this->response('Данные по категорию', new CategoryResource($category));
+        return $this->response('Данные по категорий', new CategoryResource($category));
     }
 
     /**
      * @OA\Post (
      *      path="/v1/categories",
      *      operationId="createCategory",
-     *      tags={"v1", "admin"},
+     *      tags={"v1", "admin", "category"},
      *      summary="Создать категорию",
      *      description="Создать категорию",
      *      @OA\RequestBody(
@@ -138,7 +138,7 @@ final class CategoryController extends Controller
      * @OA\Put (
      *      path="/v1/categories/{category}",
      *      operationId="updateCategory",
-     *      tags={"v1", "admin"},
+     *      tags={"v1", "admin", "category"},
      *      summary="Изменить категорию",
      *      description="Изменить категорию",
      *      @OA\RequestBody(
@@ -172,7 +172,7 @@ final class CategoryController extends Controller
      * @OA\Delete  (
      *      path="/v1/categories/{category}",
      *      operationId="deleteCategory",
-     *      tags={"v1", "admin"},
+     *      tags={"v1", "admin", "category"},
      *      summary="Удалить категорию",
      *      description="Удалить категорию",
      *      @OA\Response(

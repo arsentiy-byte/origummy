@@ -129,7 +129,7 @@ final class UpdateProductDTO implements InterfaceDTO
             isset($input['old_price']) ? (int) $input['old_price'] : null,
             isset($input['count']) ? (int) $input['count'] : null,
             isset($input['category_id']) ? (int) $input['category_id'] : null,
-            isset($input['status']) ? (bool) $input['category_id'] : null,
+            isset($input['status']) ? (bool) $input['status'] : null,
             $input['images'] ?? null,
             $input['delete_images'] ?? null,
             $input['related_products'] ?? null,

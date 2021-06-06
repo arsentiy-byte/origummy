@@ -13,6 +13,9 @@ use App\Models\BaseModel;
  */
 final class PromotionType extends BaseModel
 {
+    public const NAME_DISCOUNT = 'discount';
+    public const NAME_GIFT = 'gift';
+
     /**
      * @var string
      */

@@ -28,7 +28,7 @@ final class ProductController extends Controller
      * @OA\GET (
      *      path="/v1/products",
      *      operationId="getProducts",
-     *      tags={"v1", "admin"},
+     *      tags={"v1", "admin", "product"},
      *      summary="Список товаров",
      *      description="Список товаров",
      *      @OA\Response(response=200, description="Успешно получены"),
@@ -59,7 +59,7 @@ final class ProductController extends Controller
      * @OA\Get (
      *      path="/v1/products/search",
      *      operationId="productSearch",
-     *      tags={"v1", "admin"},
+     *      tags={"v1", "admin", "product"},
      *      summary="Поиск по названию товара",
      *      description="Поиск по названию товара",
      *      parameters={
@@ -86,7 +86,7 @@ final class ProductController extends Controller
      * @OA\GET (
      *      path="/v1/products/{product}",
      *      operationId="getProductById",
-     *      tags={"v1", "admin"},
+     *      tags={"v1", "admin", "product"},
      *      summary="Получить товар по ID",
      *      description="Получить товар по ID",
      *      @OA\Response(
@@ -108,7 +108,7 @@ final class ProductController extends Controller
      * @OA\Post (
      *      path="/v1/products",
      *      operationId="createProduct",
-     *      tags={"v1", "admin"},
+     *      tags={"v1", "admin", "product"},
      *      summary="Создать товар",
      *      description="Создать товар",
      *      @OA\RequestBody(
@@ -139,7 +139,7 @@ final class ProductController extends Controller
      * @OA\Put (
      *      path="/v1/products/{product}",
      *      operationId="updateProduct",
-     *      tags={"v1", "admin"},
+     *      tags={"v1", "admin", "product"},
      *      summary="Изменить товар",
      *      description="Изменить товар",
      *      @OA\RequestBody(
@@ -172,7 +172,7 @@ final class ProductController extends Controller
      * @OA\Delete  (
      *      path="/v1/products/{product}",
      *      operationId="deleteProduct",
-     *      tags={"v1", "admin"},
+     *      tags={"v1", "admin", "product"},
      *      summary="Удалить товар",
      *      description="Удалить товар",
      *      @OA\Response(
@@ -198,7 +198,7 @@ final class ProductController extends Controller
      * @OA\GET (
      *      path="/v1/products/{category}",
      *      operationId="getProductsByCategory",
-     *      tags={"v1", "admin"},
+     *      tags={"v1", "admin", "product"},
      *      summary="Список товаров по категорию",
      *      description="Список товаров по категорию",
      *      @OA\Response(response=200, description="Успешно получены"),

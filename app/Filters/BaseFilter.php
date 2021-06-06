@@ -56,10 +56,10 @@ abstract class BaseFilter
         foreach ($this->request->all() as $method => $value) {
             $methodName = Str::camel($method);
             if (method_exists($this, $methodName)) {
-                if (in_array($method, self::KEYS_TO_BOOL, true)) {
+                if (in_array($method, static::KEYS_TO_BOOL, true)) {
                     $value = $this->request->boolean($method);
                 }
-                if (in_array($method, self::KEYS_TO_INT, true)) {
+                if (in_array($method, static::KEYS_TO_INT, true)) {
                     $value = (int) $this->request->get($method);
                 }
                 $this->{$methodName}($value);

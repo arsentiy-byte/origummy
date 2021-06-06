@@ -8,6 +8,9 @@ use App\DTO\Product\UpdateProductDTO;
 use App\Models\Product\Product;
 use Closure;
 
+/**
+ * Class UpdateProduct.
+ */
 final class UpdateProduct
 {
     /**

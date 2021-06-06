@@ -98,7 +98,8 @@
             "get": {
                 "tags": [
                     "v1",
-                    "admin"
+                    "admin",
+                    "category"
                 ],
                 "summary": "Список категорий",
                 "description": "Список категорий",
@@ -115,7 +116,8 @@
             "post": {
                 "tags": [
                     "v1",
-                    "admin"
+                    "admin",
+                    "category"
                 ],
                 "summary": "Создать категорию",
                 "description": "Создать категорию",
@@ -143,7 +145,8 @@
             "get": {
                 "tags": [
                     "v1",
-                    "admin"
+                    "admin",
+                    "category"
                 ],
                 "summary": "Поиск по названию категорий",
                 "description": "Поиск по названию категорий",
@@ -178,14 +181,15 @@
             "get": {
                 "tags": [
                     "v1",
-                    "admin"
+                    "admin",
+                    "category"
                 ],
                 "summary": "Получить категорию по ID",
                 "description": "Получить категорию по ID",
                 "operationId": "getCategoryById",
                 "responses": {
                     "200": {
-                        "description": "Данные по категории",
+                        "description": "Данные по категорий",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -202,7 +206,8 @@
             "put": {
                 "tags": [
                     "v1",
-                    "admin"
+                    "admin",
+                    "category"
                 ],
                 "summary": "Изменить категорию",
                 "description": "Изменить категорию",
@@ -228,7 +233,8 @@
             "delete": {
                 "tags": [
                     "v1",
-                    "admin"
+                    "admin",
+                    "category"
                 ],
                 "summary": "Удалить категорию",
                 "description": "Удалить категорию",
@@ -236,6 +242,356 @@
                 "responses": {
                     "200": {
                         "description": "Категория успешно удалена"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/v1/products": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "product"
+                ],
+                "summary": "Список товаров",
+                "description": "Список товаров",
+                "operationId": "getProducts",
+                "responses": {
+                    "200": {
+                        "description": "Успешно получены"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "product"
+                ],
+                "summary": "Создать товар",
+                "description": "Создать товар",
+                "operationId": "createProduct",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductCreateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Товар успешно создан"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/v1/products/search": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "product"
+                ],
+                "summary": "Поиск по названию товара",
+                "description": "Поиск по названию товара",
+                "operationId": "productSearch",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "type": "string",
+                        "required": true,
+                        "description": "Value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешно получены",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/v1/products/{product}": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "product"
+                ],
+                "summary": "Получить товар по ID",
+                "description": "Получить товар по ID",
+                "operationId": "getProductById",
+                "responses": {
+                    "200": {
+                        "description": "Данные по товару",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "product"
+                ],
+                "summary": "Изменить товар",
+                "description": "Изменить товар",
+                "operationId": "updateProduct",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProductUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Товар успешно изменен"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "product"
+                ],
+                "summary": "Удалить товар",
+                "description": "Удалить товар",
+                "operationId": "deleteProduct",
+                "responses": {
+                    "200": {
+                        "description": "Товар успешно удален"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/v1/products/{category}": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "product"
+                ],
+                "summary": "Список товаров по категорию",
+                "description": "Список товаров по категорию",
+                "operationId": "getProductsByCategory",
+                "responses": {
+                    "200": {
+                        "description": "Успешно получены"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/v1/promotions": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "promotion"
+                ],
+                "summary": "Список акций",
+                "description": "Список акций",
+                "operationId": "getPromotions",
+                "responses": {
+                    "200": {
+                        "description": "Успешно получены"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "promotion"
+                ],
+                "summary": "Создать акцию",
+                "description": "Создать акцию",
+                "operationId": "createPromotion",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PromotionCreateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Акция успешно создана"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/v1/promotions/search": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "promotion"
+                ],
+                "summary": "Поиск по названию акций",
+                "description": "Поиск по названию акций",
+                "operationId": "promotionSearch",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "type": "string",
+                        "required": true,
+                        "description": "Value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешно получены",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PromotionResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/v1/promotions/{promotion}": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "promotion"
+                ],
+                "summary": "Получить акцию по ID",
+                "description": "Получить акцию по ID",
+                "operationId": "getPromotionById",
+                "responses": {
+                    "200": {
+                        "description": "Данные по акций",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PromotionResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "promotion"
+                ],
+                "summary": "Изменить акцию",
+                "description": "Изменить акцию",
+                "operationId": "updatePromotion",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PromotionUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Акция успешно изменена"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "promotion"
+                ],
+                "summary": "Удалить акцию",
+                "description": "Удалить акцию",
+                "operationId": "deletePromotion",
+                "responses": {
+                    "200": {
+                        "description": "Акция успешно удалена"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/v1/promotions/types": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "promotion"
+                ],
+                "summary": "Получить типы акций",
+                "description": "Получить типы акций",
+                "operationId": "getPromotionTypes",
+                "responses": {
+                    "200": {
+                        "description": "Успешно получены"
                     },
                     "400": {
                         "description": "Что-то не так"
@@ -308,6 +664,198 @@
                 },
                 "type": "object"
             },
+            "ProductCreateRequest": {
+                "required": [
+                    "title",
+                    "price",
+                    "category_id",
+                    "images"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "boolean"
+                    },
+                    "price": {
+                        "type": "integer"
+                    },
+                    "old_price": {
+                        "type": "integer"
+                    },
+                    "count": {
+                        "type": "integer"
+                    },
+                    "category_id": {
+                        "type": "integer"
+                    },
+                    "images": {
+                        "description": "files:jpeg,png,jpg,svg",
+                        "type": "array",
+                        "items": {
+                            "type": "image"
+                        }
+                    },
+                    "promotions": {
+                        "description": "promotion ids",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "related_products": {
+                        "description": "product ids",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ProductUpdateRequest": {
+                "required": [
+                    "title",
+                    "price",
+                    "category_id"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "boolean"
+                    },
+                    "price": {
+                        "type": "integer"
+                    },
+                    "old_price": {
+                        "type": "integer"
+                    },
+                    "count": {
+                        "type": "integer"
+                    },
+                    "category_id": {
+                        "type": "integer"
+                    },
+                    "images": {
+                        "description": "files:jpeg,png,jpg,svg",
+                        "type": "array",
+                        "items": {
+                            "type": "image"
+                        }
+                    },
+                    "promotions": {
+                        "description": "promotion ids",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "related_products": {
+                        "description": "product ids",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "delete_images": {
+                        "description": "file paths",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "delete_promotions": {
+                        "description": "promotion ids",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "delete_related_products": {
+                        "description": "product ids",
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "PromotionCreateRequest": {
+                "required": [
+                    "title",
+                    "type_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "boolean"
+                    },
+                    "type_id": {
+                        "type": "integer"
+                    },
+                    "related_products": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "PromotionUpdateRequest": {
+                "required": [
+                    "id",
+                    "type_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "boolean"
+                    },
+                    "type_id": {
+                        "type": "integer"
+                    },
+                    "related_products": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "delete_related_products": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "CategoryResource": {
                 "properties": {
                     "id": {
@@ -345,6 +893,91 @@
                     },
                     "parent": {
                         "type": "Object"
+                    }
+                },
+                "type": "object"
+            },
+            "ProductResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "integer"
+                    },
+                    "old_price": {
+                        "type": "integer"
+                    },
+                    "count": {
+                        "type": "integer"
+                    },
+                    "category_id": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "type": "boolean"
+                    },
+                    "category": {
+                        "type": "object"
+                    },
+                    "promotions": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "images": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "relatedProducts": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "PromotionResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "boolean"
+                    },
+                    "type_id": {
+                        "type": "integer"
+                    },
+                    "type": {
+                        "type": "object"
+                    },
+                    "relatedProducts": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"

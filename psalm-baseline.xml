@@ -34,6 +34,17 @@
       <code>Pure</code>
     </UndefinedAttributeClass>
   </file>
+  <file src="app/DTO/Promotion/PromotionDTO.php">
+    <MissingConstructor occurrences="2">
+      <code>$title</code>
+      <code>$typeId</code>
+    </MissingConstructor>
+  </file>
+  <file src="app/DTO/Promotion/UpdatePromotionDTO.php">
+    <UndefinedAttributeClass occurrences="1">
+      <code>Pure</code>
+    </UndefinedAttributeClass>
+  </file>
   <file src="app/Filters/CategoryFilter.php">
     <PropertyNotSetInConstructor occurrences="1">
       <code>CategoryFilter</code>
@@ -42,6 +53,11 @@
   <file src="app/Filters/ProductFilter.php">
     <PropertyNotSetInConstructor occurrences="1">
       <code>ProductFilter</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="app/Filters/PromotionFilter.php">
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>PromotionFilter</code>
     </PropertyNotSetInConstructor>
   </file>
   <file src="app/Handlers/Category/UpdateCategory/Pipes/UpdateCategoryImages.php">
@@ -79,6 +95,11 @@
   <file src="app/Http/Controllers/Api/V1/ProductController.php">
     <UndefinedDocblockClass occurrences="1">
       <code>Product::filter($filters)</code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="app/Http/Controllers/Api/V1/PromotionController.php">
+    <UndefinedDocblockClass occurrences="1">
+      <code>Promotion::filter($filters)</code>
     </UndefinedDocblockClass>
   </file>
   <file src="app/Traits/TableNameGetterTrait.php">
