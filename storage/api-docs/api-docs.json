@@ -740,6 +740,86 @@
                     }
                 }
             }
+        },
+        "/web/v1/categories/main_page": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "category",
+                    "web"
+                ],
+                "summary": "Список категорий в главной странице",
+                "description": "Список категорий в главной странице",
+                "operationId": "getCategoriesAtMainPage",
+                "responses": {
+                    "200": {
+                        "description": "Категории в главной странице"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/web/v1/categories/menu": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "category",
+                    "web"
+                ],
+                "summary": "Список категорий в меню",
+                "description": "Список категорий в меню",
+                "operationId": "getCategoriesAtMenu",
+                "responses": {
+                    "200": {
+                        "description": "Категории в меню"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/web/v1/orders/by_client/{phone}": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "order",
+                    "web"
+                ],
+                "summary": "Список заказов клиента",
+                "description": "Список заказов клиента",
+                "operationId": "getClientOrders",
+                "responses": {
+                    "200": {
+                        "description": "Список заказов клиента"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/web/v1/products/by_category/{category_slug}": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "web",
+                    "product"
+                ],
+                "summary": "Получить товары по категорий",
+                "description": "Получить товары по категорий",
+                "operationId": "getProductsByCategorySlug",
+                "responses": {
+                    "200": {
+                        "description": "Товары по категорий"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
         }
     },
     "components": {
