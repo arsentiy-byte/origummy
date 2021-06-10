@@ -58,5 +58,11 @@ Route::prefix(config('app.url_base_path'))->group(function () {
          */
         Route::get('clients', 'Api\V1\ClientController@getClients')->name('clients.index');
         Route::get('clients/{client}', 'Api\V1\ClientController@getClientById')->name('client.by_id');
+
+        /**
+         * Banners
+         */
+        Route::get('banners', 'Api\V1\BannersController@getBanners')->name('banners.index');
+        Route::post('banners', 'Api\V1\BannersController@manageBanners')->name('banners.manage');
     });
 });
