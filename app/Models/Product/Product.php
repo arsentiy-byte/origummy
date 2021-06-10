@@ -8,6 +8,7 @@ use App\Models\BaseModel;
 use App\Models\Category\Category;
 use App\Models\Promotion\ProductPromotion;
 use App\Models\Promotion\Promotion;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
@@ -23,17 +24,27 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property int $category_id
  * @property bool $status
  * @property-read Category $category
- * @property-read Promotion[] $promotions
- * @property-read ProductImage[] $images
- * @property-read Product $relatedProducts
+ * @property-read Collection|Promotion[] $promotions
+ * @property-read Collection|ProductImage[] $images
+ * @property-read Collection|Product[] $relatedProducts
+ * @method static Product findOrFail(int $id)
  */
 final class Product extends BaseModel
 {
+    /**
+     * @var int
+     */
+    public int $orderCount = 1;
+
     /**
      * @var string[]
      */
     protected $fillable = [
         'title', 'description', 'price', 'old_price', 'count', 'category_id', 'status',
+    ];
+
+    protected $with = [
+        'category',  'promotions', 'images', 'relatedProducts',
     ];
 
     /**

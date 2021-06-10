@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.7.2@83a0325c0a95c0ab531d6b90c877068b464377b5">
+<files psalm-version="4.7.3@38c452ae584467e939d55377aaf83b5a26f19dd1">
   <file src="app/DTO/Category/CategoryDTO.php">
     <MissingConstructor occurrences="3">
       <code>$isDefault</code>
       <code>$slug</code>
       <code>$status</code>
     </MissingConstructor>
+  </file>
+  <file src="app/DTO/OrderDTO.php">
+    <ImpurePropertyAssignment occurrences="10">
+      <code>$self-&gt;additionalInfo</code>
+      <code>$self-&gt;address</code>
+      <code>$self-&gt;count</code>
+      <code>$self-&gt;deliveryTime</code>
+      <code>$self-&gt;deliveryType</code>
+      <code>$self-&gt;deviceInfo</code>
+      <code>$self-&gt;name</code>
+      <code>$self-&gt;paymentType</code>
+      <code>$self-&gt;phone</code>
+      <code>$self-&gt;products</code>
+    </ImpurePropertyAssignment>
+    <MissingConstructor occurrences="7">
+      <code>$address</code>
+      <code>$deliveryTime</code>
+      <code>$deviceInfo</code>
+      <code>$name</code>
+      <code>$paymentType</code>
+      <code>$phone</code>
+      <code>$products</code>
+    </MissingConstructor>
+    <UndefinedAttributeClass occurrences="1">
+      <code>Pure</code>
+    </UndefinedAttributeClass>
   </file>
   <file src="app/DTO/Product/ProductDTO.php">
     <ImpurePropertyAssignment occurrences="10">
@@ -50,6 +76,11 @@
       <code>CategoryFilter</code>
     </PropertyNotSetInConstructor>
   </file>
+  <file src="app/Filters/OrderFilter.php">
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>OrderFilter</code>
+    </PropertyNotSetInConstructor>
+  </file>
   <file src="app/Filters/ProductFilter.php">
     <PropertyNotSetInConstructor occurrences="1">
       <code>ProductFilter</code>
@@ -74,6 +105,24 @@
       <code>deleteImage</code>
     </MissingReturnType>
   </file>
+  <file src="app/Handlers/Order/OrderParam.php">
+    <PropertyNotSetInConstructor occurrences="3">
+      <code>$client</code>
+      <code>$order</code>
+      <code>$products</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="app/Handlers/Order/Pipes/AssignProductsToOrder.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>$result</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="1">
+      <code>Product[]</code>
+    </InvalidReturnType>
+    <UndefinedPropertyAssignment occurrences="1">
+      <code>$productModel-&gt;orderCount</code>
+    </UndefinedPropertyAssignment>
+  </file>
   <file src="app/Handlers/Product/UpdateProduct/Pipes/UpdateProductImages.php">
     <PossiblyNullPropertyFetch occurrences="1">
       <code>$image-&gt;path</code>
@@ -81,6 +130,11 @@
     <PossiblyNullReference occurrences="1">
       <code>delete</code>
     </PossiblyNullReference>
+  </file>
+  <file src="app/Handlers/WithResultsHandler.php">
+    <MissingClosureReturnType occurrences="1">
+      <code>function () use ($param) {</code>
+    </MissingClosureReturnType>
   </file>
   <file src="app/Http/Controllers/Api/AuthController.php">
     <PossiblyNullReference occurrences="1">
@@ -92,6 +146,12 @@
       <code>Category::filter($filters)</code>
     </UndefinedDocblockClass>
   </file>
+  <file src="app/Http/Controllers/Api/V1/OrderController.php">
+    <UndefinedDocblockClass occurrences="2">
+      <code>$ordersBuilder</code>
+      <code>$ordersBuilder</code>
+    </UndefinedDocblockClass>
+  </file>
   <file src="app/Http/Controllers/Api/V1/ProductController.php">
     <UndefinedDocblockClass occurrences="1">
       <code>Product::filter($filters)</code>
@@ -101,6 +161,30 @@
     <UndefinedDocblockClass occurrences="1">
       <code>Promotion::filter($filters)</code>
     </UndefinedDocblockClass>
+  </file>
+  <file src="app/Http/Resources/OrderResource.php">
+    <ImpureMethodCall occurrences="1">
+      <code>getTotalPrice</code>
+    </ImpureMethodCall>
+    <InvalidMethodCall occurrences="1">
+      <code>toArray</code>
+    </InvalidMethodCall>
+    <UndefinedAttributeClass occurrences="1">
+      <code>Pure</code>
+    </UndefinedAttributeClass>
+    <UndefinedDocblockClass occurrences="2">
+      <code>$this-&gt;client-&gt;name</code>
+      <code>$this-&gt;client-&gt;phone</code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="app/Services/Notifications/Telegram/NotificationAfterOrder.php">
+    <MissingParamType occurrences="2">
+      <code>$notifiable</code>
+      <code>$notifiable</code>
+    </MissingParamType>
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>NotificationAfterOrder</code>
+    </PropertyNotSetInConstructor>
   </file>
   <file src="app/Traits/TableNameGetterTrait.php">
     <UnsafeInstantiation occurrences="1">

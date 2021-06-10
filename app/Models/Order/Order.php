@@ -5,19 +5,22 @@ declare(strict_types=1);
 namespace App\Models\Order;
 
 use App\Models\BaseModel;
+use App\Models\Client;
 use App\Models\Product\Product;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * Class Order.
- * @property string $name
- * @property string $phone
- * @property string $device_info
- * @property string $address
+ * @property int $id
  * @property string|null $additional_info
- * @property int|null $count
+ * @property int $count
  * @property string $payment_type
+ * @property string $delivery_time
+ * @property string|null $delivery_type
+ * @property int $client_id
  * @property-read Product[] $products
+ * @property-read Client $client
  */
 final class Order extends BaseModel
 {
@@ -25,14 +28,25 @@ final class Order extends BaseModel
      * @var string[]
      */
     protected $fillable = [
-        'name', 'phone', 'device_info', 'address', 'additional_info', 'count', 'payment_type',
+        'additional_info', 'count', 'payment_type',
+        'delivery_time', 'delivery_type', 'client_id',
     ];
+
+    protected $with = ['products', 'client'];
 
     /**
      * @return HasManyThrough
      */
     public function products(): HasManyThrough
     {
-        return $this->hasManyThrough(Product::class, OrderGood::class, 'order_id', 'id');
+        return $this->hasManyThrough(Product::class, OrderProduct::class, 'order_id', 'id', 'id', 'product_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function client(): BelongsTo
+    {
+        return $this->belongsTo(Client::class, 'client_id');
     }
 }

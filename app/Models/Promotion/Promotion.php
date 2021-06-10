@@ -29,6 +29,8 @@ final class Promotion extends BaseModel
         'title', 'description', 'status', 'type_id',
     ];
 
+    protected $with = ['type', 'relatedProducts'];
+
     /**
      * @return HasManyThrough
      */

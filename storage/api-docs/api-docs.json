@@ -249,6 +249,148 @@
                 }
             }
         },
+        "/v1/clients": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "client"
+                ],
+                "summary": "Список клиентов",
+                "description": "Список клиентов",
+                "operationId": "getClients",
+                "responses": {
+                    "200": {
+                        "description": "Успешно получены"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/v1/clients/{client}": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "client"
+                ],
+                "summary": "Получить клиента по ID",
+                "description": "Получить клиента по ID",
+                "operationId": "getClientById",
+                "responses": {
+                    "200": {
+                        "description": "Данные по клиенту",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ClientResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/v1/order": {
+            "post": {
+                "tags": [
+                    "v1",
+                    "visualization"
+                ],
+                "summary": "Оформить заказ",
+                "description": "Оформить заказ",
+                "operationId": "order",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Заказ успешно оформлен"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/v1/orders": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "order"
+                ],
+                "summary": "Список заказов",
+                "description": "Список заказов",
+                "operationId": "getOrders",
+                "responses": {
+                    "200": {
+                        "description": "Успешно получены"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/v1/orders/{order}": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "order"
+                ],
+                "summary": "Получить заказ по ID",
+                "description": "Получить заказ по ID",
+                "operationId": "getOrderById",
+                "responses": {
+                    "200": {
+                        "description": "Данные по категорий",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/OrderResource"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/v1/orders/by_client/{client}": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "order"
+                ],
+                "summary": "Получить заказы клиента",
+                "description": "Получить заказы клиента",
+                "operationId": "getOrderByClient",
+                "responses": {
+                    "200": {
+                        "description": "Успешно получены"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
         "/v1/products": {
             "get": {
                 "tags": [
@@ -664,6 +806,46 @@
                 },
                 "type": "object"
             },
+            "OrderRequest": {
+                "required": [
+                    "name",
+                    "phone",
+                    "address",
+                    "payment_type",
+                    "delivery_time",
+                    "products"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "additional_info": {
+                        "type": "string"
+                    },
+                    "count": {
+                        "type": "integer"
+                    },
+                    "payment_type": {
+                        "type": "string"
+                    },
+                    "delivery_time": {
+                        "type": "string"
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "ProductCreateRequest": {
                 "required": [
                     "title",
@@ -893,6 +1075,67 @@
                     },
                     "parent": {
                         "type": "Object"
+                    }
+                },
+                "type": "object"
+            },
+            "ClientResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "device_info": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "OrderResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "client_id": {
+                        "type": "integer"
+                    },
+                    "client_name": {
+                        "type": "string"
+                    },
+                    "client_phone": {
+                        "type": "string"
+                    },
+                    "payment_type": {
+                        "type": "string"
+                    },
+                    "delivery_time": {
+                        "type": "string"
+                    },
+                    "order_count": {
+                        "type": "integer"
+                    },
+                    "total_price": {
+                        "type": "string"
+                    },
+                    "date": {
+                        "type": "string"
+                    },
+                    "additional_info": {
+                        "type": "string"
+                    },
+                    "products": {
+                        "type": "array",
+                        "items": {
+                            "type": "Object"
+                        }
                     }
                 },
                 "type": "object"
