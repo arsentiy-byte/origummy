@@ -107,8 +107,6 @@ final class Handler extends ExceptionHandler
                 if (app()->isProduction()) {
                     return $this->response('Server error', null, 500, 'error');
                 }
-                // In any other environment render exception as it is
-                print_r($e->getMessage());
 
                 return $this->response($e->getMessage(), null, $errorCode, 'error');
         }

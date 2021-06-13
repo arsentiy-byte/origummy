@@ -27,8 +27,8 @@ final class AuthController extends Controller
      *              @OA\Schema(
      *                  type="object",
      *                  @OA\Property(
-     *                      property="phone",
-     *                      description="Номер телефона пользователя",
+     *                      property="username",
+     *                      description="Логин пользователя",
      *                      type="string"
      *                   ),
      *                  @OA\Property(
@@ -52,11 +52,11 @@ final class AuthController extends Controller
     public function login(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'phone' => 'required|string',
+            'username' => 'required|string',
             'password' => 'required|string',
         ], $request->all());
 
-        $user = User::where('phone', $validated['phone'])->first();
+        $user = User::where('username', $validated['username'])->first();
 
         if (empty($user) || ! Hash::check($validated['password'], $user->password)) {
             return $this->response('Неверный логин/пароль или пользователь не существует', [], 401, 'error');

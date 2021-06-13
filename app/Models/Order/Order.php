@@ -32,8 +32,6 @@ final class Order extends BaseModel
         'delivery_time', 'delivery_type', 'client_id',
     ];
 
-    protected $with = ['products', 'client'];
-
     /**
      * @return HasManyThrough
      */
