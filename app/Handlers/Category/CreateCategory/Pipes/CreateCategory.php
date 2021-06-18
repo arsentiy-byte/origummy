@@ -20,6 +20,12 @@ final class CreateCategory
      */
     public function handle(CategoryDTO $categoryDTO, Closure $next): mixed
     {
+        if ($categoryDTO->isDefault) {
+            Category::where('is_default', true)->update([
+                'is_default' => false
+            ]);
+        }
+
         $category = Category::create($categoryDTO->getCategoryData());
         $categoryDTO->categoryID = $category->id;
 

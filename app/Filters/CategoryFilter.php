@@ -11,13 +11,17 @@ use Illuminate\Database\Eloquent\Builder;
  */
 final class CategoryFilter extends BaseFilter
 {
+    public const KEYS_TO_BOOL = [
+        'status', 'is_default',
+    ];
+
     /**
      * @param string $title
      * @return Builder
      */
     public function title(string $title): Builder
     {
-        return $this->builder->where('title', 'ilike', '%'.$title.'%');
+        return $this->builder->where('title', 'ilike', '%' . $title . '%');
     }
 
     /**
@@ -27,6 +31,15 @@ final class CategoryFilter extends BaseFilter
     public function status(bool $status): Builder
     {
         return $this->builder->where('status', $status);
+    }
+
+    /**
+     * @param bool $isDefault
+     * @return Builder
+     */
+    public function isDefault(bool $isDefault): Builder
+    {
+        return $this->builder->where('is_default', $isDefault);
     }
 
     /**

@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read CategoryImage[] $images
  * @property-read Product[] $products
  * @property-read Category $parent
+ * @property-read Category[] $children
  */
 final class Category extends BaseModel
 {
@@ -53,5 +54,13 @@ final class Category extends BaseModel
     public function parent(): BelongsTo
     {
         return $this->belongsTo(self::class, 'parent_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function children(): HasMany
+    {
+        return $this->hasMany(self::class, 'parent_id', 'id');
     }
 }

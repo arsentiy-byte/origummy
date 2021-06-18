@@ -50,10 +50,10 @@ final class SetCharts
     {
         $result = [];
 
-        $months = array_column($items, 'month');
+        $days = array_column($items, 'day');
 
-        for ($i = 0; $i < 12; $i++) {
-            $index = array_search($i + 1, $months);
+        for ($i = 0; $i < now()->daysInMonth; $i++) {
+            $index = array_search($i + 1, $days);
             if ($index !== false) {
                 $result[] = (int) $items[$index]['data'];
                 continue;
@@ -74,9 +74,12 @@ final class SetCharts
         return $builder
             ->select(
                 DB::raw('count(id) as data'),
-                DB::raw("TO_CHAR(created_at, 'MM') as month")
+                DB::raw("TO_CHAR(created_at, 'DD') as day")
             )
-            ->whereYear('created_at', date('Y'))
-            ->groupBy('month')->orderBy('month');
+            ->whereBetween('created_at', [
+                now()->startOfMonth(),
+                now()->endOfMonth(),
+            ])
+            ->groupBy('day')->orderBy('day');
     }
 }

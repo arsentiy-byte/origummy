@@ -25,7 +25,7 @@ final class UpdateCategoryImages
     {
         $imagesHandler = new ImagesHandler(240, 'categories');
         $deleteImages = $categoryDTO->getCategoryDeleteImages();
-        $images = $categoryDTO->getCategoryImages();
+        $images = $imagesHandler->handleSeveralImages($categoryDTO->getCategoryImages());
 
         foreach ($deleteImages as $deleteImage) {
             $image = CategoryImage::where('path', $deleteImage)->first();

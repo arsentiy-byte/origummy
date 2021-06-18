@@ -7,7 +7,7 @@
             default-sort="name"
             :data="orders">
 
-            <b-table-column label="Номер" field="id" sortable v-slot="props">
+            <b-table-column label="#" field="id" sortable v-slot="props">
                 {{ props.row.id }}
             </b-table-column>
             <b-table-column label="Имя клиента" field="client_name" sortable v-slot="props">

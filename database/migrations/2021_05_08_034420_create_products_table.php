@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->integer('old_price')->nullable();
             $table->integer('count')->nullable();
-            $table->bigInteger('category_id');
+            $table->bigInteger('category_id')->nullable();
             $table->boolean('status')->default(true);
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');

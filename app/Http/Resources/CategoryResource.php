@@ -80,6 +80,7 @@ final class CategoryResource extends JsonResource
             'images' => $this->images ?? [],
             'products' => $this->products ?? [],
             'parent' => $this->parent ?? null,
+            'children' => $this->children ?? [],
         ];
     }
 }

@@ -22,6 +22,12 @@ final class DeleteCategory
     {
         $category = Category::findOrFail($categoryDTO->categoryID);
 
+        if ($category->is_default) {
+            Category::first()->update([
+                'is_default' => true,
+            ]);
+        }
+
         $category->delete();
 
         return $next($categoryDTO);

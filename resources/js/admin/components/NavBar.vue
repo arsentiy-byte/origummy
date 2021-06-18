@@ -14,9 +14,6 @@
       <div class="navbar-end">
         <nav-bar-menu class="has-divider has-user-avatar">
           <user-avatar/>
-          <div class="is-user-name">
-            <span>Origummy</span>
-          </div>
         </nav-bar-menu>
         <a class="navbar-item is-desktop-icon-only" title="Log out" @click="logout">
           <b-icon icon="logout" custom-size="default"/>

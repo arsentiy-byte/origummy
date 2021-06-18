@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {ToastProgrammatic as Toast, NotificationProgrammatic as Notification} from 'buefy'
 
 Vue.use(Vuex)
 
@@ -18,7 +19,16 @@ export default new Vuex.Store({
 
         /* Aside */
         isAsideVisible: true,
-        isAsideMobileExpanded: false
+        isAsideMobileExpanded: false,
+
+        pagination: {
+            total_pages: 0,
+            total_items: 0,
+            current_page: 1,
+            limit: 10,
+        },
+
+        categories: [],
     },
     getters: {
         getStatisticsTotal(state) {
@@ -29,6 +39,12 @@ export default new Vuex.Store({
         },
         getStatisticsCharts(state) {
             return state.statisticsCharts;
+        },
+        getCategories(state) {
+            return state.categories;
+        },
+        getPagination(state) {
+            return state.pagination;
         },
     },
     mutations: {
@@ -69,6 +85,14 @@ export default new Vuex.Store({
         SET_STATISTICS_TOTAL(state, data) {
             state.statisticsTotal = data;
         },
+
+        SET_CATEGORIES(state, data) {
+            state.categories = data;
+        },
+
+        SET_PAGINATION(state, data) {
+            state.pagination = data;
+        },
     },
     actions: {
         getStatistics({commit}) {
@@ -79,10 +103,82 @@ export default new Vuex.Store({
                         commit('SET_STATISTICS_ORDERS', data['orders']);
                         commit('SET_STATISTICS_TOTAL', data['total']);
                         commit('SET_STATISTICS_CHARTS', data['charts']);
+                        Notification.open({
+                            message: response.data.message,
+                            type: 'is-success'
+                        })
+                    }
+
+                    if (response.data.status !== 'success') {
+                        Toast.open({
+                            message: `Error: #${response.data.error_code} ${response.data.message}`,
+                            type: 'is-danger',
+                            queue: false
+                        })
                     }
                 })
                 .catch((error) => {
-                    this.$buefy.toast.open({
+                    Toast.open({
+                        message: `Error: ${error.message}`,
+                        type: 'is-danger',
+                        queue: false
+                    })
+                })
+        },
+        getCategories({commit}, page = 1) {
+            axios.get('origummy/api/v1/categories?page=' + page)
+                .then((response) => {
+                    if (response.data && response.data.data) {
+                        let data = response.data.data;
+                        commit('SET_CATEGORIES', data.items);
+                        commit('SET_PAGINATION', data.pagination);
+                        Notification.open({
+                            message: response.data.message,
+                            type: 'is-success'
+                        })
+                    }
+
+                    if (response.data.status !== 'success') {
+                        Toast.open({
+                            message: `Error: #${response.data.error_code} ${response.data.message}`,
+                            type: 'is-danger',
+                            queue: false
+                        })
+                    }
+                })
+                .catch((error) => {
+                    Toast.open({
+                        message: `Error: ${error.message}`,
+                        type: 'is-danger',
+                        queue: false
+                    })
+                })
+        },
+        getCategoriesByFilter({commit}, filter) {
+            axios.get('origummy/api/v1/categories', {
+                params: filter,
+            })
+                .then((response) => {
+                    if (response.data && response.data.data) {
+                        let data = response.data.data;
+                        commit('SET_CATEGORIES', data.items);
+                        commit('SET_PAGINATION', data.pagination);
+                        Notification.open({
+                            message: response.data.message,
+                            type: 'is-success'
+                        })
+                    }
+
+                    if (response.data.status !== 'success') {
+                        Toast.open({
+                            message: `Error: #${response.data.error_code} ${response.data.message}`,
+                            type: 'is-danger',
+                            queue: false
+                        })
+                    }
+                })
+                .catch((error) => {
+                    Toast.open({
                         message: `Error: ${error.message}`,
                         type: 'is-danger',
                         queue: false

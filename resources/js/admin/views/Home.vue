@@ -11,7 +11,7 @@
                              label="Заказы"/>
             </tiles>
 
-            <card-component title="Статистика" @header-icon-click="loadStatistics" icon="finance" header-icon="reload">
+            <card-component title="Статистика за текущий месяц" @header-icon-click="loadStatistics" icon="finance" header-icon="reload">
                 <div v-if="statisticsCharts.data" class="chart-area">
                     <line-chart style="height: 100%"
                                 ref="bigChart"
@@ -79,6 +79,15 @@ export default {
         getTotalSales() {
             return this.total.sales;
         },
+        getDaysInMonth() {
+            let days = [];
+            const currentMonth = new Date().getMonth();
+            const currentYear = new Date().getFullYear();
+            for (let i = 1; i <= new Date(currentYear, currentMonth + 1, 0).getDate(); i++) {
+                days.push(i);
+            }
+            return days;
+        },
     },
     created() {
         this.loadStatistics();
@@ -106,7 +115,6 @@ export default {
             this.fillChartData();
         },
         fillChartData() {
-            console.log(this.charts);
             this.statisticsCharts.data = {
                 datasets: [
                     {
@@ -142,7 +150,7 @@ export default {
                         label: 'Заказы'
                     }
                 ],
-                labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
+                labels: this.getDaysInMonth
             }
         }
     }

@@ -21,7 +21,5 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'password' => Hash::make('1234'),
         ]);
-        Category::factory(8)->create();
-        Product::factory(20)->create();
     }
 }

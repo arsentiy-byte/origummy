@@ -63,6 +63,7 @@ final class CategoryUpdateRequest extends FormRequest
             'title' => 'required|string',
             'description' => 'nullable|string',
             'status' => 'nullable|boolean',
+            'is_default' => 'nullable|boolean',
             'parent_id' => 'nullable|integer',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,svg',
