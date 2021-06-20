@@ -2,8 +2,8 @@
     <div>
         <delete-modal
             :is-active="isDeleteModalActive"
-            :trash-object-name="trashCategoryName"
-            @confirm="deleteCategory(trashCategoryId)"
+            :trash-object-name="trashPromotionName"
+            @confirm="deletePromotion(trashPromotionId)"
             @cancel="closeModal"
         />
         <b-table
@@ -12,7 +12,7 @@
             :striped="true"
             :hoverable="true"
             default-sort="name"
-            :data="categories">
+            :data="promotions">
 
             <b-table-column label="ID" field="id" sortable v-slot="props">
                 {{ props.row.id }}
@@ -20,28 +20,17 @@
             <b-table-column label="Название" field="title" sortable v-slot="props">
                 {{ props.row.title }}
             </b-table-column>
-            <b-table-column label="URL название" field="slug" sortable v-slot="props">
-                {{ props.row.slug }}
-            </b-table-column>
-            <b-table-column label="Родитель" field="slug" sortable v-slot="props">
-                <router-link :to="{name:'categories.edit', params: {id: props.row.parent.id}}" v-if="props.row.parent">
-                    <b>{{ props.row.parent.title }}</b>
-                </router-link>
-            </b-table-column>
-            <b-table-column label="По умолчанию" field="slug" v-slot="props">
-                <b-switch v-model="props.row.is_default"
-                          @change.native="changeIsDefault(props.row.id, props.row.is_default, props.row.title)">
-                    {{ props.row.is_default ? 'Да' : 'Нет' }}
-                </b-switch>
+            <b-table-column label="Тип" field="slug" sortable v-slot="props">
+                {{ props.row.type.name }}
             </b-table-column>
             <b-table-column label="Активный" field="status" v-slot="props">
-                <b-switch v-model="props.row.status" @change.native="changeStatus(props.row.id, props.row.status, props.row.title)">
+                <b-switch v-model="props.row.status" @change.native="changeStatus(props.row.id, props.row.status)">
                     {{ props.row.status ? 'Да' : 'Нет' }}
                 </b-switch>
             </b-table-column>
             <b-table-column custom-key="actions" cell-class="is-actions-cell" v-slot="props">
                 <div class="buttons is-right">
-                    <router-link :to="{name:'categories.edit', params: {id: props.row.id}}"
+                    <router-link :to="{name:'promotions.edit', params: {id: props.row.id}}"
                                  class="button is-small is-primary">
                         <b-icon icon="pencil-box-outline" size="is-default"/>
                     </router-link>
@@ -86,14 +75,14 @@ import {mapGetters} from 'vuex';
 import DeleteModal from "../DeleteModal";
 
 export default {
-    name: "CategoriesTable",
+    name: "PromotionsTable",
     data() {
         return {
             checkedRows: [],
             isLoading: false,
             currentPage: 1,
-            trashCategoryName: '',
-            trashCategoryId: null,
+            trashPromotionName: '',
+            trashPromotionId: null,
             isDeleteModalActive: false,
         };
     },
@@ -102,46 +91,50 @@ export default {
     },
     computed: {
         ...mapGetters({
-            categories: 'getCategories',
+            promotions: 'getPromotions',
+            types: 'getPromotionTypes',
             pagination: 'getPagination',
         })
     },
     watch: {
-        categories(newValue) {
-            this.categories = newValue;
+        promotions(newValue) {
+            this.promotions = newValue;
+        },
+        types(newValue) {
+            this.types = newValue;
         },
         pagination(newValue) {
             this.currentPage = newValue.current_page;
         },
         currentPage(newValue, oldValue) {
             if (newValue !== oldValue) {
-                this.getCategoriesWithPagination(newValue);
+                this.getPromotionsWithPagination(newValue);
             }
         },
         isDeleteModalActive(newValue) {
             if (!newValue) {
-                this.trashCategoryId = null;
-                this.trashCategoryName = '';
+                this.trashPromotionId = null;
+                this.trashPromotionName = '';
             }
         }
     },
     methods: {
-        getCategoriesWithPagination(page) {
-            this.$store.dispatch('getCategories', page);
+        getPromotionsWithPagination(page) {
+            this.$store.dispatch('getPromotions', page);
         },
         openModal(id, name) {
-            this.trashCategoryName = name;
-            this.trashCategoryId = id;
+            this.trashPromotionName = name;
+            this.trashPromotionId = id;
             this.isDeleteModalActive = true;
         },
         closeModal() {
-            this.trashCategoryName = '';
-            this.trashCategoryId = null;
+            this.trashPromotionName = '';
+            this.trashPromotionId = null;
             this.isDeleteModalActive = false;
         },
-        deleteCategory() {
-            if (this.trashCategoryId) {
-                axios.delete('origummy/api/v1/categories/' + this.trashCategoryId)
+        deletePromotion() {
+            if (this.trashPromotionId) {
+                axios.delete('origummy/api/v1/promotions/' + this.trashPromotionId)
                     .then((response) => {
                         if (response.data.status === 'success') {
                             this.isLoading = false;
@@ -149,7 +142,8 @@ export default {
                                 message: response.data.message,
                                 type: 'is-success'
                             });
-                            this.$store.dispatch('getCategories');
+                            this.$store.dispatch('getPromotions');
+                            this.$store.dispatch('getPromotionTypes');
                         }
 
                         if (response.data.status !== 'success') {
@@ -172,21 +166,14 @@ export default {
                 this.closeModal();
             }
         },
-        changeStatus(id, value, title) {
+        changeStatus(id, value) {
             let formData = new FormData();
-            formData.append('title', title);
             formData.append('status', value ? 1 : 0);
-            this.updateCategory(id, formData);
+            this.updatePromotion(id, formData);
         },
-        changeIsDefault(id, value, title) {
-            let formData = new FormData();
-            formData.append('title', title);
-            formData.append('is_default', value ? 1 : 0);
-            this.updateCategory(id, formData);
-        },
-        updateCategory(id, formData) {
+        updatePromotion(id, formData) {
             formData.append('_method', 'put');
-            axios.post('origummy/api/v1/categories/' + id, formData, {
+            axios.post('origummy/api/v1/promotions/' + id, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -198,7 +185,8 @@ export default {
                             message: response.data.message,
                             type: 'is-success'
                         });
-                        this.$store.dispatch('getCategories');
+                        this.$store.dispatch('getPromotions');
+                        this.$store.dispatch('getPromotionTypes');
                     }
 
                     if (response.data.status !== 'success') {

@@ -97,13 +97,13 @@ final class ProductUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'                     => 'required|string',
+            'title'                     => 'nullable|string',
             'description'               => 'nullable|string',
             'status'                    => 'nullable|boolean',
-            'price'                     => 'required|integer',
+            'price'                     => 'nullable|integer',
             'old_price'                 => 'nullable|integer',
             'count'                     => 'nullable|integer',
-            'category_id'               => 'required|integer',
+            'category_id'               => 'nullable|integer',
             'images'                    => 'nullable|array',
             'images.*'                  => 'image|mimes:jpeg,png,jpg,svg',
             'promotions'                => 'nullable|array',

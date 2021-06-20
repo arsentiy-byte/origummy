@@ -67,14 +67,12 @@ final class PromotionUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'                     => 'required|string',
+            'title'                     => 'nullable|string',
             'description'               => 'nullable|string',
             'status'                    => 'nullable|boolean',
-            'type_id'                   => 'required|integer',
+            'type_id'                   => 'nullable|integer',
             'related_products'          => 'nullable|array',
             'related_products.*'        => 'integer',
-            'delete_related_products'   => 'nullable|array',
-            'delete_related_products.*' => 'integer',
         ];
     }
 

@@ -29,6 +29,9 @@ export default new Vuex.Store({
         },
 
         categories: [],
+        products: [],
+        promotions: [],
+        promotionTypes: [],
     },
     getters: {
         getStatisticsTotal(state) {
@@ -45,6 +48,15 @@ export default new Vuex.Store({
         },
         getPagination(state) {
             return state.pagination;
+        },
+        getProducts(state) {
+            return state.products;
+        },
+        getPromotions(state) {
+            return state.promotions;
+        },
+        getPromotionTypes(state) {
+            return state.promotionTypes;
         },
     },
     mutations: {
@@ -92,6 +104,18 @@ export default new Vuex.Store({
 
         SET_PAGINATION(state, data) {
             state.pagination = data;
+        },
+
+        SET_PRODUCTS(state, data) {
+            state.products = data;
+        },
+
+        SET_PROMOTIONS(state, data) {
+            state.promotions = data;
+        },
+
+        SET_PROMOTION_TYPES(state, data) {
+            state.promotionTypes = data;
         },
     },
     actions: {
@@ -163,6 +187,155 @@ export default new Vuex.Store({
                         let data = response.data.data;
                         commit('SET_CATEGORIES', data.items);
                         commit('SET_PAGINATION', data.pagination);
+                        Notification.open({
+                            message: response.data.message,
+                            type: 'is-success'
+                        })
+                    }
+
+                    if (response.data.status !== 'success') {
+                        Toast.open({
+                            message: `Error: #${response.data.error_code} ${response.data.message}`,
+                            type: 'is-danger',
+                            queue: false
+                        })
+                    }
+                })
+                .catch((error) => {
+                    Toast.open({
+                        message: `Error: ${error.message}`,
+                        type: 'is-danger',
+                        queue: false
+                    })
+                })
+        },
+
+        getProducts({commit}, page = 1) {
+            axios.get('origummy/api/v1/products?page=' + page)
+                .then((response) => {
+                    if (response.data && response.data.data) {
+                        let data = response.data.data;
+                        commit('SET_PRODUCTS', data.items);
+                        commit('SET_PAGINATION', data.pagination);
+                        Notification.open({
+                            message: response.data.message,
+                            type: 'is-success'
+                        })
+                    }
+
+                    if (response.data.status !== 'success') {
+                        Toast.open({
+                            message: `Error: #${response.data.error_code} ${response.data.message}`,
+                            type: 'is-danger',
+                            queue: false
+                        })
+                    }
+                })
+                .catch((error) => {
+                    Toast.open({
+                        message: `Error: ${error.message}`,
+                        type: 'is-danger',
+                        queue: false
+                    })
+                })
+        },
+        getProductsByFilter({commit}, filter) {
+            axios.get('origummy/api/v1/products', {
+                params: filter,
+            })
+                .then((response) => {
+                    if (response.data && response.data.data) {
+                        let data = response.data.data;
+                        commit('SET_PRODUCTS', data.items);
+                        commit('SET_PAGINATION', data.pagination);
+                        Notification.open({
+                            message: response.data.message,
+                            type: 'is-success'
+                        })
+                    }
+
+                    if (response.data.status !== 'success') {
+                        Toast.open({
+                            message: `Error: #${response.data.error_code} ${response.data.message}`,
+                            type: 'is-danger',
+                            queue: false
+                        })
+                    }
+                })
+                .catch((error) => {
+                    Toast.open({
+                        message: `Error: ${error.message}`,
+                        type: 'is-danger',
+                        queue: false
+                    })
+                })
+        },
+        getPromotions({commit}, page = 1) {
+            axios.get('origummy/api/v1/promotions?page=' + page)
+                .then((response) => {
+                    if (response.data && response.data.data) {
+                        let data = response.data.data;
+                        commit('SET_PROMOTIONS', data.items);
+                        commit('SET_PAGINATION', data.pagination);
+                        Notification.open({
+                            message: response.data.message,
+                            type: 'is-success'
+                        })
+                    }
+
+                    if (response.data.status !== 'success') {
+                        Toast.open({
+                            message: `Error: #${response.data.error_code} ${response.data.message}`,
+                            type: 'is-danger',
+                            queue: false
+                        })
+                    }
+                })
+                .catch((error) => {
+                    Toast.open({
+                        message: `Error: ${error.message}`,
+                        type: 'is-danger',
+                        queue: false
+                    })
+                })
+        },
+        getPromotionsByFilter({commit}, filter) {
+            axios.get('origummy/api/v1/promotions', {
+                params: filter,
+            })
+                .then((response) => {
+                    if (response.data && response.data.data) {
+                        let data = response.data.data;
+                        commit('SET_PROMOTIONS', data.items);
+                        commit('SET_PAGINATION', data.pagination);
+                        Notification.open({
+                            message: response.data.message,
+                            type: 'is-success'
+                        })
+                    }
+
+                    if (response.data.status !== 'success') {
+                        Toast.open({
+                            message: `Error: #${response.data.error_code} ${response.data.message}`,
+                            type: 'is-danger',
+                            queue: false
+                        })
+                    }
+                })
+                .catch((error) => {
+                    Toast.open({
+                        message: `Error: ${error.message}`,
+                        type: 'is-danger',
+                        queue: false
+                    })
+                })
+        },
+        getPromotionTypes({commit}) {
+            axios.get('origummy/api/v1/promotions/types')
+                .then((response) => {
+                    if (response.data && response.data.data) {
+                        let data = response.data.data;
+                        commit('SET_PROMOTION_TYPES', data);
                         Notification.open({
                             message: response.data.message,
                             type: 'is-success'

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category\Category;
 use App\Models\Product\Product;
+use App\Models\Promotion\Promotion;
 use App\Models\User;
 use Hash;
 use Illuminate\Database\Seeder;
@@ -21,5 +22,8 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'password' => Hash::make('1234'),
         ]);
+        Category::factory(5)->create();
+        Product::factory(10)->create();
+        Promotion::factory(10)->create();
     }
 }

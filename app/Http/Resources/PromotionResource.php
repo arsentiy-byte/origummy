@@ -64,7 +64,7 @@ final class PromotionResource extends JsonResource
         return [
             'id'                => $this->id,
             'title'             => $this->title,
-            'description'       => $this->description,
+            'description'       => $this->description ?? '',
             'status'            => $this->status,
             'type_id'           => $this->type_id,
             'type'              => $this->type,

@@ -38,7 +38,17 @@ export default {
                         to: '/categories',
                         icon: 'alphabetical-variant',
                         label: 'Категории'
-                    }
+                    },
+                    {
+                        to: '/products',
+                        icon: 'sitemap',
+                        label: 'Товары'
+                    },
+                    {
+                        to: '/promotions',
+                        icon: 'sale',
+                        label: 'Акции'
+                    },
                 ]
             ]
         }

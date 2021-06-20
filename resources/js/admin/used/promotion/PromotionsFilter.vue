@@ -8,9 +8,19 @@
                 <b-switch v-model="status">
                     Активный
                 </b-switch>
-                <b-switch v-model="isDefault">
-                    По умолчанию
-                </b-switch>
+            </b-field>
+            <b-field label="Тип" class="mt-6">
+                <b-select placeholder="Выберите тип" v-model="type_id">
+                    <option :value="null">
+                        Выберите тип
+                    </option>
+                    <option
+                        v-for="type in types"
+                        :value="type.id"
+                        :key="type.id">
+                        {{ type.name }}
+                    </option>
+                </b-select>
             </b-field>
             <hr>
             <b-field horizontal>
@@ -25,15 +35,27 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
-    name: "CategoriesFilter",
+    name: "PromotionsFilter",
     data() {
         return {
             title: '',
             status: true,
-            isDefault: false,
             isLoading: false,
+            type_id: null,
         };
+    },
+    computed: {
+        ...mapGetters({
+            types: 'getPromotionTypes'
+        }),
+    },
+    watch: {
+        types(newValue) {
+            this.types = newValue;
+        }
     },
     methods: {
         submit() {
@@ -43,11 +65,15 @@ export default {
                 params.title = this.title;
             } else {
                 params.status = this.status;
-                params.is_default = this.isDefault;
+            }
+
+            if (this.type_id) {
+                params.type_id = this.type_id;
             }
 
             this.isLoading = true;
-            this.$store.dispatch('getCategoriesByFilter', params);
+            this.$store.dispatch('getPromotionsByFilter', params);
+            this.$store.dispatch('getPromotionTypes');
             this.isLoading = false;
         },
     },

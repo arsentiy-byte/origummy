@@ -42,11 +42,6 @@ final class UpdatePromotionDTO implements InterfaceDTO
      */
     public ?array $relatedProducts = null;
 
-    /**
-     * @var array|null
-     */
-    public ?array $deleteRelatedProducts = null;
-
     public function __construct(
         int $promotion_id,
         ?string $title,
@@ -54,7 +49,6 @@ final class UpdatePromotionDTO implements InterfaceDTO
         ?bool $status,
         ?int $typeId,
         ?array $relatedProducts,
-        ?array $deleteRelatedProducts,
     ) {
         $this->promotion_id = $promotion_id;
         $this->title = $title;
@@ -62,7 +56,6 @@ final class UpdatePromotionDTO implements InterfaceDTO
         $this->status = $status;
         $this->typeId = $typeId;
         $this->relatedProducts = $relatedProducts;
-        $this->deleteRelatedProducts = $deleteRelatedProducts;
     }
 
     /**
@@ -79,7 +72,6 @@ final class UpdatePromotionDTO implements InterfaceDTO
             isset($input['status']) ? (bool) $input['status'] : null,
             isset($input['type_id']) ? (int) $input['type_id'] : null,
             $input['related_products'] ?? null,
-            $input['delete_related_products'] ?? null,
         );
  }
 
@@ -102,13 +94,5 @@ final class UpdatePromotionDTO implements InterfaceDTO
     public function getRelatedProducts(): array
     {
         return $this->relatedProducts ?? [];
-    }
-
-    /**
-     * @return array
-     */
-    public function getDeleteRelatedProducts(): array
-    {
-        return $this->deleteRelatedProducts ?? [];
     }
 }

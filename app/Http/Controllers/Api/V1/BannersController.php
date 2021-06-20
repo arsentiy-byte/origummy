@@ -30,7 +30,7 @@ final class BannersController extends Controller
             'delete_banners.*' => 'string',
         ], $request->all());
 
-        $imagesHandler = new ImagesHandler('1280', 'banners');
+        $imagesHandler = new ImagesHandler(1280, 'banners');
 
         if (! empty($validated['delete_banners'])) {
             foreach ($validated['delete_banners'] as $deleteBanner) {
@@ -47,6 +47,8 @@ final class BannersController extends Controller
                 $path = $image['path'];
                 DB::table('banners')->insert([
                     'image' => $path,
+                    'created_at' => now(),
+                    'updated_at' => null,
                 ]);
                 $imagesHandler->storeImage($image['data'], $path);
             }

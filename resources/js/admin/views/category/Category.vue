@@ -4,7 +4,7 @@
         <div class="buttons is-left ml-5 mt-2">
             <router-link :to="{name: 'categories'}"
                          class="button">
-                Назад
+                Назад в Категории
             </router-link>
         </div>
         <card-component title="Редактирование категорий" icon="alphabetical-variant">
@@ -74,14 +74,26 @@
                         </div>
                     </b-field>
                 </div>
-                <div style="max-width: 50%; width: 100%;">
-                    <b>Подкатегории</b>
-                    <ul style="margin-left: 30px; margin-top: 20px;">
-                        <router-link v-for="child in category.children" :to="{name:'categories.edit', params: {id: child.id}}">
-                            #{{ child.id }} {{ child.title }}
-                        </router-link>
-                    </ul>
-                </div>
+                <b-tabs v-model="activeTab" style="max-width: 50%; width: 100%;">
+                    <b-tab-item label="Подкатегории">
+                        <ul style="margin-left: 30px; margin-top: 20px;">
+                            <li v-for="child in category.children">
+                                <router-link :to="{name:'categories.edit', params: {id: child.id}}">
+                                    #{{ child.id }} {{ child.title }}
+                                </router-link>
+                            </li>
+                        </ul>
+                    </b-tab-item>
+                    <b-tab-item label="Товары">
+                        <ul style="margin-left: 30px; margin-top: 20px;">
+                            <li v-for="product in category.products">
+                                <router-link :to="{name: 'products.edit', params: {id: product.id}}">
+                                    #{{ product.id }} {{ product.title }}
+                                </router-link>
+                            </li>
+                        </ul>
+                    </b-tab-item>
+                </b-tabs>
             </form>
         </card-component>
     </div>
@@ -109,12 +121,16 @@ export default {
             deleteImages: [],
             isLoading: false,
             selectedParentId: '',
+            activeTab: 0,
         };
     },
     created() {
         this.getCategory(this.id);
     },
     watch: {
+        id (newValue) {
+            this.getCategory(newValue);
+        },
         category(newValue) {
             this.category = newValue;
         },

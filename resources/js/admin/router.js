@@ -4,6 +4,10 @@ import Home from './views/Home.vue'
 import Categories from "./views/category/Categories";
 import Category from "./views/category/Category";
 import NewCategory from "./views/category/NewCategory";
+import Products from "./views/product/Products";
+import Promotions from "./views/promotion/Promotions";
+import NewPromotion from "./views/promotion/NewPromotion";
+import Promotion from "./views/promotion/Promotion";
 
 Vue.use(Router)
 
@@ -29,6 +33,27 @@ const router = new Router({
             path: '/categories/:id',
             name: 'categories.edit',
             component: Category,
+            props: true,
+        },
+        {
+            path: '/products',
+            name: 'products',
+            component: Products,
+        },
+        {
+            path: '/promotions',
+            name: 'promotions',
+            component: Promotions,
+        },
+        {
+            path: '/promotions/new',
+            name: 'promotions.create',
+            component: NewPromotion,
+        },
+        {
+            path: '/promotions/:id',
+            name: 'promotions.edit',
+            component: Promotion,
             props: true,
         },
     ],

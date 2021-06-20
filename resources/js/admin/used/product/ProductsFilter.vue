@@ -8,9 +8,6 @@
                 <b-switch v-model="status">
                     Активный
                 </b-switch>
-                <b-switch v-model="isDefault">
-                    По умолчанию
-                </b-switch>
             </b-field>
             <hr>
             <b-field horizontal>
@@ -26,12 +23,11 @@
 
 <script>
 export default {
-    name: "CategoriesFilter",
+    name: "ProductsFilter",
     data() {
         return {
             title: '',
             status: true,
-            isDefault: false,
             isLoading: false,
         };
     },
@@ -43,11 +39,10 @@ export default {
                 params.title = this.title;
             } else {
                 params.status = this.status;
-                params.is_default = this.isDefault;
             }
 
             this.isLoading = true;
-            this.$store.dispatch('getCategoriesByFilter', params);
+            this.$store.dispatch('getProductsByFilter', params);
             this.isLoading = false;
         },
     },

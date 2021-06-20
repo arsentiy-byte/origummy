@@ -15,7 +15,9 @@ class InsertPromotionGiftTypeIntoPromotionTypes extends Migration
     {
         DB::table('promotions_types')->insert([
             'name' => 'gift',
-            'description' => 'Акция: Подарок'
+            'description' => 'Акция: Подарок',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 
