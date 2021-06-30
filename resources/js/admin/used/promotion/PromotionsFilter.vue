@@ -9,7 +9,7 @@
                     Активный
                 </b-switch>
             </b-field>
-            <b-field label="Тип" class="mt-6">
+            <b-field label="Тип" class="mt-5">
                 <b-select placeholder="Выберите тип" v-model="type_id">
                     <option :value="null">
                         Выберите тип
@@ -18,7 +18,7 @@
                         v-for="type in types"
                         :value="type.id"
                         :key="type.id">
-                        {{ type.name }}
+                        {{ type.display_name }}
                     </option>
                 </b-select>
             </b-field>
@@ -43,13 +43,13 @@ export default {
         return {
             title: '',
             status: true,
-            isLoading: false,
             type_id: null,
         };
     },
     computed: {
         ...mapGetters({
-            types: 'getPromotionTypes'
+            types: 'getPromotionTypes',
+            isLoading: 'getIsLoading',
         }),
     },
     watch: {
@@ -71,10 +71,8 @@ export default {
                 params.type_id = this.type_id;
             }
 
-            this.isLoading = true;
             this.$store.dispatch('getPromotionsByFilter', params);
             this.$store.dispatch('getPromotionTypes');
-            this.isLoading = false;
         },
     },
 }

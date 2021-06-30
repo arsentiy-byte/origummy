@@ -22,7 +22,7 @@ final class CreateCategory
     {
         if ($categoryDTO->isDefault) {
             Category::where('is_default', true)->update([
-                'is_default' => false
+                'is_default' => false,
             ]);
         }
 

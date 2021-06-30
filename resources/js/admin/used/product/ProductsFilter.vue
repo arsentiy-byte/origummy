@@ -9,6 +9,16 @@
                     Активный
                 </b-switch>
             </b-field>
+            <b-field label="Категория" class="mt-5">
+                <b-select placeholder="Выберите категорию" v-model="category_id">
+                    <option
+                        v-for="category in categories"
+                        :value="category.id"
+                        :key="category.id">
+                        {{ category.title }}
+                    </option>
+                </b-select>
+            </b-field>
             <hr>
             <b-field horizontal>
                 <div class="control">
@@ -22,14 +32,22 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
     name: "ProductsFilter",
     data() {
         return {
             title: '',
             status: true,
-            isLoading: false,
+            category_id: null,
         };
+    },
+    computed: {
+        ...mapGetters({
+            categories: 'getCategories',
+            isLoading: 'getIsLoading',
+        }),
     },
     methods: {
         submit() {
@@ -41,9 +59,11 @@ export default {
                 params.status = this.status;
             }
 
-            this.isLoading = true;
+            if (this.category_id) {
+                params.category_id = this.category_id;
+            }
+
             this.$store.dispatch('getProductsByFilter', params);
-            this.isLoading = false;
         },
     },
 }

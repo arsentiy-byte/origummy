@@ -25,6 +25,23 @@ final class CategoryController extends Controller
 {
     /**
      * @OA\GET (
+     *      path="/v1/categories/all",
+     *      operationId="getAllCategories",
+     *      tags={"v1", "admin", "category"},
+     *      summary="Список всех категорий",
+     *      description="Список всех категорий",
+     *      @OA\Response(response=200, description="Успешно получены"),
+     *      @OA\Response(response=400, description="Что-то не так")
+     * )
+     * @return JsonResponse
+     */
+    public function getAllCategories(): JsonResponse
+    {
+        return $this->response('Успешно получены', CategoryResource::collection(Category::all()));
+    }
+
+    /**
+     * @OA\GET (
      *      path="/v1/categories",
      *      operationId="getCategories",
      *      tags={"v1", "admin", "category"},

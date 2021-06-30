@@ -15,6 +15,7 @@ class InsertPromotionDiscountTypeIntoPromotionTypes extends Migration
     {
         DB::table('promotions_types')->insert([
             'name' => 'discount',
+            'display_name' => 'Скидка',
             'description' => 'Акция: Скидка',
             'created_at' => now(),
             'updated_at' => now(),

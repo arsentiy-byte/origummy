@@ -51,7 +51,7 @@ final class UpdateRelatedPromotion
     private function getDeleteProducts(array $fromPromotion, array $fromDTO): array
     {
         return array_filter($fromPromotion, function ($item) use ($fromDTO) {
-            return !in_array($item['id'], $fromDTO);
+            return ! in_array($item['id'], $fromDTO);
         });
     }
 
@@ -63,7 +63,7 @@ final class UpdateRelatedPromotion
     private function getInsertProducts(array $fromPromotion, array $fromDTO): array
     {
         return array_filter($fromDTO, function ($item) use ($fromPromotion) {
-            return !in_array($item, array_column($fromPromotion, 'id'));
+            return ! in_array($item, array_column($fromPromotion, 'id'));
         });
     }
 }

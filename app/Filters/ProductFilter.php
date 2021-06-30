@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Builder;
 
 final class ProductFilter extends BaseFilter
 {
+    public const KEYS_TO_INT = [
+        'id', 'category_id',
+    ];
+
     /**
      * @param string $title
      * @return Builder
@@ -33,5 +37,14 @@ final class ProductFilter extends BaseFilter
     public function id(int $id): Builder
     {
         return $this->builder->where('id', $id);
+    }
+
+    /**
+     * @param int $categoryId
+     * @return Builder
+     */
+    public function categoryId(int $categoryId): Builder
+    {
+        return $this->builder->where('category_id', $categoryId);
     }
 }

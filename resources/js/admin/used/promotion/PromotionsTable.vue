@@ -21,7 +21,7 @@
                 {{ props.row.title }}
             </b-table-column>
             <b-table-column label="Тип" field="slug" sortable v-slot="props">
-                {{ props.row.type.name }}
+                {{ props.row.type.display_name }}
             </b-table-column>
             <b-table-column label="Активный" field="status" v-slot="props">
                 <b-switch v-model="props.row.status" @change.native="changeStatus(props.row.id, props.row.status)">
@@ -79,7 +79,6 @@ export default {
     data() {
         return {
             checkedRows: [],
-            isLoading: false,
             currentPage: 1,
             trashPromotionName: '',
             trashPromotionId: null,
@@ -94,6 +93,7 @@ export default {
             promotions: 'getPromotions',
             types: 'getPromotionTypes',
             pagination: 'getPagination',
+            isLoading: 'getIsLoading',
         })
     },
     watch: {
@@ -134,10 +134,11 @@ export default {
         },
         deletePromotion() {
             if (this.trashPromotionId) {
+                this.$store.commit('SET_IS_LOADING', true);
                 axios.delete('origummy/api/v1/promotions/' + this.trashPromotionId)
                     .then((response) => {
                         if (response.data.status === 'success') {
-                            this.isLoading = false;
+                            this.$store.commit('SET_IS_LOADING', false);
                             this.$buefy.notification.open({
                                 message: response.data.message,
                                 type: 'is-success'
@@ -147,7 +148,7 @@ export default {
                         }
 
                         if (response.data.status !== 'success') {
-                            this.isLoading = false;
+                            this.$store.commit('SET_IS_LOADING', false);
                             this.$buefy.toast.open({
                                 message: `Error: #${response.data.error_code} ${response.data.message}`,
                                 type: 'is-danger',
@@ -156,7 +157,7 @@ export default {
                         }
                     })
                     .catch((error) => {
-                        this.isLoading = false;
+                        this.$store.commit('SET_IS_LOADING', false);
                         this.$buefy.toast.open({
                             message: `Error: ${error.message}`,
                             type: 'is-danger',
@@ -172,6 +173,7 @@ export default {
             this.updatePromotion(id, formData);
         },
         updatePromotion(id, formData) {
+            this.$store.commit('SET_IS_LOADING', true);
             formData.append('_method', 'put');
             axios.post('origummy/api/v1/promotions/' + id, formData, {
                 headers: {
@@ -180,17 +182,15 @@ export default {
             })
                 .then((response) => {
                     if (response.data.status === 'success') {
-                        this.isLoading = false;
+                        this.$store.commit('SET_IS_LOADING', false);
                         this.$buefy.notification.open({
                             message: response.data.message,
                             type: 'is-success'
                         });
-                        this.$store.dispatch('getPromotions');
-                        this.$store.dispatch('getPromotionTypes');
                     }
 
                     if (response.data.status !== 'success') {
-                        this.isLoading = false;
+                        this.$store.commit('SET_IS_LOADING', false);
                         this.$buefy.toast.open({
                             message: `Error: #${response.data.error_code} ${response.data.message}`,
                             type: 'is-danger',
@@ -199,7 +199,7 @@ export default {
                     }
                 })
                 .catch((error) => {
-                    this.isLoading = false;
+                    this.$store.commit('SET_IS_LOADING', false);
                     this.$buefy.toast.open({
                         message: `Error: ${error.message}`,
                         type: 'is-danger',

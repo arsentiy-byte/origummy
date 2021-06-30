@@ -22,7 +22,7 @@ final class UpdateProductImages
     {
         $imagesHandler = new ImagesHandler(1000, 'products');
         $deleteImages = $productDTO->getProductDeleteImages();
-        $images = $productDTO->getProductImages();
+        $images = $imagesHandler->handleSeveralImages($productDTO->getProductImages());
 
         foreach ($deleteImages as $deleteImage) {
             $image = ProductImage::where('path', $deleteImage)->first();

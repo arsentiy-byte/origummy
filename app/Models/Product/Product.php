@@ -60,7 +60,7 @@ final class Product extends BaseModel
      */
     public function promotions(): HasManyThrough
     {
-        return $this->hasManyThrough(Promotion::class, ProductPromotion::class, 'product_id', 'id');
+        return $this->hasManyThrough(Promotion::class, ProductPromotion::class, 'product_id', 'id', 'id', 'promotion_id');
     }
 
     /**
@@ -76,6 +76,6 @@ final class Product extends BaseModel
      */
     public function relatedProducts(): HasManyThrough
     {
-        return $this->hasManyThrough(self::class, ProductRelation::class, 'main_product_id', 'id');
+        return $this->hasManyThrough(self::class, ProductRelation::class, 'main_product_id', 'id', 'id', 'related_product_id');
     }
 }

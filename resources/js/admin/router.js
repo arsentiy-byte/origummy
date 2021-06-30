@@ -8,6 +8,8 @@ import Products from "./views/product/Products";
 import Promotions from "./views/promotion/Promotions";
 import NewPromotion from "./views/promotion/NewPromotion";
 import Promotion from "./views/promotion/Promotion";
+import NewProduct from "./views/product/NewProduct";
+import Product from "./views/product/Product";
 
 Vue.use(Router)
 
@@ -39,6 +41,17 @@ const router = new Router({
             path: '/products',
             name: 'products',
             component: Products,
+        },
+        {
+            path: '/products/new',
+            name: 'products.create',
+            component: NewProduct,
+        },
+        {
+            path: '/products/:id',
+            name: 'products.edit',
+            component: Product,
+            props: true,
         },
         {
             path: '/promotions',

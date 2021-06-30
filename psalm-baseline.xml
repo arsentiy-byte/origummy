@@ -91,6 +91,11 @@
       <code>PromotionFilter</code>
     </PropertyNotSetInConstructor>
   </file>
+  <file src="app/Handlers/Category/DeleteCategory/Pipes/DeleteCategory.php">
+    <PossiblyNullReference occurrences="1">
+      <code>update</code>
+    </PossiblyNullReference>
+  </file>
   <file src="app/Handlers/Category/UpdateCategory/Pipes/UpdateCategoryImages.php">
     <PossiblyNullPropertyFetch occurrences="1">
       <code>$image-&gt;path</code>
@@ -130,6 +135,30 @@
     <PossiblyNullReference occurrences="1">
       <code>delete</code>
     </PossiblyNullReference>
+  </file>
+  <file src="app/Handlers/Visualization/Statistics/Pipes/SetOrders.php">
+    <MissingReturnType occurrences="1">
+      <code>handle</code>
+    </MissingReturnType>
+  </file>
+  <file src="app/Handlers/Visualization/Statistics/Pipes/SetTotal.php">
+    <MissingClosureReturnType occurrences="1">
+      <code>function ($order) {</code>
+    </MissingClosureReturnType>
+  </file>
+  <file src="app/Handlers/Visualization/Statistics/StatisticsParam.php">
+    <InvalidReturnStatement occurrences="1"/>
+    <InvalidReturnType occurrences="1">
+      <code>array[]</code>
+    </InvalidReturnType>
+    <MissingConstructor occurrences="3">
+      <code>$charts</code>
+      <code>$orders</code>
+      <code>$total</code>
+    </MissingConstructor>
+    <UndefinedAttributeClass occurrences="1">
+      <code>Pure</code>
+    </UndefinedAttributeClass>
   </file>
   <file src="app/Handlers/WithResultsHandler.php">
     <MissingClosureReturnType occurrences="1">
@@ -176,6 +205,12 @@
       <code>$this-&gt;client-&gt;name</code>
       <code>$this-&gt;client-&gt;phone</code>
     </UndefinedDocblockClass>
+  </file>
+  <file src="app/Models/BaseModel.php">
+    <MissingParamType occurrences="2">
+      <code>$date</code>
+      <code>$date</code>
+    </MissingParamType>
   </file>
   <file src="app/Services/Notifications/Telegram/NotificationAfterOrder.php">
     <MissingParamType occurrences="2">

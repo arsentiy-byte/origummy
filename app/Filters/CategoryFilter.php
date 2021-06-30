@@ -21,7 +21,7 @@ final class CategoryFilter extends BaseFilter
      */
     public function title(string $title): Builder
     {
-        return $this->builder->where('title', 'ilike', '%' . $title . '%');
+        return $this->builder->where('title', 'ilike', '%'.$title.'%');
     }
 
     /**

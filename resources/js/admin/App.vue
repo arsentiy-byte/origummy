@@ -4,12 +4,13 @@
         <aside-menu :menu="menu"/>
         <router-view/>
         <footer-bar/>
+        <b-loading :is-full-page="true" v-model="isLoading" :can-cancel="true"></b-loading>
     </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
+import {mapGetters} from 'vuex';
 import FooterBar from "./components/FooterBar";
 import AsideMenu from "./components/AsideMenu";
 import NavBar from "./components/NavBar";
@@ -22,6 +23,9 @@ export default {
         NavBar
     },
     computed: {
+        ...mapGetters({
+            isLoading: 'getIsLoading',
+        }),
         menu() {
             return [
                 'Главная',

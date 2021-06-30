@@ -73,6 +73,7 @@
 import axiosRateLimit from "axios-rate-limit";
 import CardComponent from "../../components/CardComponent";
 import TitleBar from "../../components/TitleBar";
+import {mapGetters} from 'vuex';
 
 export default {
     name: "NewCategory",
@@ -90,11 +91,13 @@ export default {
                 parent_id: '',
             },
             searchField: '',
-            isLoading: false,
             categoriesSearchData: [],
         };
     },
     computed: {
+        ...mapGetters({
+            isLoading: 'getIsLoading',
+        }),
         categoriesFilteredData() {
             return this.categoriesSearchData.filter(option => {
                 return (
@@ -119,7 +122,7 @@ export default {
         },
         submit() {
             if (this.form.title && this.form.image) {
-                this.isLoading = true;
+                this.$store.commit('SET_IS_LOADING', true);
                 let formData = new FormData();
 
                 if (this.form.image) {
@@ -142,7 +145,7 @@ export default {
                 })
                     .then((response) => {
                         if (response.data.status === 'success') {
-                            this.isLoading = false;
+                            this.$store.commit('SET_IS_LOADING', false);
                             this.$buefy.notification.open({
                                 message: response.data.message,
                                 type: 'is-success'
@@ -151,7 +154,7 @@ export default {
                         }
 
                         if (response.data.status !== 'success') {
-                            this.isLoading = false;
+                            this.$store.commit('SET_IS_LOADING', false);
                             this.$buefy.toast.open({
                                 message: `Error: #${response.data.error_code} ${response.data.message}`,
                                 type: 'is-danger',
@@ -160,7 +163,7 @@ export default {
                         }
                     })
                     .catch((error) => {
-                        this.isLoading = false;
+                        this.$store.commit('SET_IS_LOADING', false);
                         this.$buefy.toast.open({
                             message: `Error: ${error.message}`,
                             type: 'is-danger',

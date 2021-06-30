@@ -26,7 +26,7 @@
                                 v-for="type in types"
                                 :value="type"
                                 :key="type.id">
-                                {{ type.name }}
+                                {{ type.display_name }}
                             </option>
                         </b-select>
                     </b-field>
@@ -78,13 +78,13 @@ export default {
                 relatedProducts: [],
             },
             relatedProductsEmptyMessage: '',
-            isLoading: false,
             productsSearchData: [],
         };
     },
     computed: {
         ...mapGetters({
             types: 'getPromotionTypes',
+            isLoading: 'getIsLoading',
         }),
     },
     watch: {
@@ -101,7 +101,7 @@ export default {
     methods: {
         submit() {
             if (this.form.title && this.form.type) {
-                this.isLoading = true;
+                this.$store.commit('SET_IS_LOADING', true);
                 let formData = new FormData();
 
                 formData.append('title', this.form.title);
@@ -113,7 +113,7 @@ export default {
 
                     if (this.form.relatedProducts.length === 0) {
                         this.relatedProductsEmptyMessage = 'Заполните список!';
-                        this.isLoading = false;
+                        this.$store.commit('SET_IS_LOADING', false);
                         return;
                     }
 
@@ -129,7 +129,7 @@ export default {
                 })
                     .then((response) => {
                         if (response.data.status === 'success') {
-                            this.isLoading = false;
+                            this.$store.commit('SET_IS_LOADING', false);
                             this.$buefy.notification.open({
                                 message: response.data.message,
                                 type: 'is-success'
@@ -138,7 +138,7 @@ export default {
                         }
 
                         if (response.data.status !== 'success') {
-                            this.isLoading = false;
+                            this.$store.commit('SET_IS_LOADING', false);
                             this.$buefy.toast.open({
                                 message: `Error: #${response.data.error_code} ${response.data.message}`,
                                 type: 'is-danger',
@@ -147,7 +147,7 @@ export default {
                         }
                     })
                     .catch((error) => {
-                        this.isLoading = false;
+                        this.$store.commit('SET_IS_LOADING', false);
                         this.$buefy.toast.open({
                             message: `Error: ${error.message}`,
                             type: 'is-danger',

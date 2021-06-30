@@ -108,6 +108,7 @@ final class Handler extends ExceptionHandler
                     return $this->response('Server error', null, 500, 'error');
                 }
                 print_r($e->getMessage());
+
                 return $this->response($e->getMessage(), null, $errorCode, 'error');
         }
     }

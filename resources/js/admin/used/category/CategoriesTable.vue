@@ -90,7 +90,6 @@ export default {
     data() {
         return {
             checkedRows: [],
-            isLoading: false,
             currentPage: 1,
             trashCategoryName: '',
             trashCategoryId: null,
@@ -104,6 +103,7 @@ export default {
         ...mapGetters({
             categories: 'getCategories',
             pagination: 'getPagination',
+            isLoading: 'getIsLoading',
         })
     },
     watch: {
@@ -141,10 +141,11 @@ export default {
         },
         deleteCategory() {
             if (this.trashCategoryId) {
+                this.$store.commit('SET_IS_LOADING', true);
                 axios.delete('origummy/api/v1/categories/' + this.trashCategoryId)
                     .then((response) => {
                         if (response.data.status === 'success') {
-                            this.isLoading = false;
+                            this.$store.commit('SET_IS_LOADING', false);
                             this.$buefy.notification.open({
                                 message: response.data.message,
                                 type: 'is-success'
@@ -153,7 +154,7 @@ export default {
                         }
 
                         if (response.data.status !== 'success') {
-                            this.isLoading = false;
+                            this.$store.commit('SET_IS_LOADING', false);
                             this.$buefy.toast.open({
                                 message: `Error: #${response.data.error_code} ${response.data.message}`,
                                 type: 'is-danger',
@@ -162,7 +163,7 @@ export default {
                         }
                     })
                     .catch((error) => {
-                        this.isLoading = false;
+                        this.$store.commit('SET_IS_LOADING', false);
                         this.$buefy.toast.open({
                             message: `Error: ${error.message}`,
                             type: 'is-danger',
@@ -185,6 +186,7 @@ export default {
             this.updateCategory(id, formData);
         },
         updateCategory(id, formData) {
+            this.$store.commit('SET_IS_LOADING', true);
             formData.append('_method', 'put');
             axios.post('origummy/api/v1/categories/' + id, formData, {
                 headers: {
@@ -193,16 +195,15 @@ export default {
             })
                 .then((response) => {
                     if (response.data.status === 'success') {
-                        this.isLoading = false;
+                        this.$store.commit('SET_IS_LOADING', false);
                         this.$buefy.notification.open({
                             message: response.data.message,
                             type: 'is-success'
                         });
-                        this.$store.dispatch('getCategories');
                     }
 
                     if (response.data.status !== 'success') {
-                        this.isLoading = false;
+                        this.$store.commit('SET_IS_LOADING', false);
                         this.$buefy.toast.open({
                             message: `Error: #${response.data.error_code} ${response.data.message}`,
                             type: 'is-danger',
@@ -211,7 +212,7 @@ export default {
                     }
                 })
                 .catch((error) => {
-                    this.isLoading = false;
+                    this.$store.commit('SET_IS_LOADING', false);
                     this.$buefy.toast.open({
                         message: `Error: ${error.message}`,
                         type: 'is-danger',

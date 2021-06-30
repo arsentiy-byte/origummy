@@ -19,6 +19,7 @@ Route::prefix(config('app.url_base_path'))->group(function () {
              * Categories' routes
              */
             Route::get('categories', 'Api\V1\CategoryController@getCategories')->name('categories.index');
+            Route::get('categories/all', 'Api\V1\CategoryController@getAllCategories')->name('categories.all');
             Route::get('categories/search', 'Api\V1\CategoryController@categorySearch')->name('categories.search');
             Route::get('categories/{category}', 'Api\V1\CategoryController@getCategoryById')->name('category.by_id');
             Route::post('categories', 'Api\V1\CategoryController@createCategory')->name('categories.create');
@@ -40,6 +41,7 @@ Route::prefix(config('app.url_base_path'))->group(function () {
              * Promotions' routes
              */
             Route::get('promotions', 'Api\V1\PromotionController@getPromotions')->name('promotions.index');
+            Route::get('promotions/all', 'Api\V1\PromotionController@getAllPromotions')->name('promotions.all');
             Route::get('promotions/types', 'Api\V1\PromotionController@getPromotionTypes')->name('promotions.by_category');
             Route::get('promotions/search', 'Api\V1\PromotionController@promotionSearch')->name('promotions.search');
             Route::get('promotions/{promotion}', 'Api\V1\PromotionController@getPromotionById')->name('promotion.by_id');

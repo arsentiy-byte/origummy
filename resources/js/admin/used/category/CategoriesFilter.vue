@@ -25,6 +25,9 @@
 </template>
 
 <script>
+
+import {mapGetters} from "vuex";
+
 export default {
     name: "CategoriesFilter",
     data() {
@@ -32,8 +35,12 @@ export default {
             title: '',
             status: true,
             isDefault: false,
-            isLoading: false,
         };
+    },
+    computed: {
+        ...mapGetters({
+            isLoading: 'getIsLoading',
+        }),
     },
     methods: {
         submit() {
@@ -46,9 +53,7 @@ export default {
                 params.is_default = this.isDefault;
             }
 
-            this.isLoading = true;
             this.$store.dispatch('getCategoriesByFilter', params);
-            this.isLoading = false;
         },
     },
 }

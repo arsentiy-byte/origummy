@@ -5,12 +5,12 @@
             <card-component title="Фильтрация" class="has-table has-mobile-sort-spaced">
                 <products-filter/>
             </card-component>
-<!--            <div class="buttons is-right">
-                <router-link :to="{name:'categories.create'}"
+            <div class="buttons is-right">
+                <router-link :to="{name:'products.create'}"
                              class="button is-primary">
                     Создать новую
                 </router-link>
-            </div>-->
+            </div>
             <products-table/>
         </section>
     </div>
@@ -29,6 +29,7 @@ export default {
     },
     created() {
         this.$store.dispatch('getProducts');
+        this.$store.dispatch('getAllCategories');
     },
 }
 </script>

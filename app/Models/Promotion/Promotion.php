@@ -29,12 +29,14 @@ final class Promotion extends BaseModel
         'title', 'description', 'status', 'type_id',
     ];
 
+    protected $with = ['type', 'relatedProducts'];
+
     /**
      * @return HasManyThrough
      */
     public function products(): HasManyThrough
     {
-        return $this->hasManyThrough(Product::class, ProductPromotion::class, 'promotion_id', 'id');
+        return $this->hasManyThrough(Product::class, ProductPromotion::class, 'promotion_id', 'id', 'id', 'product_id');
     }
 
     /**

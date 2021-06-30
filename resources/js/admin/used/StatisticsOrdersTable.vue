@@ -63,13 +63,13 @@ export default {
     name: 'StatisticsOrdersTable',
     data() {
         return {
-            isLoading: false,
             paginated: false,
         }
     },
     computed: {
         ...mapGetters({
             orders: 'getStatisticsOrders',
+            isLoading: 'getIsLoading',
         })
     },
     watch: {

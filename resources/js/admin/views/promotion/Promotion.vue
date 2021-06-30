@@ -32,11 +32,12 @@
                                 v-for="type in types"
                                 :value="type"
                                 :key="type.id">
-                                {{ type.name }}
+                                {{ type.display_name }}
                             </option>
                         </b-select>
                     </b-field>
-                    <b-field label="Товары в подарок" v-if="promotion.type && promotion.type.name === 'gift'" :message="relatedProductsEmptyMessage">
+                    <b-field label="Товары в подарок" v-if="promotion.type && promotion.type.name === 'gift'"
+                             :message="relatedProductsEmptyMessage">
                         <b-taginput
                             v-model="promotion.related_products"
                             :data="productsSearchData"
@@ -87,17 +88,17 @@ export default {
                 related_products: [],
             },
             relatedProductsEmptyMessage: '',
-            isLoading: false,
             productsSearchData: [],
         };
     },
     computed: {
         ...mapGetters({
             types: 'getPromotionTypes',
+            isLoading: 'getIsLoading',
         }),
     },
     watch: {
-        id (newValue) {
+        id(newValue) {
             this.getPromotion(newValue);
         },
         promotion(newValue) {
@@ -117,7 +118,7 @@ export default {
     methods: {
         submit() {
             if (this.promotion.title && this.promotion.type) {
-                this.isLoading = true;
+                this.$store.commit('SET_IS_LOADING', true);
                 let formData = new FormData();
 
                 formData.append('title', this.promotion.title);
@@ -129,7 +130,7 @@ export default {
 
                     if (this.promotion.related_products.length === 0) {
                         this.relatedProductsEmptyMessage = 'Заполните список!';
-                        this.isLoading = false;
+                        this.$store.commit('SET_IS_LOADING', false);
                         return;
                     }
 
@@ -147,7 +148,7 @@ export default {
                 })
                     .then((response) => {
                         if (response.data.status === 'success') {
-                            this.isLoading = false;
+                            this.$store.commit('SET_IS_LOADING', false);
                             this.$buefy.notification.open({
                                 message: response.data.message,
                                 type: 'is-success'
@@ -155,7 +156,7 @@ export default {
                         }
 
                         if (response.data.status !== 'success') {
-                            this.isLoading = false;
+                            this.$store.commit('SET_IS_LOADING', false);
                             this.$buefy.toast.open({
                                 message: `Error: #${response.data.error_code} ${response.data.message}`,
                                 type: 'is-danger',
@@ -164,7 +165,7 @@ export default {
                         }
                     })
                     .catch((error) => {
-                        this.isLoading = false;
+                        this.$store.commit('SET_IS_LOADING', false);
                         this.$buefy.toast.open({
                             message: `Error: ${error.message}`,
                             type: 'is-danger',

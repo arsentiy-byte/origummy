@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {ToastProgrammatic as Toast, NotificationProgrammatic as Notification} from 'buefy'
+import {NotificationProgrammatic as Notification, ToastProgrammatic as Toast} from 'buefy'
 
 Vue.use(Vuex)
 
@@ -32,6 +32,7 @@ export default new Vuex.Store({
         products: [],
         promotions: [],
         promotionTypes: [],
+        isLoading: false,
     },
     getters: {
         getStatisticsTotal(state) {
@@ -57,6 +58,9 @@ export default new Vuex.Store({
         },
         getPromotionTypes(state) {
             return state.promotionTypes;
+        },
+        getIsLoading(state) {
+            return state.isLoading;
         },
     },
     mutations: {
@@ -116,6 +120,10 @@ export default new Vuex.Store({
 
         SET_PROMOTION_TYPES(state, data) {
             state.promotionTypes = data;
+        },
+
+        SET_IS_LOADING(state, value) {
+            state.isLoading = value;
         },
     },
     actions: {
@@ -179,6 +187,7 @@ export default new Vuex.Store({
                 })
         },
         getCategoriesByFilter({commit}, filter) {
+            commit('SET_IS_LOADING', true);
             axios.get('origummy/api/v1/categories', {
                 params: filter,
             })
@@ -190,7 +199,8 @@ export default new Vuex.Store({
                         Notification.open({
                             message: response.data.message,
                             type: 'is-success'
-                        })
+                        });
+                        commit('SET_IS_LOADING', false);
                     }
 
                     if (response.data.status !== 'success') {
@@ -198,7 +208,8 @@ export default new Vuex.Store({
                             message: `Error: #${response.data.error_code} ${response.data.message}`,
                             type: 'is-danger',
                             queue: false
-                        })
+                        });
+                        commit('SET_IS_LOADING', false);
                     }
                 })
                 .catch((error) => {
@@ -206,7 +217,8 @@ export default new Vuex.Store({
                         message: `Error: ${error.message}`,
                         type: 'is-danger',
                         queue: false
-                    })
+                    });
+                    commit('SET_IS_LOADING', false);
                 })
         },
 
@@ -240,6 +252,7 @@ export default new Vuex.Store({
                 })
         },
         getProductsByFilter({commit}, filter) {
+            commit('SET_IS_LOADING', true);
             axios.get('origummy/api/v1/products', {
                 params: filter,
             })
@@ -251,7 +264,8 @@ export default new Vuex.Store({
                         Notification.open({
                             message: response.data.message,
                             type: 'is-success'
-                        })
+                        });
+                        commit('SET_IS_LOADING', false);
                     }
 
                     if (response.data.status !== 'success') {
@@ -259,7 +273,8 @@ export default new Vuex.Store({
                             message: `Error: #${response.data.error_code} ${response.data.message}`,
                             type: 'is-danger',
                             queue: false
-                        })
+                        });
+                        commit('SET_IS_LOADING', false);
                     }
                 })
                 .catch((error) => {
@@ -267,7 +282,8 @@ export default new Vuex.Store({
                         message: `Error: ${error.message}`,
                         type: 'is-danger',
                         queue: false
-                    })
+                    });
+                    commit('SET_IS_LOADING', false);
                 })
         },
         getPromotions({commit}, page = 1) {
@@ -300,6 +316,7 @@ export default new Vuex.Store({
                 })
         },
         getPromotionsByFilter({commit}, filter) {
+            commit('SET_IS_LOADING', true);
             axios.get('origummy/api/v1/promotions', {
                 params: filter,
             })
@@ -308,6 +325,68 @@ export default new Vuex.Store({
                         let data = response.data.data;
                         commit('SET_PROMOTIONS', data.items);
                         commit('SET_PAGINATION', data.pagination);
+                        Notification.open({
+                            message: response.data.message,
+                            type: 'is-success'
+                        });
+                        commit('SET_IS_LOADING', false);
+                    }
+
+                    if (response.data.status !== 'success') {
+                        Toast.open({
+                            message: `Error: #${response.data.error_code} ${response.data.message}`,
+                            type: 'is-danger',
+                            queue: false
+                        });
+                        commit('SET_IS_LOADING', false);
+                    }
+                })
+                .catch((error) => {
+                    Toast.open({
+                        message: `Error: ${error.message}`,
+                        type: 'is-danger',
+                        queue: false
+                    });
+                    commit('SET_IS_LOADING', false);
+                })
+        },
+        getPromotionTypes({commit}) {
+            commit('SET_IS_LOADING', true);
+            axios.get('origummy/api/v1/promotions/types')
+                .then((response) => {
+                    if (response.data && response.data.data) {
+                        let data = response.data.data;
+                        commit('SET_PROMOTION_TYPES', data);
+                        Notification.open({
+                            message: response.data.message,
+                            type: 'is-success'
+                        });
+                        commit('SET_IS_LOADING', false);
+                    }
+
+                    if (response.data.status !== 'success') {
+                        Toast.open({
+                            message: `Error: #${response.data.error_code} ${response.data.message}`,
+                            type: 'is-danger',
+                            queue: false
+                        });
+                        commit('SET_IS_LOADING', false);
+                    }
+                })
+                .catch((error) => {
+                    Toast.open({
+                        message: `Error: ${error.message}`,
+                        type: 'is-danger',
+                        queue: false
+                    });
+                    commit('SET_IS_LOADING', false);
+                })
+        },
+        getAllCategories({commit}) {
+            axios.get('origummy/api/v1/categories/all')
+                .then((response) => {
+                    if (response.data && response.data.data) {
+                        commit('SET_CATEGORIES', response.data.data);
                         Notification.open({
                             message: response.data.message,
                             type: 'is-success'
@@ -330,12 +409,11 @@ export default new Vuex.Store({
                     })
                 })
         },
-        getPromotionTypes({commit}) {
-            axios.get('origummy/api/v1/promotions/types')
+        getAllPromotions({commit}) {
+            axios.get('origummy/api/v1/promotions/all')
                 .then((response) => {
                     if (response.data && response.data.data) {
-                        let data = response.data.data;
-                        commit('SET_PROMOTION_TYPES', data);
+                        commit('SET_PROMOTIONS', response.data.data);
                         Notification.open({
                             message: response.data.message,
                             type: 'is-success'

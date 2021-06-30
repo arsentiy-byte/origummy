@@ -26,6 +26,23 @@ final class PromotionController extends Controller
 {
     /**
      * @OA\GET (
+     *      path="/v1/promotions/all",
+     *      operationId="getAllPromotions",
+     *      tags={"v1", "admin", "promotion"},
+     *      summary="Список всех акций",
+     *      description="Список всех акций",
+     *      @OA\Response(response=200, description="Успешно получены"),
+     *      @OA\Response(response=400, description="Что-то не так")
+     * )
+     * @return JsonResponse
+     */
+    public function getAllPromotions(): JsonResponse
+    {
+        return $this->response('Успешно получены', PromotionResource::collection(Promotion::all()));
+    }
+
+    /**
+     * @OA\GET (
      *      path="/v1/promotions",
      *      operationId="getPromotions",
      *      tags={"v1", "admin", "promotion"},
