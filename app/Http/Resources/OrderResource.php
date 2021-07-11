@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Resources;
 
 use App\Models\Order\Order;
-use App\Traits\OrderTrait;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JetBrains\PhpStorm\Pure;
@@ -65,8 +65,6 @@ use JetBrains\PhpStorm\Pure;
  */
 final class OrderResource extends JsonResource
 {
-    use OrderTrait;
-
     /**
      * Transform the resource into an array.
      *
@@ -84,10 +82,21 @@ final class OrderResource extends JsonResource
             'payment_type'      => $this->payment_type,
             'delivery_time'     => $this->delivery_time,
             'order_count'       => $this->count,
-            'total_price'       => $this->getTotalPrice($this->products->toArray()).' тг.',
+            'total_price'       => $this->getTotalPrice($this->orderProducts, $this->products).' тг.',
             'date'              => $this->created_at,
             'additional_info'   => $this->additional_info,
             'products'          => $this->products,
         ];
  }
+
+    private function getTotalPrice(Collection $orderProducts, Collection $products)
+    {
+        $result = 0;
+
+        foreach ($orderProducts as $orderProduct) {
+            $result += $products->find($orderProduct->product_id)->price * $orderProduct->count;
+        }
+
+        return $result;
+    }
 }

@@ -200,7 +200,7 @@ export default {
         },
         getProduct(id) {
             this.$store.commit('SET_IS_LOADING', true);
-            axios.get('origummy/api/v1/products/' + id)
+            axios.get('/origummy/api/v1/products/' + id)
                 .then((response) => {
                     if (response.data && response.data.data) {
                         this.product = response.data.data;
@@ -339,7 +339,7 @@ export default {
 
                 formData.append('_method', 'put');
 
-                axios.post('origummy/api/v1/products/' + this.id, formData, {
+                axios.post('/origummy/api/v1/products/' + this.id, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }

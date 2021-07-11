@@ -1,8 +1,50 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+body {
+    overflow-x: hidden;
+    overflow-y: scroll !important;
+}
+
+body.modal-open {
+    overflow: hidden;
+    position: fixed;
+}
+
+#app {
+    position: relative;
+    min-height: 100vh;
+    max-width: $defaultSize;
+    width: 100%;
+    margin: 0 auto;
+
+    .content {
+        padding-bottom: 185px;
+    }
+}
+
+@mixin border-shadow {
+    -webkit-box-shadow: 0 5px 3px -5px rgba(0, 0, 0, 0.17);
+    -moz-box-shadow: 0 5px 3px -5px rgba(0, 0, 0, 0.17);
+    box-shadow: 0 5px 3px -5px rgba(00, 0, 0, 0.17);
+}
+
+
+@mixin media($minmax, $media) {
+    @each $size, $resolution in $sizes {
+        @if $media == $size {
+            @media only screen and (#{$minmax}-width: $resolution) {
+                @content;
+            }
+        }
+    }
+}
+
+@import "user/header";
+@import "user/footer";
+@import "user/main";
+@import "user/menu";
+@import "user/modal";

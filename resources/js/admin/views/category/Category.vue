@@ -121,7 +121,7 @@ export default {
             file: null,
             deleteImages: [],
             selectedParentId: '',
-            activeTab: 0,
+            activeTab: 1,
         };
     },
     created() {
@@ -190,7 +190,7 @@ export default {
                     formData.append('delete_images[]', item);
                 });
 
-                axios.post('origummy/api/v1/categories/' + this.id, formData, {
+                axios.post('/origummy/api/v1/categories/' + this.id, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -224,7 +224,7 @@ export default {
             }
         },
         getCategory(id) {
-            axios.get('origummy/api/v1/categories/' + id)
+            axios.get('/origummy/api/v1/categories/' + id)
                 .then((response) => {
                     if (response.data && response.data.data) {
                         this.category = response.data.data;

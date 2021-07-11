@@ -6,6 +6,7 @@ namespace App\Models\Category;
 
 use App\Models\BaseModel;
 use App\Models\Product\Product;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -18,10 +19,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property bool $status
  * @property bool $is_default
  * @property int|null $parent_id
- * @property-read CategoryImage[] $images
- * @property-read Product[] $products
+ * @property-read Collection|CategoryImage[] $images
+ * @property-read Collection|Product[] $products
  * @property-read Category $parent
- * @property-read Category[] $children
+ * @property-read Collection|Category[] $children
  */
 final class Category extends BaseModel
 {

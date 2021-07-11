@@ -94,6 +94,26 @@
                 }
             }
         },
+        "/v1/categories/all": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "category"
+                ],
+                "summary": "Список всех категорий",
+                "description": "Список всех категорий",
+                "operationId": "getAllCategories",
+                "responses": {
+                    "200": {
+                        "description": "Успешно получены"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
         "/v1/categories": {
             "get": {
                 "tags": [
@@ -556,6 +576,26 @@
                 "summary": "Список товаров по категорию",
                 "description": "Список товаров по категорию",
                 "operationId": "getProductsByCategory",
+                "responses": {
+                    "200": {
+                        "description": "Успешно получены"
+                    },
+                    "400": {
+                        "description": "Что-то не так"
+                    }
+                }
+            }
+        },
+        "/v1/promotions/all": {
+            "get": {
+                "tags": [
+                    "v1",
+                    "admin",
+                    "promotion"
+                ],
+                "summary": "Список всех акций",
+                "description": "Список всех акций",
+                "operationId": "getAllPromotions",
                 "responses": {
                     "200": {
                         "description": "Успешно получены"

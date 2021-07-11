@@ -122,7 +122,7 @@ export default {
                     })
                 }
 
-                axios.post('origummy/api/v1/promotions', formData, {
+                axios.post('/origummy/api/v1/promotions', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }

@@ -6,6 +6,11 @@
     <script src="{{ mix('js/admin.js') }}" defer></script>
 @endpush
 
+@push('fonts')
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+@endpush
+
 @push('styles')
     <link href="{{ mix($stylesheet ?? 'css/admin.css') }}" rel="stylesheet">
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">

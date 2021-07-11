@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property-read Collection|Promotion[] $promotions
  * @property-read Collection|ProductImage[] $images
  * @property-read Collection|Product[] $relatedProducts
+ * @property-read int $basketCount
  * @method static Product findOrFail(int $id)
  */
 final class Product extends BaseModel
@@ -46,6 +47,8 @@ final class Product extends BaseModel
     protected $with = [
         'category',  'promotions', 'images', 'relatedProducts',
     ];
+
+    protected $appends = ['basketCount'];
 
     /**
      * @return BelongsTo
@@ -77,5 +80,13 @@ final class Product extends BaseModel
     public function relatedProducts(): HasManyThrough
     {
         return $this->hasManyThrough(self::class, ProductRelation::class, 'main_product_id', 'id', 'id', 'related_product_id');
+    }
+
+    /**
+     * @return int
+     */
+    public function getBasketCountAttribute(): int
+    {
+        return 0;
     }
 }

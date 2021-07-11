@@ -6,6 +6,7 @@ namespace App\Models\Promotion;
 
 use App\Models\BaseModel;
 use App\Models\Product\Product;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
@@ -16,9 +17,9 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property string $description
  * @property bool $status
  * @property int $type_id
- * @property-read Product[] $products
+ * @property-read Collection|Product[] $products
  * @property-read PromotionType $type
- * @property-read Product[] $relatedProducts
+ * @property-read Collection|Product[] $relatedProducts
  */
 final class Promotion extends BaseModel
 {

@@ -20,10 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         User::create([
             'username' => 'admin',
-            'password' => Hash::make('1234'),
+            'password' => Hash::make('Origummy!'),
         ]);
-        Category::factory(5)->create();
-        Product::factory(10)->create();
-        Promotion::factory(10)->create();
     }
 }

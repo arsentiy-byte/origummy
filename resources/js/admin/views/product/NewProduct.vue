@@ -223,7 +223,7 @@ export default {
                     });
                 }
 
-                axios.post('origummy/api/v1/products', formData, {
+                axios.post('/origummy/api/v1/products', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }

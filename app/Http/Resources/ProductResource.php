@@ -94,6 +94,7 @@ final class ProductResource extends JsonResource
             'promotions'        => $this->promotions ?? [],
             'images'            => $this->images ?? [],
             'related_products'  => $this->relatedProducts ?? [],
+            'basketCount'      => $this->basketCount,
         ];
     }
 }

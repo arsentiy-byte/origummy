@@ -32,8 +32,12 @@
         "dayjs": "^1.10.5",
         "material-design-icons": "^3.0.1",
         "numeral": "^2.0.6",
+        "swiper": "^5.4.5",
+        "vue-awesome-swiper": "^4.1.1",
         "vue-chartjs": "^3.5.1",
+        "vue-phone-number-input": "^1.1.10",
         "vue-router": "^3.5.1",
+        "vue2-timepicker": "^1.1.6",
         "vuex": "^3.6.2"
     }
 }

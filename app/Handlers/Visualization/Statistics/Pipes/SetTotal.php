@@ -32,8 +32,14 @@ final class SetTotal
     private function getTotal(): array
     {
         $clients = Client::all()->count();
-        $sales = Order::with('products')->get()->sum(function ($order) {
-            return $order->products->sum('price');
+        $sales = Order::with('products', 'orderProducts')->get()->sum(function ($order) {
+            $total = 0;
+
+            foreach ($order->orderProducts as $orderProduct) {
+                $total += $orderProduct->count * $order->products->find($orderProduct->product_id)->price;
+            }
+
+            return (float) $total;
         });
         $orders = Order::all()->count();
 

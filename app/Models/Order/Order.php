@@ -7,7 +7,9 @@ namespace App\Models\Order;
 use App\Models\BaseModel;
 use App\Models\Client;
 use App\Models\Product\Product;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
@@ -19,7 +21,8 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
  * @property string $delivery_time
  * @property string|null $delivery_type
  * @property int $client_id
- * @property-read Product[] $products
+ * @property-read Collection|Product[] $products
+ * @property-read Collection $orderProducts
  * @property-read Client $client
  */
 final class Order extends BaseModel
@@ -38,6 +41,11 @@ final class Order extends BaseModel
     public function products(): HasManyThrough
     {
         return $this->hasManyThrough(Product::class, OrderProduct::class, 'order_id', 'id', 'id', 'product_id');
+    }
+
+    public function orderProducts(): HasMany
+    {
+        return $this->hasMany(OrderProduct::class, 'order_id', 'id');
     }
 
     /**

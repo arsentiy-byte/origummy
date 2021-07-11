@@ -1,19 +1,18 @@
 // Body
-$body-bg: #f8fafc;
+$body-bg: #fff;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: 'Ubuntu', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 // Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+$logo-red: #E33F3F;
+$black: #000;
+$footer-bg: #2B2B2B;
+$button-red: #DC6767;
+$title-bg: #B3B3B3;
+
+$sizes: ("xs":320px, "s":375px, "sm":425px, "m":576px, "md":768px, "lg":992px, "xl":1200px);
+
+$defaultSize: 425px;

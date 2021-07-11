@@ -54,6 +54,7 @@ final class OrderParam implements InterfaceParam
 
         return [
             'order_id'          => $order->id,
+            'client_id'         => $client->id,
             'name'              => $client->name,
             'phone'             => $client->phone,
             'address'           => $client->address,

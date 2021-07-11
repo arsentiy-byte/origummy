@@ -10,11 +10,12 @@ import NewPromotion from "./views/promotion/NewPromotion";
 import Promotion from "./views/promotion/Promotion";
 import NewProduct from "./views/product/NewProduct";
 import Product from "./views/product/Product";
+import Banners from "./views/Banners";
 
 Vue.use(Router)
 
 const router = new Router({
-    base: process.env.BASE_URL,
+    base: process.env.APP_URL + '/admin',
     routes: [
         {
             path: '/',
@@ -69,6 +70,11 @@ const router = new Router({
             component: Promotion,
             props: true,
         },
+        {
+            path: '/banners',
+            name: 'banners',
+            component: Banners,
+        }
     ],
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {

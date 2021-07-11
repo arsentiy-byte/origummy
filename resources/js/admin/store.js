@@ -33,6 +33,7 @@ export default new Vuex.Store({
         promotions: [],
         promotionTypes: [],
         isLoading: false,
+        banners: [],
     },
     getters: {
         getStatisticsTotal(state) {
@@ -61,6 +62,9 @@ export default new Vuex.Store({
         },
         getIsLoading(state) {
             return state.isLoading;
+        },
+        getBanners(state) {
+            return state.banners;
         },
     },
     mutations: {
@@ -125,10 +129,14 @@ export default new Vuex.Store({
         SET_IS_LOADING(state, value) {
             state.isLoading = value;
         },
+
+        SET_BANNERS(state, data) {
+            state.banners = data;
+        },
     },
     actions: {
         getStatistics({commit}) {
-            axios.get('origummy/web/v1/statistics')
+            axios.get('/origummy/web/v1/statistics')
                 .then((response) => {
                     if (response.data && response.data.data) {
                         let data = response.data.data;
@@ -158,7 +166,7 @@ export default new Vuex.Store({
                 })
         },
         getCategories({commit}, page = 1) {
-            axios.get('origummy/api/v1/categories?page=' + page)
+            axios.get('/origummy/api/v1/categories?page=' + page)
                 .then((response) => {
                     if (response.data && response.data.data) {
                         let data = response.data.data;
@@ -188,7 +196,7 @@ export default new Vuex.Store({
         },
         getCategoriesByFilter({commit}, filter) {
             commit('SET_IS_LOADING', true);
-            axios.get('origummy/api/v1/categories', {
+            axios.get('/origummy/api/v1/categories', {
                 params: filter,
             })
                 .then((response) => {
@@ -223,7 +231,7 @@ export default new Vuex.Store({
         },
 
         getProducts({commit}, page = 1) {
-            axios.get('origummy/api/v1/products?page=' + page)
+            axios.get('/origummy/api/v1/products?page=' + page)
                 .then((response) => {
                     if (response.data && response.data.data) {
                         let data = response.data.data;
@@ -253,7 +261,7 @@ export default new Vuex.Store({
         },
         getProductsByFilter({commit}, filter) {
             commit('SET_IS_LOADING', true);
-            axios.get('origummy/api/v1/products', {
+            axios.get('/origummy/api/v1/products', {
                 params: filter,
             })
                 .then((response) => {
@@ -287,7 +295,7 @@ export default new Vuex.Store({
                 })
         },
         getPromotions({commit}, page = 1) {
-            axios.get('origummy/api/v1/promotions?page=' + page)
+            axios.get('/origummy/api/v1/promotions?page=' + page)
                 .then((response) => {
                     if (response.data && response.data.data) {
                         let data = response.data.data;
@@ -317,7 +325,7 @@ export default new Vuex.Store({
         },
         getPromotionsByFilter({commit}, filter) {
             commit('SET_IS_LOADING', true);
-            axios.get('origummy/api/v1/promotions', {
+            axios.get('/origummy/api/v1/promotions', {
                 params: filter,
             })
                 .then((response) => {
@@ -352,7 +360,7 @@ export default new Vuex.Store({
         },
         getPromotionTypes({commit}) {
             commit('SET_IS_LOADING', true);
-            axios.get('origummy/api/v1/promotions/types')
+            axios.get('/origummy/api/v1/promotions/types')
                 .then((response) => {
                     if (response.data && response.data.data) {
                         let data = response.data.data;
@@ -383,7 +391,7 @@ export default new Vuex.Store({
                 })
         },
         getAllCategories({commit}) {
-            axios.get('origummy/api/v1/categories/all')
+            axios.get('/origummy/api/v1/categories/all')
                 .then((response) => {
                     if (response.data && response.data.data) {
                         commit('SET_CATEGORIES', response.data.data);
@@ -410,10 +418,37 @@ export default new Vuex.Store({
                 })
         },
         getAllPromotions({commit}) {
-            axios.get('origummy/api/v1/promotions/all')
+            axios.get('/origummy/api/v1/promotions/all')
                 .then((response) => {
                     if (response.data && response.data.data) {
                         commit('SET_PROMOTIONS', response.data.data);
+                        Notification.open({
+                            message: response.data.message,
+                            type: 'is-success'
+                        })
+                    }
+
+                    if (response.data.status !== 'success') {
+                        Toast.open({
+                            message: `Error: #${response.data.error_code} ${response.data.message}`,
+                            type: 'is-danger',
+                            queue: false
+                        })
+                    }
+                })
+                .catch((error) => {
+                    Toast.open({
+                        message: `Error: ${error.message}`,
+                        type: 'is-danger',
+                        queue: false
+                    })
+                })
+        },
+        getAllBanners({commit}) {
+            axios.get('/origummy/api/v1/banners')
+                .then((response) => {
+                    if (response.data && response.data.data) {
+                        commit('SET_BANNERS', response.data.data);
                         Notification.open({
                             message: response.data.message,
                             type: 'is-success'

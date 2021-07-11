@@ -139,7 +139,7 @@ export default {
         deleteProduct() {
             if (this.trashProductId) {
                 this.$store.commit('SET_IS_LOADING', true);
-                axios.delete('origummy/api/v1/products/' + this.trashProductId)
+                axios.delete('/origummy/api/v1/products/' + this.trashProductId)
                     .then((response) => {
                         if (response.data.status === 'success') {
                             this.$store.commit('SET_IS_LOADING', false);
@@ -178,7 +178,7 @@ export default {
         updateProduct(id, formData) {
             this.$store.commit('SET_IS_LOADING', true);
             formData.append('_method', 'put');
-            axios.post('origummy/api/v1/products/' + id, formData, {
+            axios.post('/origummy/api/v1/products/' + id, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

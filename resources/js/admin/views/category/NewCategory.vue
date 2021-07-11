@@ -138,7 +138,7 @@ export default {
                     formData.append('parent_id', this.form.parent_id);
                 }
 
-                axios.post('origummy/api/v1/categories', formData, {
+                axios.post('/origummy/api/v1/categories', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }

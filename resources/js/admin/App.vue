@@ -53,6 +53,11 @@ export default {
                         icon: 'sale',
                         label: 'Акции'
                     },
+                    {
+                        to: '/banners',
+                        icon: 'picture-in-picture-top-right',
+                        label: 'Баннеры'
+                    }
                 ]
             ]
         }

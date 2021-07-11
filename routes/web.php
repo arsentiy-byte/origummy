@@ -61,5 +61,5 @@ Route::get('/admin/{vue?}', function () {
 })->where('vue', '[\/\w\.-]*')->middleware('web-auth')->name('admin');
 
 Route::get('/{vue?}', function () {
-    return view('index');
+    return view('user');
 })->where('vue', '[\/\w\.-]*')->name('index');

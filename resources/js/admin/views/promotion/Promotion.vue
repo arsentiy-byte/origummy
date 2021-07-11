@@ -141,7 +141,7 @@ export default {
 
                 formData.append('_method', 'put');
 
-                axios.post('origummy/api/v1/promotions/' + this.id, formData, {
+                axios.post('/origummy/api/v1/promotions/' + this.id, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -217,7 +217,7 @@ export default {
             });
         },
         getPromotion(id) {
-            axios.get('origummy/api/v1/promotions/' + id)
+            axios.get('/origummy/api/v1/promotions/' + id)
                 .then((response) => {
                     if (response.data && response.data.data) {
                         this.promotion = response.data.data;

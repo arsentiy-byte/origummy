@@ -141,11 +141,6 @@
       <code>handle</code>
     </MissingReturnType>
   </file>
-  <file src="app/Handlers/Visualization/Statistics/Pipes/SetTotal.php">
-    <MissingClosureReturnType occurrences="1">
-      <code>function ($order) {</code>
-    </MissingClosureReturnType>
-  </file>
   <file src="app/Handlers/Visualization/Statistics/StatisticsParam.php">
     <InvalidReturnStatement occurrences="1"/>
     <InvalidReturnType occurrences="1">
@@ -195,9 +190,16 @@
     <ImpureMethodCall occurrences="1">
       <code>getTotalPrice</code>
     </ImpureMethodCall>
-    <InvalidMethodCall occurrences="1">
-      <code>toArray</code>
-    </InvalidMethodCall>
+    <InvalidArgument occurrences="2">
+      <code>$this-&gt;orderProducts</code>
+      <code>$this-&gt;products</code>
+    </InvalidArgument>
+    <MissingReturnType occurrences="1">
+      <code>getTotalPrice</code>
+    </MissingReturnType>
+    <PossiblyNullPropertyFetch occurrences="1">
+      <code>$products-&gt;find($orderProduct-&gt;product_id)-&gt;price</code>
+    </PossiblyNullPropertyFetch>
     <UndefinedAttributeClass occurrences="1">
       <code>Pure</code>
     </UndefinedAttributeClass>

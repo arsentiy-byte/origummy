@@ -142,7 +142,7 @@ export default {
         deleteCategory() {
             if (this.trashCategoryId) {
                 this.$store.commit('SET_IS_LOADING', true);
-                axios.delete('origummy/api/v1/categories/' + this.trashCategoryId)
+                axios.delete('/origummy/api/v1/categories/' + this.trashCategoryId)
                     .then((response) => {
                         if (response.data.status === 'success') {
                             this.$store.commit('SET_IS_LOADING', false);
@@ -188,7 +188,7 @@ export default {
         updateCategory(id, formData) {
             this.$store.commit('SET_IS_LOADING', true);
             formData.append('_method', 'put');
-            axios.post('origummy/api/v1/categories/' + id, formData, {
+            axios.post('/origummy/api/v1/categories/' + id, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

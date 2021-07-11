@@ -55,6 +55,12 @@ trait OrderTrait
      */
     protected function getTotalPrice(array $products): float
     {
-        return (float) array_sum(array_column($products, 'price'));
+        $total = 0;
+
+        foreach ($products as $product) {
+            $total += $product->price * $product->orderCount;
+        }
+
+        return (float) $total;
     }
 }
