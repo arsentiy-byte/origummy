@@ -6,7 +6,7 @@
                     <img src="/images/thank.svg" alt="">
                     <div class="title">Спасибо за заказ!</div>
                     <div class="info">Наш менеджер свяжется с вами в ближайшие минуты.</div>
-                    <a href="/">Посмотреть мои заказы</a>
+                    <a href="/my-orders">Посмотреть мои заказы</a>
                 </div>
             </template>
         </modal>

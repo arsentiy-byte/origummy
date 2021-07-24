@@ -1,0 +1,58 @@
+.orders-group {
+    padding: 0 10px;
+    .group {
+        .group-date {
+            font-size: 1.2rem;
+            line-height: 15px;
+            opacity: .7;
+            margin-bottom: 16px;
+        }
+
+        .group-orders {
+            display: flex;
+            flex-direction: column;
+
+            .order {
+                margin: 6px 0;
+                width: 100%;
+                max-width: 425px;
+                height: 80px;
+                display: flex;
+                flex-direction: column;
+                border: 1px solid #9C9C9C;
+                border-radius: 3px;
+
+                .top {
+                    width: 100%;
+                    height: 45%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: $button-red;
+
+                    .order-id {
+                        font-size: 1rem;
+                        line-height: 14px;
+                        color: #fff;
+                        font-weight: bold;
+                    }
+                }
+
+                .bottom {
+                    width: 100%;
+                    height: 55%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #fff;
+
+                    .order-details {
+                        font-size: 1rem;
+                        line-height: 13px;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}

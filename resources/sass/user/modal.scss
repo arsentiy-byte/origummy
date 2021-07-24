@@ -166,8 +166,8 @@
     }
 }
 
-#basket-modal {
-    .basket-title {
+#basket-modal, #order-detail-modal {
+    .basket-title, .order-id {
         font-weight: 500;
         font-size: 1.2rem;
         line-height: 16px;

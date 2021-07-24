@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Main from "./views/Main";
 import Menu from "./views/Menu";
+import MyOrders from "./views/MyOrders";
 
 Vue.use(Router);
 
@@ -29,6 +30,11 @@ const router = new Router({
             },
             props: true,
         },
+        {
+            path: '/my-orders',
+            name: 'my-orders',
+            component: MyOrders,
+        }
     ],
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {

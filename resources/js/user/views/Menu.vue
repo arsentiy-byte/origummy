@@ -16,7 +16,6 @@
                 <product v-for="(product, index) in products" :key="index" :product="product"/>
             </div>
         </div>
-
     </div>
 </template>
 

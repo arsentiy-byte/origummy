@@ -12,11 +12,13 @@ export default new Vuex.Store({
         basketModal: false,
         orderModal: false,
         thankModal: false,
+        orderDetailModal: false,
         product: null,
         basketProducts: [],
         user_id: null,
         user: null,
         lastScroll: 0,
+        orders: [],
     },
     getters: {
         getCategories(state) {
@@ -40,6 +42,9 @@ export default new Vuex.Store({
         getThankModal(state) {
             return state.thankModal;
         },
+        getOrderDetailModal(state) {
+            return state.orderDetailModal;
+        },
         getProduct(state) {
             return state.product;
         },
@@ -59,6 +64,9 @@ export default new Vuex.Store({
         },
         getUser(state) {
             return state.user;
+        },
+        getOrders(state) {
+            return state.orders;
         },
     },
     mutations: {
@@ -82,6 +90,9 @@ export default new Vuex.Store({
         },
         SET_THANK_MODAL(state, value) {
             state.thankModal = value;
+        },
+        SET_ORDER_DETAIL_MODAL(state, value) {
+            state.orderDetailModal = value;
         },
         SET_PRODUCT(state, value) {
             state.product = value;
@@ -126,6 +137,9 @@ export default new Vuex.Store({
                 window.scrollTo(0, state.lastScroll);
             }
         },
+        SET_ORDERS(state, data) {
+            state.orders = data;
+        },
     },
     actions: {
         fetchCategories({commit}) {
@@ -168,6 +182,14 @@ export default new Vuex.Store({
                 .then((response) => {
                     if (response.data && response.data.data) {
                         commit('SET_USER', response.data.data);
+                    }
+                })
+        },
+        fetchUserOrders({commit}, phone) {
+            axios.get(`/origummy/web/v1/orders/by_client/${phone}`)
+                .then((response) => {
+                    if (response.data && response.data.data) {
+                        commit('SET_ORDERS', response.data.data);
                     }
                 })
         },

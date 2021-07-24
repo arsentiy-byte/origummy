@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\Order;
 
-use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
  * Class OrderProduct.
@@ -12,7 +12,7 @@ use App\Models\BaseModel;
  * @property int $product_id
  * @property int $count
  */
-final class OrderProduct extends BaseModel
+final class OrderProduct extends Pivot
 {
     /**
      * @var string

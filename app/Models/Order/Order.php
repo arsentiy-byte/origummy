@@ -9,6 +9,7 @@ use App\Models\Client;
 use App\Models\Product\Product;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
@@ -36,11 +37,11 @@ final class Order extends BaseModel
     ];
 
     /**
-     * @return HasManyThrough
+     * @return BelongsToMany
      */
-    public function products(): HasManyThrough
+    public function products(): BelongsToMany
     {
-        return $this->hasManyThrough(Product::class, OrderProduct::class, 'order_id', 'id', 'id', 'product_id');
+        return $this->belongsToMany(Product::class, 'orders_products')->using(OrderProduct::class)->withPivot('count');
     }
 
     public function orderProducts(): HasMany

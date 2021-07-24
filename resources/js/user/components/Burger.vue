@@ -14,14 +14,10 @@
                     <span>Главная</span>
                 </a>
                 <a href="/" class="item">
-                    <img src="/images/kitchen.svg" alt="">
-                    <span>Меню</span>
-                </a>
-                <a href="/" class="item">
                     <img src="/images/envelope.svg" alt="">
                     <span>Подарки и акции</span>
                 </a>
-                <a href="/" class="item">
+                <a href="/my-orders" class="item">
                     <img src="/images/bag.svg" alt="">
                     <span>Мои заказы</span>
                 </a>
