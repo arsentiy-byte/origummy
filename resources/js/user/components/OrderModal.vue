@@ -37,7 +37,7 @@
                             <span>Выберите время</span>
                             <vue-timepicker :minute-interval="5"
                                             close-on-complete
-                                            :hour-range="[[11, 23]]"
+                                            :hour-range="[[11, 22]]"
                                             hide-disabled-hours
                                             v-model="form.time"
                                             required
