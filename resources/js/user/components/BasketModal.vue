@@ -38,7 +38,7 @@
                 </div>
                 <div class="actions" v-if="products.length > 0">
                     <span class="clear" @click="clear">Очистить корзину</span>
-                    <a href="#" @click.prevent="toForm" class="to-form">Далее</a>
+                    <a href="#" @click.prevent="toForm" class="to-form">Заказать</a>
                 </div>
             </template>
         </modal>
