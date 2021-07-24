@@ -69,4 +69,26 @@ final class ClientController extends Controller
     {
         return $this->response('Данные по клиенту', new ClientResource($client));
     }
+
+    /**
+     * @OA\GET (
+     *      path="/v1/clients/by/phone/{phone}",
+     *      operationId="getClientByPhone",
+     *      tags={"v1", "admin", "client"},
+     *      summary="Получить клиента по номеру телефона",
+     *      description="Получить клиента по номеру телефона",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Данные по клиенту",
+     *          @OA\JsonContent(ref="#/components/schemas/ClientResource")
+     *      ),
+     *      @OA\Response(response=400, description="Что-то не так")
+     * )
+     * @param string $phone
+     * @return JsonResponse
+     */
+    public function getClientByPhone(string $phone): JsonResponse
+    {
+        return $this->response('Данные по клиенту', new ClientResource(Client::where('phone', $phone)->firstOrFail()));
+    }
 }

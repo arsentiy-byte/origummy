@@ -74,7 +74,11 @@ export default {
     },
     created() {
         if (!this.user) {
-            this.$store.dispatch('fetchUser');
+            this.$store.dispatch('fetchInfoFromStore');
+            const userPhone = this.$store.getters.getUserPhone;
+            if (userPhone) {
+                this.$store.dispatch('fetchUser', userPhone);
+            }
         } else {
             this.$store.dispatch('fetchUserOrders', this.user.phone);
         }

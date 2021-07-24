@@ -62,6 +62,7 @@ Route::prefix(config('app.url_base_path'))->group(function () {
              */
             Route::get('clients', 'Api\V1\ClientController@getClients')->name('clients.index');
             Route::get('clients/{client}', 'Api\V1\ClientController@getClientById')->name('client.by_id');
+            Route::get('clients/by/phone/{phone}', 'Api\V1\ClientController@getClientByPhone')->name('client.by_phone');
 
             /**
              * Banners

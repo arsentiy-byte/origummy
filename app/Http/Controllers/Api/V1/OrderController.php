@@ -54,7 +54,7 @@ final class OrderController extends Controller
         NotificationAfterOrder::send($result);
 
         return $this->response('Заказ успешно оформлен', [
-            'user_id' => $result['client_id'],
+            'user_phone' => $result['phone'],
         ]);
     }
 

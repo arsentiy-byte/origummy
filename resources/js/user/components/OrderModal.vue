@@ -7,17 +7,19 @@
                     <input required type="text" name="name" v-model="form.name" class="order-input" placeholder="Введите имя">
                     <input required type="text" name="address" v-model="form.address" class="order-input" placeholder="Адрес доставки">
                     <vue-phone-number-input v-model="form.phone"
+                                            id="phone-number"
                                             default-contry-code="KZ"
                                             :only-countries="['KZ']"
                                             :no-country-selector="true"
                                             :show-code-on-list="true"
                                             :translations="{
                                                 phoneNumberLabel: 'Номер телефона',
-                                                example: 'Пример :',
+                                                example: 'Пример:',
                                             }"
                                             :border-radius="3"
                                             required
                     />
+                    <label for="phone-number" class="phone-error" v-if="isPhoneError">Неправильный формат!</label>
                     <textarea name="add_info" rows="6" v-model="form.add_info" class="order-input input-area" placeholder="Дополнительная информация"></textarea>
                     <div class="delivery-time">
                         <span class="order-label">Время доставки</span>
@@ -99,6 +101,7 @@ export default {
                 count: 1,
                 payment_type: 'cash',
             },
+            isPhoneError: false,
         };
     },
     computed: {
@@ -127,6 +130,11 @@ export default {
         toWhatsapp() {
             if (this.products.length === 0) {
                 this.close();
+            }
+
+            if (this.form.phone && this.form.phone.replace(/[^A-Z0-9]+/ig, '').length !== 10) {
+                this.isPhoneError = true;
+                return;
             }
 
             if (this.form.name && this.form.phone && this.form.address) {
@@ -178,6 +186,11 @@ export default {
                 this.close();
             }
 
+            if (this.form.phone && this.form.phone.replace(/[^A-Z0-9]+/ig, '').length !== 10) {
+                this.isPhoneError = true;
+                return;
+            }
+
             if (this.form.name && this.form.phone && this.form.address) {
                 let payment_type = '';
                 let delivery_time = '';
@@ -219,7 +232,7 @@ export default {
                 }).then((response) => {
                     if (response.data) {
                         if (response.data.status === 'success') {
-                            this.$store.commit('SET_USER_ID', response.data.data.user_id);
+                            this.$store.commit('SET_USER_PHONE', response.data.data.user_phone);
                             this.$store.commit('UPDATE_STORAGE_USER');
                             this.$store.commit('CLEAR_BASKET_PRODUCTS');
                             this.$store.commit('UPDATE_STORAGE_PRODUCTS');
@@ -237,5 +250,8 @@ export default {
 </script>
 
 <style scoped>
-
+.phone-error {
+    font-size: .8rem;
+    color: red;
+}
 </style>

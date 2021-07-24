@@ -15,7 +15,7 @@ export default new Vuex.Store({
         orderDetailModal: false,
         product: null,
         basketProducts: [],
-        user_id: null,
+        user_phone: null,
         user: null,
         lastScroll: 0,
         orders: [],
@@ -51,8 +51,8 @@ export default new Vuex.Store({
         getBasketProducts(state) {
             return state.basketProducts;
         },
-        getUserId(state) {
-            return state.user_id;
+        getUserPhone(state) {
+            return state.user_phone;
         },
         getTotal(state) {
             let total = 0;
@@ -120,10 +120,10 @@ export default new Vuex.Store({
             localStorage.setItem('products', JSON.stringify(state.basketProducts));
         },
         UPDATE_STORAGE_USER(state) {
-            localStorage.setItem('user_id', JSON.stringify(state.user_id));
+            localStorage.setItem('user_phone', JSON.stringify(state.user_phone));
         },
-        SET_USER_ID(state, value) {
-            state.user_id = value;
+        SET_USER_PHONE(state, value) {
+            state.user_phone = value;
         },
         SET_USER(state, value) {
             state.user = value;
@@ -172,13 +172,13 @@ export default new Vuex.Store({
             commit('SET_BASKET_PRODUCTS', products);
         },
         fetchInfoFromStore({commit}) {
-            let info = localStorage.getItem('user_id');
+            let info = localStorage.getItem('user_phone');
             info = info ? JSON.parse(info) : null;
 
-            commit('SET_USER_ID', info);
+            commit('SET_USER_PHONE', info);
         },
-        fetchUser({commit}, id) {
-            axios.get(`/origummy/api/v1/clients/${id}`)
+        fetchUser({commit}, phone) {
+            axios.get(`/origummy/api/v1/clients/by/phone/${phone}`)
                 .then((response) => {
                     if (response.data && response.data.data) {
                         commit('SET_USER', response.data.data);

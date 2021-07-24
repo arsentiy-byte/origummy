@@ -33,9 +33,9 @@ export default {
     created() {
         this.$store.dispatch('fetchBasketProductsFromStore');
         this.$store.dispatch('fetchInfoFromStore');
-        const user_id = this.$store.getters.getUserId;
-        if (user_id) {
-            this.$store.dispatch('fetchUser', user_id);
+        const userPhone = this.$store.getters.getUserPhone;
+        if (userPhone) {
+            this.$store.dispatch('fetchUser', userPhone);
         }
     },
     methods: {
