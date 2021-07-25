@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
 use App\Models\Category\Category;
 use App\Models\Product\Product;
+use App\Models\Promotion\ProductPromotion;
 use Illuminate\Http\JsonResponse;
 
 /**
@@ -40,5 +41,27 @@ final class ProductController extends Controller
             ->get();
 
         return $this->response('Товары по категорий', ProductResource::collection($products));
+    }
+
+    /**
+     * @OA\GET (
+     *      path="/web/v1/products/with/promotions",
+     *      operationId="getProductsWithPromotions",
+     *      tags={"v1", "web", "product"},
+     *      summary="Получить товары с акциями",
+     *      description="Получить товары с акциями",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Подарки и скидки",
+     *      ),
+     *      @OA\Response(response=400, description="Что-то не так")
+     * )
+     * @return JsonResponse
+     */
+    public function getProductsWithPromotions(): JsonResponse
+    {
+        $productIds = ProductPromotion::distinct('product_id')->pluck('product_id');
+        $products = Product::whereIn('id', $productIds)->get();
+        return $this->response('Подарки и скидки', ProductResource::collection($products));
     }
 }

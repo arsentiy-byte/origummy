@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="description" v-else>
-                    {{ product.description }}
+                    {{ product.description && product.description !== 'null' ? product.description : '' }}
                 </div>
                 <div class="promotion" v-if="product.promotions.length > 0">
                     <span class="title">{{ getPromotionTitle(product.promotions[0]) }}</span>

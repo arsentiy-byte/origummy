@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Main from "./views/Main";
 import Menu from "./views/Menu";
 import MyOrders from "./views/MyOrders";
+import Promotions from "./views/Promotions";
+import About from "./views/About";
 
 Vue.use(Router);
 
@@ -34,6 +36,16 @@ const router = new Router({
             path: '/my-orders',
             name: 'my-orders',
             component: MyOrders,
+        },
+        {
+            path: '/promotions',
+            name: 'promotions',
+            component: Promotions,
+        },
+        {
+            path: '/about',
+            name: 'about',
+            component: About,
         }
     ],
     scrollBehavior(to, from, savedPosition) {

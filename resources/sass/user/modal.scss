@@ -166,7 +166,7 @@
     }
 }
 
-#basket-modal, #order-detail-modal {
+#basket-modal, #order-detail-modal, .my-orders {
     .basket-title, .order-id {
         font-weight: 500;
         font-size: 1.2rem;
@@ -176,7 +176,7 @@
         letter-spacing: 0.145em;
     }
 
-    .empty {
+    .empty, .my-orders-empty {
         min-height: calc(100vh - 140px);
         height: calc(100vh - 140px);
         padding: 0 36px;

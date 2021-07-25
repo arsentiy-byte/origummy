@@ -15,7 +15,7 @@
                 </slot>
             </div>
             <div class="description" v-else>
-                <slot name="description">
+                <slot name="description" v-if="product.description && product.description !== 'null'">
                     {{ product.description }}
                 </slot>
             </div>

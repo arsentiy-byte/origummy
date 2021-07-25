@@ -13,15 +13,15 @@
                     <img src="/images/home.svg" alt="">
                     <span>Главная</span>
                 </a>
-                <a href="/" class="item">
+                <a href="/promotions" class="item">
                     <img src="/images/envelope.svg" alt="">
-                    <span>Подарки и акции</span>
+                    <span>Подарки и скидки</span>
                 </a>
                 <a href="/my-orders" class="item">
                     <img src="/images/bag.svg" alt="">
                     <span>Мои заказы</span>
                 </a>
-                <a href="/" class="item">
+                <a href="/about" class="item">
                     <img src="/images/info.svg" alt="">
                     <span>О компании</span>
                 </a>

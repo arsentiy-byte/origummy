@@ -42,6 +42,7 @@ Route::prefix(config('app.url_base_path'))->group(function () {
              */
             Route::prefix('products')->group(function () {
                 Route::get('by_category/{category_slug}', 'Visualization\V1\ProductController@getProductsByCategorySlug')->name('web-products-by_category');
+                Route::get('with/promotions', 'Visualization\V1\ProductController@getProductsWithPromotions')->name('web-products-with_promotions');
             });
 
             /**

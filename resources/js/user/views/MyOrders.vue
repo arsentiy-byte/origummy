@@ -3,9 +3,9 @@
         <div class="fixed">
             <nav-header id="header" :on-main-page="false"></nav-header>
         </div>
-        <div class="menu-content" v-if="user">
+        <div class="menu-content my-orders">
             <h1 class="category-title">Мои заказы</h1>
-            <div class="orders-group">
+            <div class="orders-group" v-if="user && ordersGroups.length > 0">
                 <div class="group" v-for="(group, index) in ordersGroups" :key="index">
                     <div class="group-date">
                         {{ getDate(group.date) }}
@@ -21,6 +21,12 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="my-orders-empty" v-else>
+                <img src="/images/basket-empty.svg" alt="">
+                <div class="title">Вы ещё не сделали заказ</div>
+                <div class="info">Пройдите на “Главное” и добавьте в корзину понравившийся товар.</div>
+                <a href="/">На главное</a>
             </div>
         </div>
         <order-detail-modal :order="currentOrder"/>
@@ -98,5 +104,18 @@ export default {
 <style scoped>
 .category-title {
     text-transform: none;
+}
+
+.my-orders-empty {
+    height: auto !important;
+    min-height: auto !important;
+}
+
+.my-orders-empty a {
+    margin-top: 50px;
+}
+
+.group {
+    margin-bottom: 15px;
 }
 </style>
