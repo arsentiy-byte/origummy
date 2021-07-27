@@ -691,7 +691,7 @@
     }
 }
 
-@media('max', 's') {
+@media only screen and (max-width: 375px) {
     #product-modal {
         .structure, .description, .promotion, .actions {
             padding: 0;
