@@ -694,13 +694,13 @@
 @media only screen and (max-width: 375px) {
     #product-modal {
         .structure, .description, .promotion, .actions {
-            padding: 0;
+            padding: 10px;
         }
     }
 
     #basket-modal, #order-detail-modal, .my-orders {
         .basket-price, .actions {
-            padding: 0;
+            padding: 10px;
         }
     }
 }
