@@ -232,4 +232,6 @@ return [
 
     ],
 
+    'clear_all_code' => env("CLEAR_ALL_CODE"),
+
 ];

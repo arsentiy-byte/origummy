@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         User::create([
             'username' => 'admin',
-            'password' => Hash::make('Origummy!'),
+            'password' => Hash::make(config('app.clear_all_code')),
         ]);
     }
 }

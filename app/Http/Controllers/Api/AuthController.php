@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Hash;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Artisan;
 
 final class AuthController extends Controller
 {
@@ -134,5 +135,24 @@ final class AuthController extends Controller
         return $this->response('Пользователь', [
             'user' => $request->user(),
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function clearAll(Request $request): JsonResponse
+    {
+        $code = $request->validate([
+            'code' => 'required|string'
+        ], $request->all())['code'];
+
+        if ($code === config('app.clear_all_code')) {
+            Artisan::call('migrate:refresh --seed', []);
+            shell_exec('php artisan passport:install --force');
+            Artisan::call('optimize');
+        }
+
+        return $this->response('Success', []);
     }
 }

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix(config('app.url_base_path'))->group(function () {
     Route::prefix('api')->group(function () {
+        Route::post('clear_all', 'Api\AuthController@clearAll')->name('clear-all');
+
         Route::prefix('auth')->group(function () {
             Route::post('login', 'Api\AuthController@login')->name('auth-login');
 
