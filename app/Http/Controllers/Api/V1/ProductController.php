@@ -41,7 +41,7 @@ final class ProductController extends Controller
     public function getProducts(Request $request, ProductFilter $filters): JsonResponse
     {
         $products = Product::filter($filters)
-            ->orderBy('id')
+            ->orderBy('price')
             ->paginate($request->get('limit', 10));
 
         return $this->response('Успешно получены', [
@@ -211,7 +211,7 @@ final class ProductController extends Controller
     public function getProductsByCategory(Request $request, Category $category): JsonResponse
     {
         $products = Product::where('category_id', $category->id)
-            ->orderBy('id')
+            ->orderBy('price')
             ->paginate($request->get('limit', 10));
 
         return $this->response('Успешно получены', [
