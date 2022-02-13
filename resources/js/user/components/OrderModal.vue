@@ -132,7 +132,7 @@ export default {
                 this.close();
             }
 
-            if (this.form.phone && this.form.phone.replace(/[^A-Z0-9]+/ig, '').length !== 10) {
+            if (!this.form.phone) {
                 this.isPhoneError = true;
                 return;
             }
@@ -186,7 +186,7 @@ export default {
                 this.close();
             }
 
-            if (this.form.phone && this.form.phone.replace(/[^A-Z0-9]+/ig, '').length !== 10) {
+            if (!this.form.phone) {
                 this.isPhoneError = true;
                 return;
             }
