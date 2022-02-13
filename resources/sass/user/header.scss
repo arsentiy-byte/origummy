@@ -197,7 +197,7 @@
     .title {
         display: flex;
         flex-direction: column;
-        line-height: 12px;
+        line-height: 16px;
         letter-spacing: 0.025em;
 
         .top {
@@ -207,7 +207,7 @@
         }
 
         .down {
-            font-size: 0.65rem;
+            font-size: 0.75rem;
             font-weight: normal;
             color: $black;
         }
