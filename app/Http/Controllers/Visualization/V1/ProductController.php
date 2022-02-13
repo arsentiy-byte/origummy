@@ -38,6 +38,7 @@ final class ProductController extends Controller
 
         $products = Product::where('category_id', $category->id)
             ->where('status', true)
+            ->orderBy('price')
             ->get();
 
         return $this->response('Товары по категорий', ProductResource::collection($products));
@@ -61,7 +62,7 @@ final class ProductController extends Controller
     public function getProductsWithPromotions(): JsonResponse
     {
         $productIds = ProductPromotion::distinct('product_id')->pluck('product_id');
-        $products = Product::whereIn('id', $productIds)->get();
+        $products = Product::whereIn('id', $productIds)->orderBy('price')->get();
         return $this->response('Подарки и скидки', ProductResource::collection($products));
     }
 }
