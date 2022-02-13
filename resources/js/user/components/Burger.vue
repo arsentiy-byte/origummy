@@ -21,13 +21,13 @@
                     <img src="/images/bag.svg" alt="">
                     <span>Мои заказы</span>
                 </a>
-                <a href="/about" class="item">
-                    <img src="/images/info.svg" alt="">
-                    <span>О компании</span>
-                </a>
-                <a href="/" class="item">
-                    <img src="/images/comment.svg" alt="">
-                    <span>Оставить отзыв</span>
+<!--                <a href="/about" class="item">-->
+<!--                    <img src="/images/info.svg" alt="">-->
+<!--                    <span>О компании</span>-->
+<!--                </a>-->
+<!--                <a href="/" class="item">-->
+<!--                    <img src="/images/comment.svg" alt="">-->
+<!--                    <span>Оставить отзыв</span>-->
                 </a>
             </div>
         </div>
@@ -39,9 +39,8 @@
                 </a>
             </div>
             <div class="social">
-                <a href="#"><img src="/images/insta.svg" alt="instagram"></a>
-                <a href="#"><img src="/images/whatsapp.svg" alt="instagram"></a>
-                <a href="#"><img src="/images/telegram.svg" alt="instagram"></a>
+                <a href="https://www.instagram.com/origummy_kz/"><img src="/images/insta.svg" alt="instagram"></a>
+                <a href="https://wa.me/77787478866"><img src="/images/whatsapp.svg" alt="whatsapp"></a>
             </div>
             <span class="burger-footer">@origummy.kz - Sushi & Pizza</span>
         </div>

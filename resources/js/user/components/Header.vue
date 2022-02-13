@@ -7,7 +7,7 @@
                     OriGummy
                 </span>
                 <span class="down">
-                    sushi and pizza
+                    Мастерская суши
                 </span>
             </div>
         </div>

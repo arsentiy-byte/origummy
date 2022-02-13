@@ -2,7 +2,7 @@
     <div class="main">
         <nav-header id="header"/>
         <div class="info">
-            Доставка суши с 11:00 до 23:00, г. Актобе
+            Доставка суши с 11:00 до 23:00 г. Алматы
         </div>
         <swiper class="swiper banners" :options="swiperOption">
             <swiper-slide class="banner" v-for="(banner, index) in banners" :key="index">

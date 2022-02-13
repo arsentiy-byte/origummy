@@ -21,9 +21,8 @@
         </div>
         <div class="bottom">
             <div class="links">
-                <a href="#"><img src="/images/insta.svg" alt="instagram"></a>
-                <a href="#"><img src="/images/whatsapp.svg" alt="instagram"></a>
-                <a href="#"><img src="/images/telegram.svg" alt="instagram"></a>
+                <a href="https://www.instagram.com/origummy_kz/"><img src="/images/insta.svg" alt="instagram"></a>
+                <a href="https://wa.me/77787478866"><img src="/images/whatsapp.svg" alt="whatsapp"></a>
             </div>
             <a href="tel:+77787478866" class="phone">
                 <span>+7(778)-747-88-66</span>
