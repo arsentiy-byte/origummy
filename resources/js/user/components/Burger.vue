@@ -42,7 +42,7 @@
                 <a href="https://www.instagram.com/origummy_kz/"><img src="/images/insta.svg" alt="instagram"></a>
                 <a href="https://wa.me/77787478866"><img src="/images/whatsapp.svg" alt="whatsapp"></a>
             </div>
-            <span class="burger-footer">@origummy.kz - Sushi & Pizza</span>
+            <span class="burger-footer">@origummy.kz - Мастерская роллов и суши</span>
         </div>
     </div>
 </template>

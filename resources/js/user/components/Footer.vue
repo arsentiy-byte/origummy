@@ -14,7 +14,7 @@
                         OriGummy
                     </span>
                     <span class="down">
-                        sushi and pizza
+                        Мастерская роллов и суши
                     </span>
                 </div>
             </div>

@@ -7,7 +7,7 @@
                     OriGummy
                 </span>
                 <span class="down">
-                    Мастерская суши
+                    Мастерская роллов и суши
                 </span>
             </div>
         </div>

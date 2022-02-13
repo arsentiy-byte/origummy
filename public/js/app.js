@@ -2100,7 +2100,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Burger",
   methods: {
@@ -2124,7 +2123,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
 //
 //
 //
@@ -15902,18 +15900,6 @@ var staticRenderFns = [
         _c("img", { attrs: { src: "/images/bag.svg", alt: "" } }),
         _vm._v(" "),
         _c("span", [_vm._v("Мои заказы")])
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "item", attrs: { href: "/about" } }, [
-        _c("img", { attrs: { src: "/images/info.svg", alt: "" } }),
-        _vm._v(" "),
-        _c("span", [_vm._v("О компании")])
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "item", attrs: { href: "/" } }, [
-        _c("img", { attrs: { src: "/images/comment.svg", alt: "" } }),
-        _vm._v(" "),
-        _c("span", [_vm._v("Оставить отзыв")])
       ])
     ])
   },
@@ -15931,25 +15917,17 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "social" }, [
-        _c("a", { attrs: { href: "#" } }, [
+        _c("a", { attrs: { href: "https://www.instagram.com/origummy_kz/" } }, [
           _c("img", { attrs: { src: "/images/insta.svg", alt: "instagram" } })
         ]),
         _vm._v(" "),
-        _c("a", { attrs: { href: "#" } }, [
-          _c("img", {
-            attrs: { src: "/images/whatsapp.svg", alt: "instagram" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("a", { attrs: { href: "#" } }, [
-          _c("img", {
-            attrs: { src: "/images/telegram.svg", alt: "instagram" }
-          })
+        _c("a", { attrs: { href: "https://wa.me/77787478866" } }, [
+          _c("img", { attrs: { src: "/images/whatsapp.svg", alt: "whatsapp" } })
         ])
       ]),
       _vm._v(" "),
       _c("span", { staticClass: "burger-footer" }, [
-        _vm._v("@origummy.kz - Sushi & Pizza")
+        _vm._v("@origummy.kz - Мастерская роллов и суши")
       ])
     ])
   }
@@ -16002,7 +15980,9 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("span", { staticClass: "down" }, [
-              _vm._v("\n                    sushi and pizza\n                ")
+              _vm._v(
+                "\n                    Мастерская роллов и суши\n                "
+              )
             ])
           ])
         ])
@@ -16010,19 +15990,19 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "bottom" }, [
         _c("div", { staticClass: "links" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("img", { attrs: { src: "/images/insta.svg", alt: "instagram" } })
-          ]),
+          _c(
+            "a",
+            { attrs: { href: "https://www.instagram.com/origummy_kz/" } },
+            [
+              _c("img", {
+                attrs: { src: "/images/insta.svg", alt: "instagram" }
+              })
+            ]
+          ),
           _vm._v(" "),
-          _c("a", { attrs: { href: "#" } }, [
+          _c("a", { attrs: { href: "https://wa.me/77787478866" } }, [
             _c("img", {
-              attrs: { src: "/images/whatsapp.svg", alt: "instagram" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "#" } }, [
-            _c("img", {
-              attrs: { src: "/images/telegram.svg", alt: "instagram" }
+              attrs: { src: "/images/whatsapp.svg", alt: "whatsapp" }
             })
           ])
         ]),
@@ -16077,7 +16057,9 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("span", { staticClass: "down" }, [
-                _vm._v("\n                sushi and pizza\n            ")
+                _vm._v(
+                  "\n                Мастерская роллов и суши\n            "
+                )
               ])
             ])
           : _vm._e()
@@ -17282,7 +17264,7 @@ var render = function() {
       _c("nav-header", { attrs: { id: "header" } }),
       _vm._v(" "),
       _c("div", { staticClass: "info" }, [
-        _vm._v("\n        Доставка суши с 11:00 до 23:00, г. Актобе\n    ")
+        _vm._v("\n        Доставка суши с 11:00 до 23:00 г. Алматы\n    ")
       ]),
       _vm._v(" "),
       _c(
